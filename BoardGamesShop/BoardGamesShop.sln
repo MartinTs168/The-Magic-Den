@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop", "BoardGamesShop\BoardGamesShop.csproj", "{BB80F144-5953-4A8E-BD79-32EB8914223F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop.Infrastructure", "BoardGamesShop.Infrastructure\BoardGamesShop.Infrastructure.csproj", "{27F49C21-917F-4E26-BF4D-791B089C0F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB80F144-5953-4A8E-BD79-32EB8914223F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB80F144-5953-4A8E-BD79-32EB8914223F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB80F144-5953-4A8E-BD79-32EB8914223F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F49C21-917F-4E26-BF4D-791B089C0F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F49C21-917F-4E26-BF4D-791B089C0F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F49C21-917F-4E26-BF4D-791B089C0F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F49C21-917F-4E26-BF4D-791B089C0F2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
