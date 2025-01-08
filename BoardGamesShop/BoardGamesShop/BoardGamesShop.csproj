@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-BoardGamesShop-512e327f-6d64-4ce6-b5b3-9e0dfc497fbf</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.26" />
+  </ItemGroup>
+
+</Project>
