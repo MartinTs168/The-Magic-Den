@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using System;
+using BoardGamesShop.Infrastructure.Data;
 
 namespace BoardGamesShop.Data.Migrations
 {
