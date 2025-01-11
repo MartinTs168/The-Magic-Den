@@ -23,8 +23,6 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         public decimal OriginalPrice { get; set; }
         
         
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
         public decimal Price => OriginalPrice - OriginalPrice * Discount / 100;
 
         [Required]

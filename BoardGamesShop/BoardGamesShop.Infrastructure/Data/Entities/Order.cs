@@ -5,6 +5,8 @@ namespace BoardGamesShop.Infrastructure.Data.Entities;
 
 public class Order
 {
+    private decimal _totalPrice;
+    
     public int Id { get; set; }
     
     [Required]
@@ -20,13 +22,16 @@ public class Order
     
     public int Count => Games.Count;
 
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal TotalPrice
     {
-        get
+        get => _totalPrice;
+        set
         {
-            decimal totalPrice = Games.Sum(g => g.Price);
-            return totalPrice - totalPrice * Discount / 100;
+            _totalPrice = Games.Sum(g => g.Price);
+            _totalPrice -= _totalPrice * Discount / 100;
         }
+
     }
 
     public int Discount { get; set; } = 0;
