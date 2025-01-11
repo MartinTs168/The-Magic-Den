@@ -20,13 +20,22 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }
+        public decimal OriginalPrice { get; set; }
+        
+        
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price => OriginalPrice - OriginalPrice * Discount / 100;
 
         [Required]
         public int Quantity { get; set; }
 
         [Required]
         public int Discount { get; set; }
+        
+        public List<Order> Orders { get; set; } = new List<Order>();
+        
+        public List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
 
         [Required]
         public int BrandId { get; set; }
@@ -39,7 +48,7 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
 
         [ForeignKey(nameof(BrandId))]
         public Brand Brand { get; set;} = null!;
-
+        
 
     }
 }
