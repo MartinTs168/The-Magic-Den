@@ -121,7 +121,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Category", b =>
@@ -139,7 +139,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Game", b =>
@@ -184,7 +184,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.GameOrder", b =>
@@ -199,7 +199,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("GameOrder");
+                    b.ToTable("GameOrder", (string)null);
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Order", b =>
@@ -226,7 +226,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
