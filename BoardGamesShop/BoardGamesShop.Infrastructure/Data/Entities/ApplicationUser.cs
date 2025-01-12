@@ -9,11 +9,11 @@ public class ApplicationUser : IdentityUser<Guid>
 {
     [PersonalData]
     [MaxLength(FirstNameMaxLength)]
-    public string FirstName { get; set; } = null!;
+    public string? FirstName { get; set; }
     
     [PersonalData]
     [MaxLength(LastNameMaxLength)]
-    public string LastName { get; set; } = null!;
+    public string? LastName { get; set; }
     
     [PersonalData]
     public string? Address { get; set; }
