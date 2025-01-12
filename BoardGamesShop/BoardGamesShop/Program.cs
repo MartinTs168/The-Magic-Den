@@ -1,17 +1,14 @@
 using BoardGamesShop.Infrastructure.Data;
 using BoardGamesShop.Infrastructure.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddApplicationIdentity(builder.Configuration);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
