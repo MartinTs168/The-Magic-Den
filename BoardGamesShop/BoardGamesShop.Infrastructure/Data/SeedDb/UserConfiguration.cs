@@ -10,7 +10,8 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         builder
             .Property(u => u.Id)
-            .HasDefaultValueSql("NEWID()");
+            .HasDefaultValueSql("NEWID()")
+            .ValueGeneratedOnAdd();
 
         var data = new SeedData();
         

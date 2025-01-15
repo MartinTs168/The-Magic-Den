@@ -28,6 +28,7 @@ public class SeedData
 
         AdminUser = new ApplicationUser
         {
+            Id = Guid.NewGuid(),
             FirstName = "Admin",
             LastName = "Adminov",
             UserName = "admin",
@@ -41,6 +42,7 @@ public class SeedData
 
         ClientUser = new ApplicationUser
         {
+            Id = Guid.NewGuid(),
             FirstName = "Client",
             LastName = "Clientov",
             UserName = "client",
@@ -56,16 +58,19 @@ public class SeedData
     {
         BoardGameCategory = new Category()
         {
+            Id = 1,
             Name = "Board Games"
         };
         
         CardGameCategory = new Category()
         {
+            Id = 2,
             Name = "Card Games"
         };
         
         RPGGameCategory = new Category()
         {
+            Id = 3,
             Name = "Role-Playing Games"
         };
     }
@@ -74,11 +79,13 @@ public class SeedData
     {
         HasbroBrand = new Brand()
         {
+            Id = 1,
             Name = "Hasbro"
         };
         
         SpaceCowboysBrand = new Brand()
         {
+            Id = 2,
             Name = "Space Cowboys"
         };
     }
