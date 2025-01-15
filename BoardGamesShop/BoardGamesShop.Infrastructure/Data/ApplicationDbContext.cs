@@ -1,4 +1,5 @@
 ﻿using BoardGamesShop.Infrastructure.Data.Entities;
+using BoardGamesShop.Infrastructure.Data.SeedDb;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,19 +16,18 @@ namespace BoardGamesShop.Infrastructure.Data
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Brand>? Brands { get; set;}
         public DbSet<Game>? Games { get; set; }
+        public DbSet<Order>? Orders { get; set; } // Is not necessary since the relationship is defined in game configuration
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConfiguration());
+            
             base.OnModelCreating(modelBuilder);
             
-            modelBuilder.Entity<Game>()
-                .HasMany(e => e.Orders)
-                .WithMany(e => e.Games)
-                .UsingEntity<GameOrder>();
-
-            modelBuilder.Entity<ApplicationUser>()
-                .Property(u => u.Id)
-                .HasDefaultValueSql("NEWID()");
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

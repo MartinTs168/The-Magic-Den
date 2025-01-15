@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using static BoardGamesShop.Infrastructure.Constants.DataConstants;
 
 namespace BoardGamesShop.Infrastructure.Data.Entities
