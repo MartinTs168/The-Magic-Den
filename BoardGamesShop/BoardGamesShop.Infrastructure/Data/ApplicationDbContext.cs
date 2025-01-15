@@ -24,10 +24,10 @@ namespace BoardGamesShop.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new GameConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             
             base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+
         }
     }
 }

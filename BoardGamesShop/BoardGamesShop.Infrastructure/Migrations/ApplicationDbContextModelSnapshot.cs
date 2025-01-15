@@ -102,44 +102,6 @@ namespace BoardGamesShop.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("2b8f34ed-f2d2-4ddf-8e2d-3f9647a360a1"),
-                            AccessFailedCount = 0,
-                            Address = "London Street Admin 3",
-                            ConcurrencyStamp = "54396bff-b5d4-4780-bcd8-5a7f674f9f2e",
-                            Email = "admin@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            IsDeleted = false,
-                            LastName = "Adminov",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEOYjAplbbnOCulhEMxa9zViiRMwl5pTfbCmAr3qxqpKulOcWAHeX8ETB/OiIleamMw==",
-                            PhoneNumber = "0888123456",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        },
-                        new
-                        {
-                            Id = new Guid("2e448f34-5fe1-4b67-8b81-28ec0c20f7f3"),
-                            AccessFailedCount = 0,
-                            Address = "Paris Street Client 1",
-                            ConcurrencyStamp = "2fec86be-36ba-422d-b761-369c8450aeae",
-                            Email = "client@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Client",
-                            IsDeleted = false,
-                            LastName = "Clientov",
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEN5q8IgSaL3rSic9/c0CIMHCkEX/Ti3JUqEKVbL2kwpdwp4U26NyhuyViNZLAJoTjA==",
-                            PhoneNumber = "0999987654",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "client"
-                        });
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Brand", b =>

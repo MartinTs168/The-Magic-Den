@@ -38,4 +38,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+await app.CreateAdminRoleAsync();
+await app.CreateAdminAsync();
+
 await app.RunAsync();

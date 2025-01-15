@@ -12,9 +12,5 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
             .Property(u => u.Id)
             .HasDefaultValueSql("NEWID()")
             .ValueGeneratedOnAdd();
-
-        var data = new SeedData();
-        
-        builder.HasData(new ApplicationUser[] { data.AdminUser, data.ClientUser });
     }
 }

@@ -1,10 +1,11 @@
 using BoardGamesShop.Infrastructure.Data;
 using BoardGamesShop.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class ServiceCollectionExtension
+public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplicationDbContext(this IServiceCollection services,
         IConfiguration config)
@@ -27,6 +28,8 @@ public static class ServiceCollectionExtension
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 5;
             })
+            .AddRoles<IdentityRole<Guid>>()
+            .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<ApplicationDbContext>();
         
         return services;
