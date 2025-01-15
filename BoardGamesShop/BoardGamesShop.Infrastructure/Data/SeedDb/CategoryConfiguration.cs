@@ -10,5 +10,9 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.HasIndex(c => c.Name)
             .IsUnique();
+        
+        var data = new SeedData();
+        
+        builder.HasData(new Category[] { data.BoardGameCategory, data.CardGameCategory, data.RPGGameCategory });
     }
 }

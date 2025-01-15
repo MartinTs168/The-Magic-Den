@@ -12,8 +12,8 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
             .Property(u => u.Id)
             .HasDefaultValueSql("NEWID()");
 
-        // var data = new SeedData();
-        //
-        // builder.HasData(new ApplicationUser[] { data.AdminUser, data.ClientUser });
+        var data = new SeedData();
+        
+        builder.HasData(new ApplicationUser[] { data.AdminUser, data.ClientUser });
     }
 }

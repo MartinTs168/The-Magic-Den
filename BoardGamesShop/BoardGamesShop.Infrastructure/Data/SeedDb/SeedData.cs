@@ -7,10 +7,19 @@ public class SeedData
 {
     public ApplicationUser AdminUser { get; set; }
     public ApplicationUser ClientUser { get; set; }
+    
+    public Category BoardGameCategory { get; set; }
+    public Category CardGameCategory { get; set; }
+    public Category RPGGameCategory { get; set; }
+    
+    public Brand SpaceCowboysBrand { get; set; }
+    public Brand HasbroBrand { get; set; }
 
     public SeedData()
     {
         SeedUsers();
+        SeedCategories();
+        SeedBrands();
     }
 
     private void SeedUsers()
@@ -41,5 +50,36 @@ public class SeedData
         };
         
         ClientUser.PasswordHash = hasher.HashPassword(ClientUser, "client123");
+    }
+
+    private void SeedCategories()
+    {
+        BoardGameCategory = new Category()
+        {
+            Name = "Board Games"
+        };
+        
+        CardGameCategory = new Category()
+        {
+            Name = "Card Games"
+        };
+        
+        RPGGameCategory = new Category()
+        {
+            Name = "Role-Playing Games"
+        };
+    }
+
+    private void SeedBrands()
+    {
+        HasbroBrand = new Brand()
+        {
+            Name = "Hasbro"
+        };
+        
+        SpaceCowboysBrand = new Brand()
+        {
+            Name = "Space Cowboys"
+        };
     }
 }

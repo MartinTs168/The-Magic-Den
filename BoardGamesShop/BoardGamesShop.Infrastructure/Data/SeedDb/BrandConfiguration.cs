@@ -11,5 +11,9 @@ public class BrandConfiguration : IEntityTypeConfiguration<Brand>
         builder.HasIndex(b => b.Name)
             .IsUnique();
 
+        var data = new SeedData();
+
+        builder.HasData(new Brand[] { data.HasbroBrand, data.SpaceCowboysBrand });
+
     }
 }
