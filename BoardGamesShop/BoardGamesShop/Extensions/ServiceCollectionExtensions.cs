@@ -1,4 +1,5 @@
 using BoardGamesShop.Infrastructure.Data;
+using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
         
+        services.AddScoped<IRepository, Repository>();
         return services;
     }
 
