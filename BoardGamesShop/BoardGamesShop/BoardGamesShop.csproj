@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BoardGamesShop.Core\BoardGamesShop.Core.csproj" />
     <ProjectReference Include="..\BoardGamesShop.Infrastructure\BoardGamesShop.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoardGamesShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250115104911_SeedTables")]
+    [Migration("20250117065113_SeedTables")]
     partial class SeedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

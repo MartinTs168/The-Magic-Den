@@ -1,3 +1,5 @@
+using BoardGamesShop.Core.Contracts;
+using BoardGamesShop.Core.Services;
 using BoardGamesShop.Infrastructure.Data;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
@@ -34,6 +36,12 @@ public static class ServiceCollectionExtensions
             .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<ApplicationDbContext>();
         
+        return services;
+    }
+
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+        services.AddScoped<IBrandService, BrandService>();
         return services;
     }
 }

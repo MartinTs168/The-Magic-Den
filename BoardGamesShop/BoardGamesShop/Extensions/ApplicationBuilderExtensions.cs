@@ -33,7 +33,7 @@ public static class ApplicationBuilderExtensions
                 Id = Guid.NewGuid(),
                 FirstName = "Admin",
                 LastName = "Adminov",
-                UserName = AdminEmail,
+                UserName = AdminUserName,
                 NormalizedUserName = AdminEmail,
                 Email = AdminEmail,
                 NormalizedEmail = AdminEmail.ToUpper(),

@@ -20,7 +20,11 @@ public class BrandService : IBrandService
     public async Task<IEnumerable<BrandModel>> AllAsync()
     {
         return await _repository.AllReadOnly<Brand>()
-            .Select(b => new BrandModel { Id = b.Id, Name = b.Name })
+            .Select(b => new BrandModel
+            {
+                Id = b.Id, 
+                Name = b.Name
+            })
             .ToListAsync();
 
     }
