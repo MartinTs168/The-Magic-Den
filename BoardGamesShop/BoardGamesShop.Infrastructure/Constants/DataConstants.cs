@@ -9,6 +9,7 @@ public static class DataConstants
     public const int LastNameMinLength = 2;
 
     public const int BrandNameMaxLength = 100;
+    public const int BrandNameMinLength = 2;
 
     public const int CategoryNameMaxLength = 50;
 
