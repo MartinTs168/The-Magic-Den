@@ -75,4 +75,31 @@ public class BrandController : BaseController
         
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+
+        var brand = await _brandService.GetByIdAsync(id);
+
+        if (brand == null)
+        {
+            return NotFound();
+        }
+
+        return View(brand);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(BrandModel model)
+    {
+        await _brandService.DeleteAsync(model.Id);
+        
+        return RedirectToAction(nameof(All));
+    }
 }

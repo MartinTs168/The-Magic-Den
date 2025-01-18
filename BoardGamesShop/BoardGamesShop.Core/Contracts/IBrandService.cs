@@ -11,4 +11,6 @@ public interface IBrandService
     Task EditAsync(BrandModel model, int id);
     
     Task<BrandModel?> GetByIdAsync(int id);
+    
+    Task DeleteAsync(int id);
 }

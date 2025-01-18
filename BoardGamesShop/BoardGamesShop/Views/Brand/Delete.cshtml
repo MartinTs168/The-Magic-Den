@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "Create Brand";
+    ViewBag.Title = "Delete Brand";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -12,14 +12,14 @@
         <form method="post">
             <div class="form-group">
                 <label asp-for="Name">Brand Name:</label>
-                <input type="text" class="form-control" id="brandName" asp-for="Name" required>
-                <span asp-validation-for="Name" class="small text-danger"></span>
+                <input type="text" class="form-control disabled"
+                       asp-for="Name" disabled>
             </div>
-            
+
             <div class="text-center">
-                <button type="submit" class="btn btn-primary mt-3 w-100" value="Save">Save</button>
+                <button type="submit" class="btn btn-danger mt-3 w-100" value="Delete">Delete</button>
             </div>
-            
+
         </form>
     </div>
 </div>

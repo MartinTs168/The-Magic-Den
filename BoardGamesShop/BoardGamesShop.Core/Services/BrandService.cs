@@ -70,4 +70,10 @@ public class BrandService : IBrandService
             Name = brand.Name
         };
     }
+
+    public async Task DeleteAsync(int id)
+    {
+        await _repository.DeleteAsync<Brand>(id);
+        await _repository.SaveChangesAsync();
+    }
 }
