@@ -3,7 +3,6 @@ using BoardGamesShop.Core.Models.Brand;
 using BoardGamesShop.Infrastructure.Data.Entities;
 using BoardGamesShop.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BoardGamesShop.Core.Services;
 
@@ -29,5 +28,16 @@ public class BrandService : IBrandService
 
     }
 
-    
+    public async Task<int> CreateAsync(BrandModel model)
+    {
+        var brand = new Brand
+        {
+            Name = model.Name
+        };
+
+        await _repository.AddAsync(brand);
+        await _repository.SaveChangesAsync();
+
+        return brand.Id;
+    }
 }
