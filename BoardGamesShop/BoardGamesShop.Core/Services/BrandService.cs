@@ -40,4 +40,34 @@ public class BrandService : IBrandService
 
         return brand.Id;
     }
+
+    public async Task EditAsync(BrandModel model, int id)
+    {
+        if (id > 0)
+        {
+            var brandObj = await _repository.GetByIdAsync<Brand>(id);
+
+            if (brandObj != null)
+            {
+                brandObj.Name = model.Name;
+                await _repository.SaveChangesAsync();
+            }
+        }
+    }
+
+    public async Task<BrandModel?> GetByIdAsync(int id)
+    {
+        var brand = await _repository.GetByIdAsync<Brand>(id);
+
+        if (brand == null)
+        {
+            return null;
+        }
+        
+        return new BrandModel
+        {
+            Id = brand.Id,
+            Name = brand.Name
+        };
+    }
 }
