@@ -45,18 +45,22 @@ public class CategoryService : ICategoryService
         return category.Id;
     }
 
-    public Task EditAsync(CategoryFormViewModel model, int id)
+    public async Task EditAsync(CategoryFormViewModel model, int id)
     {
-        throw new NotImplementedException();
+        if (id > 0)
+        {
+            var categoryObj = await _repository.GetByIdAsync<Category>(id);
+
+            if (categoryObj!= null)
+            {
+                categoryObj.Name = model.Name;
+                await _repository.SaveChangesAsync();
+            }
+        }
     }
 
-    public Task<CategoryFormViewModel?> GetByIdAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
+        await _repository.DeleteAsync<Category>(id);
     }
 }
