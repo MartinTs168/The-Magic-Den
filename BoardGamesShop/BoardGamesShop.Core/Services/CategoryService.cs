@@ -32,9 +32,17 @@ public class CategoryService : ICategoryService
             }).ToListAsync();
     }
 
-    public Task<int> CreateAsync(CategoryFormViewModel model)
+    public async Task<int> CreateAsync(CategoryFormViewModel model)
     {
-        throw new NotImplementedException();
+        var category = new Category()
+        {
+            Name = model.Name
+        };
+        
+        await _repository.AddAsync(category);
+        await _repository.SaveChangesAsync();
+        
+        return category.Id;
     }
 
     public Task EditAsync(CategoryFormViewModel model, int id)

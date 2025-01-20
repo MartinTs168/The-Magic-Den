@@ -12,6 +12,7 @@ public static class DataConstants
     public const int BrandNameMinLength = 2;
 
     public const int CategoryNameMaxLength = 50;
+    public const int CategoryNameMinLength = 3;
 
     public const int GameNameMaxLength = 150;
 }
