@@ -17,7 +17,7 @@ namespace BoardGamesShop.Infrastructure.Data
         public DbSet<Brand>? Brands { get; set;}
         public DbSet<Game>? Games { get; set; }
         public DbSet<Order>? Orders { get; set; } // Is not necessary since the relationship is defined in game configuration
-        
+        public DbSet<SubCategory> SubCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

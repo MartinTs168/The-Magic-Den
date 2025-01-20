@@ -10,5 +10,7 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         [Required]
         [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; } = null!;
+        
+        public ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
     }
 }

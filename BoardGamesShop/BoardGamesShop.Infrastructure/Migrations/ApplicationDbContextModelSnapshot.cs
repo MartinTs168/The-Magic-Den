@@ -282,7 +282,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategory");
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -464,7 +464,7 @@ namespace BoardGamesShop.Infrastructure.Migrations
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.SubCategory", b =>
                 {
                     b.HasOne("BoardGamesShop.Infrastructure.Data.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -521,6 +521,11 @@ namespace BoardGamesShop.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Category", b =>
+                {
+                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("BoardGamesShop.Infrastructure.Data.Entities.Game", b =>
