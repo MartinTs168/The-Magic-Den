@@ -11,4 +11,8 @@ public interface ISubCategoryService
     Task EditAsync(SubCategoryViewModel model, int id);
     
     Task DeleteAsync(int id);
+    
+    Task<bool> CategoryExistsAsync(int categoryId);
+
+    Task<IEnumerable<SubCategoryCategoriesServiceModel>> AllCategoriesAsync();
 }

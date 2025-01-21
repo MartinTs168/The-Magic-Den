@@ -31,6 +31,7 @@ public class CategoryService : ICategoryService
                 }).ToList() 
             }).ToListAsync();
     }
+    
 
     public async Task<int> CreateAsync(CategoryFormViewModel model)
     {

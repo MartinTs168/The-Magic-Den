@@ -1,5 +1,6 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Category;
+using BoardGamesShop.Core.Models.SubCategory;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
@@ -10,10 +11,13 @@ namespace BoardGamesShop.Controllers;
 public class CategoryController : BaseController
 {
     private readonly ICategoryService _categoryService;
+    private readonly ISubCategoryService _subcategoryService;
     
-    public CategoryController(ICategoryService categoryService)
+    public CategoryController(ICategoryService categoryService,
+        ISubCategoryService subcategoryService)
     {
         _categoryService = categoryService;
+        _subcategoryService = subcategoryService;
     }
 
     [HttpGet]
@@ -99,6 +103,37 @@ public class CategoryController : BaseController
     public async Task<IActionResult> DeleteCategory(CategoryFormViewModel model)
     {
         await _categoryService.DeleteAsync(model.Id);
+        
+        return RedirectToAction(nameof(All));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> CreateSubCategory()
+    {
+        var model = new SubCategoryViewModel()
+        {
+            Categories = await _subcategoryService.AllCategoriesAsync()
+        };
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateSubCategory(SubCategoryViewModel model)
+    {
+        if (await _subcategoryService.CategoryExistsAsync(model.CategoryId) == false)
+        {
+            ModelState.AddModelError(nameof(model.CategoryId), "");
+        }
+        
+        
+        if (ModelState.IsValid == false)
+        {
+            model.Categories = await _subcategoryService.AllCategoriesAsync();
+            return View(model);
+        }
+
+        await _subcategoryService.CreateAsync(model);
         
         return RedirectToAction(nameof(All));
     }

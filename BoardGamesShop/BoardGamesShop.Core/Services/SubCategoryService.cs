@@ -2,6 +2,7 @@ using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.SubCategory;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BoardGamesShop.Core.Services;
 
@@ -19,10 +20,11 @@ public class SubCategoryService : ISubCategoryService
     {
         var subCategory = new SubCategory()
         {
-            Name = model.Name
+            Name = model.Name,
+            CategoryId = model.CategoryId
         };
         
-        await _repository.AddAsync<SubCategory>(subCategory);
+        await _repository.AddAsync(subCategory);
         await _repository.SaveChangesAsync();
 
         return subCategory.Id;
@@ -40,7 +42,8 @@ public class SubCategoryService : ISubCategoryService
         return new SubCategoryViewModel
         {
             Id = subCategory.Id,
-            Name = subCategory.Name
+            Name = subCategory.Name,
+            CategoryId = subCategory.Id
         };
     }
 
@@ -53,6 +56,7 @@ public class SubCategoryService : ISubCategoryService
             if (subCategory!= null)
             {
                 subCategory.Name = model.Name;
+                subCategory.CategoryId = model.CategoryId;
                 await _repository.SaveChangesAsync();
             }
         }
@@ -62,5 +66,21 @@ public class SubCategoryService : ISubCategoryService
     {
         await _repository.DeleteAsync<SubCategory>(id);
         await _repository.SaveChangesAsync();
+    }
+
+    public async Task<bool> CategoryExistsAsync(int categoryId)
+    {
+        return await _repository.AllReadOnly<Category>()
+            .AnyAsync(c => c.Id == categoryId);
+    }
+
+    public async Task<IEnumerable<SubCategoryCategoriesServiceModel>> AllCategoriesAsync()
+    {
+        return await _repository.AllReadOnly<Category>()
+            .Select(c => new SubCategoryCategoriesServiceModel()
+            {
+                Id = c.Id,
+                Name = c.Name
+            }).ToListAsync();
     }
 }
