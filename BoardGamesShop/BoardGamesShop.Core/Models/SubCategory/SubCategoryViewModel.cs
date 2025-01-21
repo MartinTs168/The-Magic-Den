@@ -7,12 +7,12 @@ public class SubCategoryViewModel
 {
     public int Id {get; set; }
     
-    public string Name { get; set; } = null!;
-
     [Required]
-    [Display(Name = "Category")]
     [StringLength(CategoryNameMaxLength, MinimumLength = CategoryNameMinLength, 
         ErrorMessage = "The field {0} must be between {2} and {1} characters long.")]
+    public string Name { get; set; } = null!;
+    
+    [Required]
     public int CategoryId { get; set; }
 
     public IEnumerable<SubCategoryCategoriesServiceModel> Categories { get; set; } = 

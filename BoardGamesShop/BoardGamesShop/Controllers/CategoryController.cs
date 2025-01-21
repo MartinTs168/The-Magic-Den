@@ -137,4 +137,45 @@ public class CategoryController : BaseController
         
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> EditSubCategory(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+        
+        var subcategory = await _subcategoryService.GetByIdAsync(id);
+        
+        if (subcategory == null)
+        {
+            return NotFound();
+        }
+        
+        subcategory.Categories = await _subcategoryService.AllCategoriesAsync();
+        return View(subcategory);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditSubCategory(SubCategoryViewModel model, int id)
+    {
+        if(id <= 0) return NotFound();
+        
+        if (await _subcategoryService.CategoryExistsAsync(model.CategoryId) == false)
+        {
+            ModelState.AddModelError(nameof(model.CategoryId), "");
+        }
+
+        if (ModelState.IsValid == false)
+        {
+            model.Categories = await _subcategoryService.AllCategoriesAsync();
+            return View(model);
+        }
+        
+        await _subcategoryService.EditAsync(model, id);
+        
+        return RedirectToAction(nameof(All));
+    }
 }
