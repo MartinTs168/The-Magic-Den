@@ -43,6 +43,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IBrandService, BrandService>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ISubCategoryService, SubCategoryService>();
         return services;
     }
 }
