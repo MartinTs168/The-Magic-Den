@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using static BoardGamesShop.Infrastructure.Constants.DataConstants;
 
@@ -13,6 +14,7 @@ public class SubCategoryViewModel
     public string Name { get; set; } = null!;
     
     [Required]
+    [Display(Name = "Category")]
     public int CategoryId { get; set; }
 
     public IEnumerable<SubCategoryCategoriesServiceModel> Categories { get; set; } = 

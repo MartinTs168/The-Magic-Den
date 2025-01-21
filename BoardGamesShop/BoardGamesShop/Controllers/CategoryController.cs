@@ -178,4 +178,33 @@ public class CategoryController : BaseController
         
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteSubCategory(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+        
+        var subcategory = await _subcategoryService.GetByIdAsync(id);
+        
+        if (subcategory == null)
+        {
+            return NotFound();
+        }
+
+        subcategory.Categories = await _subcategoryService.AllCategoriesAsync();
+        
+        return View(subcategory);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteSubCategory(SubCategoryViewModel model)
+    {
+        await _subcategoryService.DeleteAsync(model.Id);
+        
+        return RedirectToAction(nameof(All));
+    }
 }

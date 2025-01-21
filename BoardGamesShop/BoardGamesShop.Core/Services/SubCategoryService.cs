@@ -43,7 +43,7 @@ public class SubCategoryService : ISubCategoryService
         {
             Id = subCategory.Id,
             Name = subCategory.Name,
-            CategoryId = subCategory.Id
+            CategoryId = subCategory.CategoryId
         };
     }
 
