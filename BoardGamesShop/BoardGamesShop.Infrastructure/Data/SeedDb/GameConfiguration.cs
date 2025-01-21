@@ -12,6 +12,11 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
             .HasMany(e => e.Orders)
             .WithMany(e => e.Games)
             .UsingEntity<GameOrder>();
-        
+
+        builder
+            .HasOne(g => g.SubCategory)
+            .WithMany(sc => sc.Games)
+            .OnDelete(DeleteBehavior.SetNull);
+
     }
 }

@@ -37,12 +37,11 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
 
         [Required]
         public int BrandId { get; set; }
-
-        [Required]
-        public int SubCategoryId { get; set; }
+        
+        public int? SubCategoryId { get; set; }
 
         [ForeignKey(nameof(SubCategoryId))]
-        public SubCategory SubCategory { get; set; } = null!;
+        public SubCategory? SubCategory { get; set; }
 
         [ForeignKey(nameof(BrandId))]
         public Brand Brand { get; set;} = null!;
