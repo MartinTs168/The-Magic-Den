@@ -10,5 +10,7 @@ public interface ICategoryService
 
     Task EditAsync(CategoryFormViewModel model, int id);
     
+    Task<CategoryFormViewModel?> GetByIdAsync(int id);
+
     Task DeleteAsync(int id);
 }

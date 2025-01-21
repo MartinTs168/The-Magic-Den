@@ -59,6 +59,23 @@ public class CategoryService : ICategoryService
         }
     }
 
+    public async Task<CategoryFormViewModel?> GetByIdAsync(int id)
+    {
+        var category = await _repository.GetByIdAsync<Category>(id);
+        
+        if (category == null)
+        {
+            return null;
+        }
+
+        return new CategoryFormViewModel
+        {
+            Id = category.Id,
+            Name = category.Name
+        };
+
+    }
+
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync<Category>(id);

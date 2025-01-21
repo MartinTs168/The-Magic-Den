@@ -43,4 +43,36 @@ public class CategoryController : BaseController
         
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> EditCategory(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+        
+        var category = await _categoryService.GetByIdAsync(id);
+        
+        if (category == null)
+        {
+            return NotFound();
+        }
+        
+        return View(category);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditCategory(CategoryFormViewModel model, int id)
+    {
+        if (id <= 0 || ModelState.IsValid == false)
+        {
+            return View(model);
+        }
+        
+        await _categoryService.EditAsync(model, id);
+        
+        return RedirectToAction(nameof(All));
+    }
 }
