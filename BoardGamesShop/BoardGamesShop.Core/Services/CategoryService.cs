@@ -79,5 +79,6 @@ public class CategoryService : ICategoryService
     public async Task DeleteAsync(int id)
     {
         await _repository.DeleteAsync<Category>(id);
+        await _repository.SaveChangesAsync();
     }
 }

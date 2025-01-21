@@ -75,4 +75,31 @@ public class CategoryController : BaseController
         
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteCategory(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+        
+        var category = await _categoryService.GetByIdAsync(id);
+        
+        if (category == null)
+        {
+            return NotFound();
+        }
+        
+        return View(category);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteCategory(CategoryFormViewModel model)
+    {
+        await _categoryService.DeleteAsync(model.Id);
+        
+        return RedirectToAction(nameof(All));
+    }
 }
