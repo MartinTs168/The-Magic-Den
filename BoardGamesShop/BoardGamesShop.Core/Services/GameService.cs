@@ -66,8 +66,15 @@ public class GameService : IGameService
 
         return new GameServiceQueryModel()
         {
-            TotalProductsCount = totalGames,
-            Products = games
+            TotalGamesCount = totalGames,
+            Games = games
         };
+    }
+
+    public async Task<IEnumerable<string>> AllSubCategoriesNamesAsync()
+    {
+        return await _repository.AllReadOnly<SubCategory>()
+            .Select(sc => sc.Name)
+            .ToListAsync();
     }
 }

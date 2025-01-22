@@ -11,4 +11,6 @@ public interface IGameService
         GameSorting sorting = GameSorting.Newest,
         int currentPage = 1, int gamesPerPage = 1
         );
+
+    Task<IEnumerable<string>> AllSubCategoriesNamesAsync();
 }
