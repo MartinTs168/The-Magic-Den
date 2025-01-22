@@ -7,7 +7,6 @@ namespace BoardGamesShop.Controllers;
 
 public class GameController : BaseController
 {
-    
     private readonly IGameService _gameService;
     
     public GameController(IGameService gameService)
@@ -15,7 +14,6 @@ public class GameController : BaseController
         _gameService = gameService;
     }
     
-    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> All([FromQuery] AllGamesQueryModel query)
     {
