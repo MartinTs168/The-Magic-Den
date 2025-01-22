@@ -30,6 +30,13 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
 
         [Required]
         public int Discount { get; set; }
+
+        [Required]
+        [MaxLength(GameAgeRatingMaxLength)]
+        public string AgeRating { get; set; } = null!;
+        
+        [Required]
+        public int NumberOfPlayers { get; set; }
         
         public List<Order> Orders { get; set; } = new List<Order>();
         
