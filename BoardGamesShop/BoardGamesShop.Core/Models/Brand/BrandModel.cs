@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using static BoardGamesShop.Infrastructure.Constants.DataConstants;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 
 namespace BoardGamesShop.Core.Models.Brand;
 
@@ -10,6 +11,6 @@ public class BrandModel
     [Required]
     [StringLength(BrandNameMaxLength, 
         MinimumLength = BrandNameMinLength, 
-        ErrorMessage = "The field {0} must be between {2} and {1} chracters.")]
+        ErrorMessage = LengthErrorMessage)]
     public string Name { get; set; } = null!;
 }
