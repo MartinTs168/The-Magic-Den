@@ -16,7 +16,7 @@ public class GameService : IGameService
         _repository = repository;
     }
     
-    
+    //TODO: Add search by brand like subcategory
     public async Task<GameServiceQueryModel> AllAsync(string? subCategory = null, string? searchTerm = null, 
         GameSorting sorting = GameSorting.Newest,
         int currentPage = 1, int gamesPerPage = 1)
@@ -98,5 +98,31 @@ public class GameService : IGameService
         await _repository.SaveChangesAsync();
         
         return gameEntity.Id;
+    }
+
+    public async Task<GameServiceModel?> GetByIdAsync(int id)
+    {
+        if (id < 0) return null;
+
+        var game = await _repository.GetByIdAsync<Game>(id);
+
+        if (game == null) return null;
+
+        return new GameServiceModel()
+        {
+            Id = game.Id,
+            Name = game.Name,
+            Price = game.Price,
+            ImgUrl = game.ImgUrl,
+            AgeRating = game.AgeRating,
+            NumberOfPlayers = game.NumberOfPlayers,
+            Description = game.Description,
+            Discount = game.Discount,
+            Quantity = game.Quantity,
+            OriginalPrice = game.OriginalPrice,
+            SubCategory = game.SubCategory?.Name ?? null,
+            BrandName = game.Brand.Name
+        };
+
     }
 }

@@ -39,4 +39,8 @@ public class GameServiceModel
     
     [Display(Name = "Category")]
     public string? SubCategory { get; set; }
+
+    [Required(ErrorMessage = RequiredErrorMessage)]
+    [Display(Name = "Brand")]
+    public string BrandName { get; set; } = null!;
 }
