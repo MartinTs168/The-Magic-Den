@@ -1,5 +1,6 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Enumerations;
+using BoardGamesShop.Core.Models.Brand;
 using BoardGamesShop.Core.Models.Game;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
@@ -75,6 +76,13 @@ public class GameService : IGameService
     {
         return await _repository.AllReadOnly<SubCategory>()
             .Select(sc => sc.Name)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<string>> AllBrandsNamesAsync()
+    {
+        return await _repository.AllReadOnly<Brand>()
+            .Select(b => b.Name)
             .ToListAsync();
     }
 
