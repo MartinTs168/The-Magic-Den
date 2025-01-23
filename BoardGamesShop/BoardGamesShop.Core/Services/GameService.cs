@@ -77,4 +77,26 @@ public class GameService : IGameService
             .Select(sc => sc.Name)
             .ToListAsync();
     }
+
+    public async Task<int> CreateAsync(GameFormModel model)
+    {
+        var gameEntity = new Game()
+        {
+            Name = model.Name,
+            Description = model.Description,
+            ImgUrl = model.ImgUrl,
+            OriginalPrice = model.OriginalPrice,
+            Discount = model.Discount,
+            Quantity = model.Quantity,
+            AgeRating = model.AgeRating,
+            NumberOfPlayers = model.NumberOfPlayers,
+            SubCategoryId = model.SubCategoryId,
+            BrandId = model.BrandId
+        };
+
+        await _repository.AddAsync(gameEntity);
+        await _repository.SaveChangesAsync();
+        
+        return gameEntity.Id;
+    }
 }

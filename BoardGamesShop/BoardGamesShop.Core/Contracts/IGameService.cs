@@ -13,4 +13,6 @@ public interface IGameService
         );
 
     Task<IEnumerable<string>> AllSubCategoriesNamesAsync();
+
+    Task<int> CreateAsync(GameFormModel model);
 }
