@@ -1,4 +1,5 @@
 using BoardGamesShop.Core.Contracts;
+using BoardGamesShop.Core.Models.Game;
 using BoardGamesShop.Core.Models.SubCategory;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
@@ -15,7 +16,17 @@ public class SubCategoryService : ISubCategoryService
     {
         _repository = repository;
     }
-    
+
+    public async  Task<IEnumerable<GameSubCategoryServiceModel>> AllAsync()
+    {
+        return await _repository.AllReadOnly<SubCategory>()
+            .Select(sc => new GameSubCategoryServiceModel()
+            {
+                Id = sc.Id,
+                Name = sc.Name,
+            }).ToListAsync();
+    }
+
     public async Task<int> CreateAsync(SubCategoryViewModel model)
     {
         var subCategory = new SubCategory()
