@@ -19,4 +19,7 @@ public static class DataConstants
     
     public const int GameAgeRatingMaxLength = 30;
     public const int GameAgeRatingMinLength = 1;
+
+    public const int GameNumberOfPlayersMaxLength = 10;
+    public const int GameNumberOfPlayersMinLength = 1;
 }

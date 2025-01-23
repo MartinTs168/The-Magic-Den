@@ -35,7 +35,7 @@ public class GameServiceModel
     public string AgeRating { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
-    public int NumberOfPlayers { get; set; }
+    public string NumberOfPlayers { get; set; }
     
     [Display(Name = "Category")]
     public string? SubCategory { get; set; }

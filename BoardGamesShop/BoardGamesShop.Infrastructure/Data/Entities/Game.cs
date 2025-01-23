@@ -36,7 +36,8 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         public string AgeRating { get; set; } = null!;
         
         [Required]
-        public int NumberOfPlayers { get; set; }
+        [MaxLength(GameNumberOfPlayersMaxLength)]
+        public string NumberOfPlayers { get; set; } = null!;
         
         public List<Order> Orders { get; set; } = new List<Order>();
         

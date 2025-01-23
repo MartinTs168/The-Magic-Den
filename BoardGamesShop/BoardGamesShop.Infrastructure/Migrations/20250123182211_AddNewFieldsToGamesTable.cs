@@ -4,7 +4,7 @@
 
 namespace BoardGamesShop.Infrastructure.Migrations
 {
-    public partial class AddNewFieldsToGame : Migration
+    public partial class AddNewFieldsToGamesTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,12 +16,13 @@ namespace BoardGamesShop.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "NumberOfPlayers",
                 table: "Games",
-                type: "int",
+                type: "nvarchar(10)",
+                maxLength: 10,
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

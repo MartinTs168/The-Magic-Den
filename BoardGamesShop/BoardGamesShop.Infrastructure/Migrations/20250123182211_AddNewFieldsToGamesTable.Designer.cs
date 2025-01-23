@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoardGamesShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250122072301_AddNewFieldsToGame")]
-    partial class AddNewFieldsToGame
+    [Migration("20250123182211_AddNewFieldsToGamesTable")]
+    partial class AddNewFieldsToGamesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -209,8 +209,10 @@ namespace BoardGamesShop.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("NumberOfPlayers")
-                        .HasColumnType("int");
+                    b.Property<string>("NumberOfPlayers")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18,2)");

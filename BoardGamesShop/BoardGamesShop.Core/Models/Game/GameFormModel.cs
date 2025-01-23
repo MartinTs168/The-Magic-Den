@@ -17,9 +17,11 @@ public class GameFormModel
     public string Description { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
+    [Display(Name = "Image Url")]
     public string ImgUrl { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
+    [Display(Name = "Original Price")]
     public decimal OriginalPrice { get; set; }
     
     [Required(ErrorMessage = RequiredErrorMessage)]
@@ -31,10 +33,14 @@ public class GameFormModel
     [Required(ErrorMessage = RequiredErrorMessage)]
     [StringLength(GameAgeRatingMaxLength, MinimumLength = GameAgeRatingMinLength,
         ErrorMessage = LengthErrorMessage)]
+    [Display(Name = "Age Rating")]
     public string AgeRating { get; set; } = null!;
-    
+
     [Required(ErrorMessage = RequiredErrorMessage)]
-    public int NumberOfPlayers { get; set; }
+    [StringLength(GameNumberOfPlayersMaxLength, MinimumLength = GameNumberOfPlayersMinLength,
+        ErrorMessage = LengthErrorMessage)]
+    [Display(Name = "Number of players")]
+    public string NumberOfPlayers { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
     public int SubCategoryId{get; set; }

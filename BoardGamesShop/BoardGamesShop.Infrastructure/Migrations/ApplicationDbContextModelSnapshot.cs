@@ -207,8 +207,10 @@ namespace BoardGamesShop.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("NumberOfPlayers")
-                        .HasColumnType("int");
+                    b.Property<string>("NumberOfPlayers")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18,2)");
