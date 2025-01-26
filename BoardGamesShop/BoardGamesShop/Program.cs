@@ -1,5 +1,7 @@
 using BoardGamesShop.Infrastructure.Data;
 using BoardGamesShop.Infrastructure.Data.Entities;
+using BoardGamesShop.ModelBinders;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddApplicationIdentity(builder.Configuration);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+});
 
 builder.Services.AddApplicationServices();
 
