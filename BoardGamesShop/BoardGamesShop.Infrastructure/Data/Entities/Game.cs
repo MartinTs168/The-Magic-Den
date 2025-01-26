@@ -23,7 +23,9 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         public decimal OriginalPrice { get; set; }
         
         
-        public decimal Price => OriginalPrice - OriginalPrice * Discount / 100;
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price { get; private set; }
 
         [Required]
         public int Quantity { get; set; }
