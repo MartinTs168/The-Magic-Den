@@ -35,7 +35,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateCategory(CategoryFormViewModel model)
     {
         if (ModelState.IsValid == false)
@@ -67,7 +66,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> EditCategory(CategoryFormViewModel model, int id)
     {
         if (id <= 0 || ModelState.IsValid == false)
@@ -99,7 +97,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteCategory(CategoryFormViewModel model)
     {
         await _categoryService.DeleteAsync(model.Id);
@@ -118,7 +115,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateSubCategory(SubCategoryViewModel model)
     {
         if (await _subcategoryService.CategoryExistsAsync(model.CategoryId) == false)
@@ -158,7 +154,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> EditSubCategory(SubCategoryViewModel model, int id)
     {
         if(id <= 0) return NotFound();
@@ -200,7 +195,6 @@ public class CategoryController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteSubCategory(SubCategoryViewModel model)
     {
         await _subcategoryService.DeleteAsync(model.Id);

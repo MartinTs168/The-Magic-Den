@@ -52,7 +52,6 @@ public class GameController : BaseController
 
     [HttpPost]
     [Authorize(Roles = AdminRole)]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(GameFormModel model)
     {
         if (!ModelState.IsValid)

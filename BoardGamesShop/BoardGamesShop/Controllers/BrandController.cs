@@ -31,7 +31,6 @@ public class BrandController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Add(BrandModel model)
     {
         if (ModelState.IsValid == false)
@@ -63,7 +62,6 @@ public class BrandController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(BrandModel model, int id)
     {
         if (id <= 0 || ModelState.IsValid == false)
@@ -95,7 +93,6 @@ public class BrandController : BaseController
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(BrandModel model)
     {
         await _brandService.DeleteAsync(model.Id);
