@@ -19,4 +19,6 @@ public interface IGameService
     Task<int> CreateAsync(GameFormModel model);
 
     Task<GameServiceModel?> GetByIdAsync(int id);
+    
+    Task EditAsync(GameFormModel model, int id);
 }

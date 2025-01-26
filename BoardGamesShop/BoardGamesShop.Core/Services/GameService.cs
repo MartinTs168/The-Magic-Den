@@ -133,4 +133,32 @@ public class GameService : IGameService
         };
 
     }
+
+    public async Task EditAsync(GameFormModel model, int id)
+    {
+        if (id > 0)
+        {
+            var gameEntity = await _repository.GetByIdAsync<Game>(id);
+        
+            if (gameEntity != null)
+            {
+                gameEntity.Name = model.Name;
+                gameEntity.Description = model.Description;
+                gameEntity.ImgUrl = model.ImgUrl;
+                gameEntity.OriginalPrice = model.OriginalPrice;
+                gameEntity.Discount = model.Discount;
+                gameEntity.Quantity = model.Quantity;
+                gameEntity.AgeRating = model.AgeRating;
+                gameEntity.NumberOfPlayers = model.NumberOfPlayers;
+                gameEntity.SubCategoryId = model.SubCategoryId;
+                gameEntity.BrandId = model.BrandId;
+        
+                await _repository.SaveChangesAsync();
+            }
+        }
+        
+        
+
+        
+    }
 }
