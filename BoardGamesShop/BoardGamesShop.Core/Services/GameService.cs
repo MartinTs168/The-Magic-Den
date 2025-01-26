@@ -11,10 +11,17 @@ namespace BoardGamesShop.Core.Services;
 public class GameService : IGameService
 {
     private readonly IRepository _repository;
+    private readonly IBrandService  _brandService;
+    private readonly ISubCategoryService _subCategoryService;
     
-    public GameService(IRepository repository)
+    public GameService(
+        IRepository repository,
+        IBrandService brandService, 
+        ISubCategoryService subCategoryService)
     {
         _repository = repository;
+        _brandService = brandService;
+        _subCategoryService = subCategoryService;
     }
     
     //TODO: Add search by brand like subcategory
@@ -108,30 +115,31 @@ public class GameService : IGameService
         return gameEntity.Id;
     }
 
-    public async Task<GameServiceModel?> GetByIdAsync(int id)
+    public async Task<GameFormModel?> GetGameFormModelByIdAsync(int id)
     {
-        if (id < 0) return null;
-
         var game = await _repository.GetByIdAsync<Game>(id);
 
-        if (game == null) return null;
+        if (game == null)
+        {
+            return null;
+        }
 
-        return new GameServiceModel()
+        return new GameFormModel()
         {
             Id = game.Id,
             Name = game.Name,
-            Price = game.Price,
-            ImgUrl = game.ImgUrl,
-            AgeRating = game.AgeRating,
-            NumberOfPlayers = game.NumberOfPlayers,
             Description = game.Description,
+            ImgUrl = game.ImgUrl,
+            OriginalPrice = game.OriginalPrice,
             Discount = game.Discount,
             Quantity = game.Quantity,
-            OriginalPrice = game.OriginalPrice,
-            SubCategory = game.SubCategory?.Name ?? null,
-            BrandName = game.Brand.Name
+            AgeRating = game.AgeRating,
+            NumberOfPlayers = game.NumberOfPlayers,
+            SubCategoryId = game.SubCategoryId,
+            BrandId = game.BrandId,
+            SubCategories = await _subCategoryService.AllAsync(),
+            Brands = await _brandService.AllAsync(),
         };
-
     }
 
     public async Task EditAsync(GameFormModel model, int id)
@@ -156,9 +164,6 @@ public class GameService : IGameService
                 await _repository.SaveChangesAsync();
             }
         }
-        
-        
-
         
     }
 }

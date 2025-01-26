@@ -64,4 +64,38 @@ public class GameController : BaseController
         await _gameService.CreateAsync(model);
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    [Authorize(Roles = AdminRole)]
+    public async Task<IActionResult> Edit(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+
+        var gameForm = await _gameService.GetGameFormModelByIdAsync(id);
+        
+        if (gameForm == null)
+        {
+            return NotFound();
+        }
+        
+        return View(gameForm);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = AdminRole)]
+    public async Task<IActionResult> Edit(GameFormModel model, int id)
+    {
+        if (id <= 0 ||!ModelState.IsValid)
+        {
+            model.Brands = await _brandService.AllAsync();
+            model.SubCategories = await _subCategoryService.AllAsync();
+            return View(model);
+        }
+
+        await _gameService.EditAsync(model, id);
+        return RedirectToAction(nameof(All));
+    }
 }

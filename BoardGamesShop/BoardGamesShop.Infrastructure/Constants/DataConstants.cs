@@ -22,4 +22,7 @@ public static class DataConstants
 
     public const int GameNumberOfPlayersMaxLength = 10;
     public const int GameNumberOfPlayersMinLength = 1;
+
+    public const string GameMaxOriginalPrice = "2000";
+    public const string GameMinOriginalPrice = "0";
 }

@@ -22,6 +22,7 @@ public class GameFormModel
     
     [Required(ErrorMessage = RequiredErrorMessage)]
     [Display(Name = "Original Price")]
+    [Range(typeof(decimal), GameMinOriginalPrice, GameMaxOriginalPrice)]
     public decimal OriginalPrice { get; set; }
     
     [Required(ErrorMessage = RequiredErrorMessage)]
@@ -43,7 +44,7 @@ public class GameFormModel
     public string NumberOfPlayers { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
-    public int SubCategoryId{get; set; }
+    public int? SubCategoryId{get; set; }
 
     public IEnumerable<GameSubCategoryServiceModel> SubCategories { get; set; } =
         new List<GameSubCategoryServiceModel>();
