@@ -2,7 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Hello, Admin!</h2>
+    <p class="lead mb-1 mt-3">
+        This is your administrator area - you can <b>read</b>, <b>create</b>,
+        <b>delete</b> and <b>edit</b> games, categories and brands.
+    </p>
+
+    <p class="lead mt-1">
+        You can also see <b>all users</b> and <b>all orders</b> in the system.
+    </p>
+
+    <hr class="my-4">
+    
+    <a asp-area="Admin" asp-controller="Game" asp-action="All" class="btn btn-primary btn-lg">
+        All Games
+    </a>
+
+    <a asp-area="Admin" asp-controller="Game" asp-action="Create" class="btn btn-primary btn-lg">
+        Create Game
+    </a>
+    
+    <a asp-area="Admin" asp-controller="Category" asp-action="All" class="btn btn-primary btn-lg">
+        All Categories and Sub Categories
+    </a>
+    
+    <a asp-area="Admin" asp-controller="Brand" asp-action="All" class="btn btn-primary btn-lg">
+        All Brands
+    </a>
 </div>
