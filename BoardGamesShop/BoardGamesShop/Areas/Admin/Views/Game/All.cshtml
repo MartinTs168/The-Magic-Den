@@ -21,13 +21,13 @@
             </div>
         </div>
 
-        <div class="form-group col-md-3">
+        <div class="mb-3 col-md-3">
             <label asp-for="SearchTerm"></label>
             <input asp-for="SearchTerm" class="form-control" placeholder="...">
         </div>
 
-        <div class="form-group col-md-3">
-            <div class="form-group">
+        <div class="mb-3 col-md-3">
+            <div class="mb-3">
                 <label asp-for="Sort"></label>
                 <select asp-for="Sort" class="form-control">
                     <option value="0">Newest</option>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="form-group mt-4 p-2">
+            <div class="mb-3 mt-4 p-2">
                 <input type="submit" value="Search" class="btn btn-primary" />
             </div>
         </div>
@@ -86,12 +86,40 @@
 {
     <h2 class="text-center">No games found by the given criteria!</h2>
 }
+else
+{
+    <div class="d-flex flex-column gap-1 align-content-center card p-2">
+        <div class="row d-flex mb-4 p-2 align-content-center">
+            <div class="col-md-3">
+                <h6 class="text-truncate mb-0">Game Name</h6>
+            </div>
 
-<div class="row">
-    @foreach (var game in Model.Games)
-    {
-        <partial name="_GamePartial" model="@game" />
-    }
-</div>
+            <div class="col-md-1 mb-0">
+                <h6>Discount</h6>
+            </div>
 
+            <div class="col-md-2 mb-0">
+                <h6>Price</h6>
+            </div>
+
+            <div class="col-md-2 mb-0">
+                <h6 class="text-truncate">Sub Category</h6>
+            </div>
+
+            <div class="col-md-2 mb-0">
+                <h6 class="text-truncate">Brand</h6>
+            </div>
+
+            <div class="col-md-2 mb-0">
+                
+            </div>
+        </div>
+        @foreach (var game in Model.Games)
+        {
+            <div class="row d-flex">
+                <partial name="_GamePartial" model="@game"/>
+            </div>
+        }
+    </div>
+}
 @* TODO: Fix view to look better maybe make a different view for the admin to see the products better*@

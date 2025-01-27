@@ -33,9 +33,9 @@ public class GameServiceModel
     [StringLength(GameAgeRatingMaxLength, MinimumLength = GameAgeRatingMinLength,
         ErrorMessage = LengthErrorMessage)]
     public string AgeRating { get; set; } = null!;
-    
+
     [Required(ErrorMessage = RequiredErrorMessage)]
-    public string NumberOfPlayers { get; set; }
+    public string NumberOfPlayers { get; set; } = null!;
     
     [Display(Name = "Category")]
     public string? SubCategory { get; set; }

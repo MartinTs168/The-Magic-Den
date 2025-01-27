@@ -68,6 +68,8 @@ public class GameService : IGameService
                 Discount = g.Discount,
                 Quantity = g.Quantity,
                 OriginalPrice = g.OriginalPrice,
+                SubCategory = g.SubCategory != null ? g.SubCategory.Name : "No Sub Category",
+                BrandName = g.Brand.Name
             }).ToListAsync();
         
         int totalGames= await gamesToShow.CountAsync();

@@ -1,13 +1,29 @@
 @model GameServiceModel
 
-<div class="col-md-4">
-    
-    <div class="card mb-3">
-        <img class="card-img-top" src="@Model.ImgUrl" alt="Game Image">
-        <div class="card-body text-center">
-            <h4>@Model.Name</h4>
-            <h6>@($"{Model.Price:f2}") BGN</h6>
-        </div>
-    </div>
-    
+<div class="col-md-3">
+    <p class="text-truncate">@Model.Name</p>
 </div>
+
+<div class="col-md-1">
+    <p>@Model.Discount %</p>
+</div>
+
+<div class="col-md-2">
+    <p>@($"{Model.Price:F2}") BGN</p>
+</div> 
+
+<div class="col-md-2">
+    <p class="text-truncate">@Model.SubCategory</p>
+</div>
+
+<div class="col-md-2">
+    <p class="text-truncate">@Model.BrandName</p>
+</div>
+
+<div class="col-md-2">
+    <a class="btn btn-secondary" asp-area="Admin" asp-controller="Game"
+       asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>
+
+
+

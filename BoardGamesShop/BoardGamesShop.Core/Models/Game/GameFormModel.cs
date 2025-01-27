@@ -44,12 +44,14 @@ public class GameFormModel
     public string NumberOfPlayers { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
+    [Display(Name = "Category")]
     public int? SubCategoryId{get; set; }
 
     public IEnumerable<GameSubCategoryServiceModel> SubCategories { get; set; } =
         new List<GameSubCategoryServiceModel>();
     
-    [Required]
+    [Required(ErrorMessage = RequiredErrorMessage)]
+    [Display(Name = "Brand")]
     public int BrandId { get; set; }
     
     public IEnumerable<BrandModel> Brands { get; set; } = new List<BrandModel>();
