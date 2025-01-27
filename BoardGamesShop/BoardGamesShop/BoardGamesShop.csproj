@@ -22,10 +22,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
+    <AdditionalFiles Include="Areas\Admin\Views\Brand\Add.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Brand\All.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Brand\Delete.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\All.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\CreateCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\CreateSubCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\DeleteCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\DeleteSubCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\EditCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Category\EditSubCategory.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Game\All.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Game\Create.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Game\Edit.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Home\Privacy.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Shared\_GamePartial.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Brand\Add.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Brand\All.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Brand\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Brand\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\All.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\CreateCategory.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\CreateSubCategory.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\DeleteCategory.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\DeleteSubCategory.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\EditCategory.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Category\EditSubCategory.cshtml" />
   </ItemGroup>
 
 </Project>

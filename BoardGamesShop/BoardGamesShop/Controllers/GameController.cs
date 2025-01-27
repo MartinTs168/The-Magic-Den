@@ -9,19 +9,14 @@ namespace BoardGamesShop.Controllers;
 public class GameController : BaseController
 {
     private readonly IGameService _gameService;
-    private readonly IBrandService _brandService;
-    private readonly ISubCategoryService _subCategoryService;
     
-    public GameController(IGameService gameService,
-        IBrandService brandService,
-        ISubCategoryService subCategoryService)
+    public GameController(IGameService gameService)
     {
         _gameService = gameService;
-        _brandService = brandService;
-        _subCategoryService = subCategoryService;
     }
     
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> All([FromQuery] AllGamesQueryModel query)
     {
         var model = await _gameService.AllAsync(
@@ -36,66 +31,5 @@ public class GameController : BaseController
         query.Games = model.Games;
         query.SubCategories = await _gameService.AllSubCategoriesNamesAsync();
         return View(query);
-    }
-
-    [HttpGet]
-    [Authorize(Roles = AdminRole)]
-    public async Task<IActionResult> Create()
-    {
-        var model = new GameFormModel()
-        {
-            Brands = await _brandService.AllAsync(),
-            SubCategories = await _subCategoryService.AllAsync()
-        };
-        return View(model);
-    }
-
-    [HttpPost]
-    [Authorize(Roles = AdminRole)]
-    public async Task<IActionResult> Create(GameFormModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            model.Brands = await _brandService.AllAsync();
-            model.SubCategories = await _subCategoryService.AllAsync();
-            return View(model);
-        }
-
-        await _gameService.CreateAsync(model);
-        return RedirectToAction(nameof(All));
-    }
-
-    [HttpGet]
-    [Authorize(Roles = AdminRole)]
-    public async Task<IActionResult> Edit(int id)
-    {
-        if (id <= 0)
-        {
-            return NotFound();
-        }
-
-        var gameForm = await _gameService.GetGameFormModelByIdAsync(id);
-        
-        if (gameForm == null)
-        {
-            return NotFound();
-        }
-        
-        return View(gameForm);
-    }
-
-    [HttpPost]
-    [Authorize(Roles = AdminRole)]
-    public async Task<IActionResult> Edit(GameFormModel model, int id)
-    {
-        if (id <= 0 ||!ModelState.IsValid)
-        {
-            model.Brands = await _brandService.AllAsync();
-            model.SubCategories = await _subCategoryService.AllAsync();
-            return View(model);
-        }
-
-        await _gameService.EditAsync(model, id);
-        return RedirectToAction(nameof(All));
     }
 }

@@ -1,13 +1,10 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Brand;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
 
-namespace BoardGamesShop.Controllers;
+namespace BoardGamesShop.Areas.Admin.Controllers;
 
-[Authorize(Roles = AdminRole)]
-public class BrandController : BaseController
+public class BrandController : AdminBaseController
 {
     private readonly IBrandService _brandService;
     

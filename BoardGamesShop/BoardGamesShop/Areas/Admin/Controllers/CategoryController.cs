@@ -1,14 +1,11 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Category;
 using BoardGamesShop.Core.Models.SubCategory;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
 
-namespace BoardGamesShop.Controllers;
+namespace BoardGamesShop.Areas.Admin.Controllers;
 
-[Authorize(Roles = AdminRole)]
-public class CategoryController : BaseController
+public class CategoryController : AdminBaseController
 {
     private readonly ICategoryService _categoryService;
     private readonly ISubCategoryService _subcategoryService;
