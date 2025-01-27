@@ -1,0 +1,79 @@
+@model GameFormModel
+
+@{
+    ViewData["Title"] = "Delete Game";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="Name"></label>
+                <input type="text" class="form-control" asp-for="Name" disabled>
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description"></label>
+                <input type="text" class="form-control" asp-for="Description" disabled> @* TODO: Use a js mini text editor here*@
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ImgUrl"></label>
+                <input type="text" class="form-control" asp-for="ImgUrl" disabled> @* TODO: Use a js mini text editor here*@
+                <span asp-validation-for="ImgUrl" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="AgeRating"></label>
+                <input type="text" class="form-control" asp-for="AgeRating" disabled>
+                <span asp-validation-for="AgeRating" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NumberOfPlayers"></label>
+                <input type="text" class="form-control" asp-for="NumberOfPlayers" disabled>
+                <span asp-validation-for="NumberOfPlayers" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Quantity"></label>
+                <input type="text" class="form-control" asp-for="Quantity" disabled>
+                <span asp-validation-for="Quantity" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OriginalPrice"></label>
+                <input type="text" class="form-control" asp-for="OriginalPrice" disabled>
+                <span asp-validation-for="OriginalPrice" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Discount"></label>
+                <input type="text" class="form-control" asp-for="Discount" disabled
+                       required placeholder="Enter percentages as a whole number.">
+                <span asp-validation-for="Discount" class="small text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SubCategoryId"></label>
+                <select asp-for="SubCategoryId" class="form-control" disabled>
+                    @foreach (var subCategory in Model.SubCategories)
+                    {
+                        <option value="@subCategory.Id">@subCategory.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="BrandId"></label>
+                <select asp-for="BrandId" class="form-control" disabled>
+                    @foreach (var brand in Model.Brands)
+                    {
+                        <option value="@brand.Id">@brand.Name</option>
+                    }
+                </select>
+            </div>
+            
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger mt-3 w-100" value="Delete">Delete</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

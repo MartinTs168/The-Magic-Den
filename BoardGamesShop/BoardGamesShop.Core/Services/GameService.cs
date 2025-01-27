@@ -177,7 +177,7 @@ public class GameService : IGameService
 
             if (gameObj != null)
             {
-                await _repository.DeleteAsync<Game>(gameObj);
+                await _repository.DeleteAsync<Game>(gameObj.Id);
                 await _repository.SaveChangesAsync();
             }
         }

@@ -93,4 +93,31 @@ public class GameController : AdminBaseController
         await _gameService.EditAsync(model, id);
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+
+        var game = await _gameService.GetGameFormModelByIdAsync(id);
+        
+        if (game == null)
+        {
+            return NotFound();
+        }
+        
+        game.SubCategories = await _subCategoryService.AllAsync();
+        game.Brands = await _brandService.AllAsync();
+        return View(game);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(GameFormModel model)
+    {
+        await _gameService.DeleteAsync(model.Id);
+        return RedirectToAction(nameof(All));
+    }
 }
