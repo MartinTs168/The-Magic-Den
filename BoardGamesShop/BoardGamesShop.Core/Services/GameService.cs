@@ -168,4 +168,18 @@ public class GameService : IGameService
         }
         
     }
+
+    public async Task DeleteAsync(int id)
+    {
+        if (id > 0)
+        {
+            var gameObj = await _repository.GetByIdAsync<Game>(id);
+
+            if (gameObj != null)
+            {
+                await _repository.DeleteAsync<Game>(gameObj);
+                await _repository.SaveChangesAsync();
+            }
+        }
+    }
 }
