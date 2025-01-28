@@ -15,7 +15,10 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = config.GetConnectionString("DefaultConnection");
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options
+            .UseLazyLoadingProxies()
+            .UseSqlServer(connectionString)
+        );
         
         services.AddScoped<IRepository, Repository>();
         return services;

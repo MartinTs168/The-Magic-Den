@@ -41,9 +41,9 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         [MaxLength(GameNumberOfPlayersMaxLength)]
         public string NumberOfPlayers { get; set; } = null!;
         
-        public List<Order> Orders { get; set; } = new List<Order>();
+        public virtual List<Order> Orders { get; set; } = new List<Order>();
         
-        public List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
+        public virtual List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
 
         [Required]
         public int BrandId { get; set; }
@@ -51,10 +51,10 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         public int? SubCategoryId { get; set; }
 
         [ForeignKey(nameof(SubCategoryId))]
-        public SubCategory? SubCategory { get; set; }
+        public virtual SubCategory? SubCategory { get; set; }
 
         [ForeignKey(nameof(BrandId))]
-        public Brand Brand { get; set;} = null!;
+        public virtual Brand Brand { get; set;} = null!;
         
 
     }

@@ -13,10 +13,10 @@ public class Order
     public Guid UserId { get; set; }
 
     [ForeignKey(nameof(UserId))] 
-    public ApplicationUser User { get; set; } = null!;
+    public virtual ApplicationUser User { get; set; } = null!;
 
-    public List<Game> Games { get;} = new List<Game>();
-    public List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
+    public virtual List<Game> Games { get;} = new List<Game>();
+    public virtual List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
     
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     

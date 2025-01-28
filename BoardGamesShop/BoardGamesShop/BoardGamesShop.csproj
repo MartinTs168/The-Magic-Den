@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.26" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
@@ -36,8 +37,6 @@
     <AdditionalFiles Include="Areas\Admin\Views\Game\All.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\Game\Create.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\Game\Edit.cshtml" />
-    <AdditionalFiles Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <AdditionalFiles Include="Areas\Admin\Views\Home\Privacy.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\Shared\_GamePartial.cshtml" />
     <AdditionalFiles Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

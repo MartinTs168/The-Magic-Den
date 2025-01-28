@@ -14,7 +14,7 @@ public class SubCategory
     [Required]
     public int CategoryId { get; set; }
 
-    public Category Category { get; set; } = null!;
+    public virtual Category Category { get; set; } = null!;
     
-    public ICollection<Game> Games { get; set; } = new List<Game>();
+    public virtual ICollection<Game> Games { get; set; } = new List<Game>();
 }
