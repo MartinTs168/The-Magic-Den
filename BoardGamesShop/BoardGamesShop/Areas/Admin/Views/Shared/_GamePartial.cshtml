@@ -13,16 +13,18 @@
 </div> 
 
 <div class="col-md-2">
-    <p class="text-truncate">@Model.SubCategory</p>
+    <p class="text-truncate">@Model.SubCategoryName</p>
 </div>
 
-<div class="col-md-2">
+<div class="col-md-1">
     <p class="text-truncate">@Model.BrandName</p>
 </div>
 
-<div class="col-md-2">
+<div class="col-md-3">
     <a class="btn btn-secondary" asp-area="Admin" asp-controller="Game"
        asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-secondary" asp-area="Admin" asp-controller="Game"
+       asp-action="Details" asp-route-id="@Model.Id">Details</a>
     <a class="btn btn-danger" asp-area="Admin" asp-controller="Game"
        asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
 </div>

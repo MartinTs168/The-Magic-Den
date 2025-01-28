@@ -38,7 +38,7 @@ public class GameServiceModel
     public string NumberOfPlayers { get; set; } = null!;
     
     [Display(Name = "Category")]
-    public string? SubCategory { get; set; }
+    public string? SubCategoryName { get; set; }
 
     [Required(ErrorMessage = RequiredErrorMessage)]
     [Display(Name = "Brand")]

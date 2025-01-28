@@ -120,4 +120,22 @@ public class GameController : AdminBaseController
         await _gameService.DeleteAsync(model.Id);
         return RedirectToAction(nameof(All));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+
+        var game = await _gameService.GetGameServiceModelByIdAsync(id);
+        
+        if (game == null)
+        {
+            return NotFound();
+        }
+        
+        return View(game);
+    }
 }

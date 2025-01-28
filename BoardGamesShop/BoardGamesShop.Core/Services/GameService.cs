@@ -68,7 +68,7 @@ public class GameService : IGameService
                 Discount = g.Discount,
                 Quantity = g.Quantity,
                 OriginalPrice = g.OriginalPrice,
-                SubCategory = g.SubCategory != null ? g.SubCategory.Name : "No Sub Category",
+                SubCategoryName = g.SubCategory != null ? g.SubCategory.Name : "No Sub Category",
                 BrandName = g.Brand.Name
             }).ToListAsync();
         
@@ -182,4 +182,33 @@ public class GameService : IGameService
             }
         }
     }
+
+    public async Task<GameServiceModel?> GetGameServiceModelByIdAsync(int id)
+    {
+        var gameObj = await _repository.GetByIdAsync<Game>(id);
+
+        if (gameObj == null)
+        {
+            return null;
+        }
+
+        return new GameServiceModel()
+        {
+            Id = gameObj.Id,
+            Name = gameObj.Name,
+            Price = gameObj.Price,
+            ImgUrl = gameObj.ImgUrl,
+            AgeRating = gameObj.AgeRating,
+            NumberOfPlayers = gameObj.NumberOfPlayers,
+            Description = gameObj.Description,
+            Discount = gameObj.Discount,
+            Quantity = gameObj.Quantity,
+            OriginalPrice = gameObj.OriginalPrice,
+            SubCategoryName = gameObj.SubCategory != null ? gameObj.SubCategory.Name : "No Sub Category",
+            BrandName = gameObj.Brand.Name
+        };
+
+    }
+    
+    
 }

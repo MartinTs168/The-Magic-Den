@@ -23,4 +23,6 @@ public interface IGameService
     Task EditAsync(GameFormModel model, int id);
 
     Task DeleteAsync(int id);
+    
+    Task<GameServiceModel?> GetGameServiceModelByIdAsync(int id);
 }
