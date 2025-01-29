@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BoardGamesShop.Core.Models.Client;
 
-public class AllClientsVIewModel
+public class ClientViewModel
 {
     public Guid Id { get; set; }
 

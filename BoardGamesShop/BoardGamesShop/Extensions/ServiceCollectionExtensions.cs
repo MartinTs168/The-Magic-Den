@@ -48,6 +48,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<ISubCategoryService, SubCategoryService>();
         services.AddScoped<IGameService, GameService>();
+        services.AddScoped<IClientService, ClientService>();
         return services;
     }
 }

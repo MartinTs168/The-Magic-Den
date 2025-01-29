@@ -8,30 +8,30 @@ using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
 
 namespace BoardGamesShop.Core.Services;
 
-public class StatisticService : IStatisticService
+public class ClientService : IClientService
 {
     private readonly IRepository _repository;
     private readonly UserManager<ApplicationUser> _userManager;
     
-    public StatisticService(IRepository repository,
+    public ClientService(IRepository repository,
         UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
         _repository = repository;
     }
     
-    public async Task<IEnumerable<AllClientsVIewModel>> AllClientsAsync()
+    public async Task<IEnumerable<ClientViewModel>> AllClientsAsync()
     {
         var users = await _repository.AllReadOnly<ApplicationUser>()
             .Where(au => au.IsDeleted == false)
             .ToListAsync();
-        var clients = new List<AllClientsVIewModel>();
+        var clients = new List<ClientViewModel>();
 
         foreach (var user in users)
         {
             if (!await _userManager.IsInRoleAsync(user, AdminRole))
             {
-                clients.Add(new AllClientsVIewModel()
+                clients.Add(new ClientViewModel()
                 {
                     Id = user.Id,
                     UserName = user.UserName,
@@ -44,5 +44,37 @@ public class StatisticService : IStatisticService
         }
         
         return clients;
+    }
+
+    public async Task DeleteClientAsync(Guid clientId)
+    {
+        var user = await _repository.GetByIdAsync<ApplicationUser>(clientId);
+
+        if (user != null)
+        {
+            user.IsDeleted = true;
+            await _repository.SaveChangesAsync();
+        }
+    }
+
+    public async Task<ClientViewModel?> GetClientByIdAsync(Guid clientId)
+    {
+        var user = await _repository.GetByIdAsync<ApplicationUser>(clientId);
+
+        if (user == null)
+        {
+            return null;
+        }
+
+        return new ClientViewModel()
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            FirstName = user.FirstName!,
+            LastName = user.LastName!,
+            Address = user.Address!,
+            Email = user.Email
+        };
+
     }
 }
