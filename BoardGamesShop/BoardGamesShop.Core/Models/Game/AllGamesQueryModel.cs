@@ -10,6 +10,8 @@ public class AllGamesQueryModel
     [Display(Name = "Category")]
     public string SubCategory { get; set; } = null!;
 
+    public string Brand { get; set; } = null!;
+
     [Display(Name = "Search")]
     public string SearchTerm { get; set; } = null!;
     
@@ -18,6 +20,7 @@ public class AllGamesQueryModel
     public int CurrentPage { get; set; } = 1;
 
     public IEnumerable<string> SubCategories { get; set; } = null!;
+    public IEnumerable<string> Brands { get; set; } = null!;
     
     public int TotalGamesCount { get; set; }
 

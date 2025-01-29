@@ -25,6 +25,7 @@ public class GameController : AdminBaseController
     {
         var model = await _gameService.AllAsync(
             query.SubCategory,
+            query.Brand,
             query.SearchTerm,
             query.Sort,
             query.CurrentPage,
@@ -34,6 +35,7 @@ public class GameController : AdminBaseController
         query.TotalGamesCount = model.TotalGamesCount;
         query.Games = model.Games;
         query.SubCategories = await _gameService.AllSubCategoriesNamesAsync();
+        query.Brands = await _gameService.AllBrandsNamesAsync();
         return View(query);
     }
 
