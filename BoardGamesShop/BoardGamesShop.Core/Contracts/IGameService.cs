@@ -7,6 +7,7 @@ public interface IGameService
 {
     Task<GameServiceQueryModel> AllAsync(
         string? subCategory = null,
+        string? brand = null,
         string? searchTerm = null,
         GameSorting sorting = GameSorting.Newest,
         int currentPage = 1, int gamesPerPage = 1

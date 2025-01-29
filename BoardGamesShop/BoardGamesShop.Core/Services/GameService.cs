@@ -25,7 +25,8 @@ public class GameService : IGameService
     }
     
     //TODO: Add search by brand like subcategory
-    public async Task<GameServiceQueryModel> AllAsync(string? subCategory = null, string? searchTerm = null, 
+    public async Task<GameServiceQueryModel> AllAsync(string? subCategory = null, string? brand = null, 
+        string? searchTerm = null, 
         GameSorting sorting = GameSorting.Newest,
         int currentPage = 1, int gamesPerPage = 1)
     {
@@ -35,6 +36,12 @@ public class GameService : IGameService
         {
             gamesToShow = gamesToShow
                 .Where(g => g.SubCategory != null && g.SubCategory.Name == subCategory);
+        }
+
+        if (brand != null)
+        {
+            gamesToShow = gamesToShow
+                .Where(g => g.Brand.Name == brand);
         }
 
         if (searchTerm != null)
