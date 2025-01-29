@@ -8,5 +8,5 @@ public class StatisticViewModel
     public int CountClients { get; set; }
     
     [Display(Name = "Count Products")]
-    public int CountProducts { get; set; }
+    public int CountGames { get; set; }
 }

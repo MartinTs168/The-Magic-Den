@@ -58,8 +58,4 @@
     <_ContentIncludedByDefault Remove="Views\Category\EditSubCategory.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Statistic\" />
-  </ItemGroup>
-
 </Project>
