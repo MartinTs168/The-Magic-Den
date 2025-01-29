@@ -21,10 +21,13 @@ namespace BoardGamesShop.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager)
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -93,7 +96,13 @@ namespace BoardGamesShop.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            var user = await _userManager.FindByNameAsync(Input.UserName);
 
+            if (user != null && user.IsDeleted)
+            {
+                ModelState.AddModelError(string.Empty, "User has been deleted.");
+            }
+            
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
