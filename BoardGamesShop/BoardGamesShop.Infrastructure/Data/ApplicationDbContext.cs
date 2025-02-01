@@ -16,8 +16,9 @@ namespace BoardGamesShop.Infrastructure.Data
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Brand>? Brands { get; set;}
         public DbSet<Game>? Games { get; set; }
-        public DbSet<Order>? Orders { get; set; } // Is not necessary since the relationship is defined in game configuration
+        public DbSet<Order>? Orders { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<OrderItem>? OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,7 @@ namespace BoardGamesShop.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new GameConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             
             base.OnModelCreating(modelBuilder);

@@ -40,10 +40,6 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         [Required]
         [MaxLength(GameNumberOfPlayersMaxLength)]
         public string NumberOfPlayers { get; set; } = null!;
-        
-        public virtual List<Order> Orders { get; set; } = new List<Order>();
-        
-        public virtual List<GameOrder> GameOrders { get; set; } = new List<GameOrder>();
 
         [Required]
         public int BrandId { get; set; }
@@ -55,7 +51,9 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
 
         [ForeignKey(nameof(BrandId))]
         public virtual Brand Brand { get; set;} = null!;
-        
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
 
     }
 }

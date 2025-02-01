@@ -13,10 +13,6 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
             .Property(g => g.Price)
             .HasComputedColumnSql("OriginalPrice - (OriginalPrice * Discount/100.0)", stored: true);
         
-        builder
-            .HasMany(e => e.Orders)
-            .WithMany(e => e.Games)
-            .UsingEntity<GameOrder>();
 
         builder
             .HasOne(g => g.SubCategory)
