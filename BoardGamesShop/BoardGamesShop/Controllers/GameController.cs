@@ -34,4 +34,23 @@ public class GameController : BaseController
         query.Brands = await _gameService.AllBrandsNamesAsync();
         return View(query);
     }
+    
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> Details(int id)
+    {
+        if (id <= 0)
+        {
+            return NotFound();
+        }
+
+        var game = await _gameService.GetGameServiceModelByIdAsync(id);
+        
+        if (game == null)
+        {
+            return NotFound();
+        }
+        
+        return View(game);
+    }
 }

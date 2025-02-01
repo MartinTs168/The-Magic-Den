@@ -2,12 +2,14 @@
 
 <div class="col-md-4">
     
-    <div class="card mb-3">
-        <img class="card-img-top" src="@Model.ImgUrl" alt="Game Image">
-        <div class="card-body text-center">
-            <h4>@Model.Name</h4>
-            <h6>@($"{Model.Price:f2}") BGN</h6>
+    <a asp-controller="Game" asp-action="Details" asp-route-id="@Model.Id">
+        <div class="card mb-3">
+            <img class="card-img-top" src="@Model.ImgUrl" alt="Game Image">
+            <div class="card-body text-center">
+                <h4>@Model.Name</h4>
+                <h6>@($"{Model.Price:f2}") BGN</h6>
+            </div>
         </div>
-    </div>
+    </a>
     
 </div>
