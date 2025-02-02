@@ -7,4 +7,6 @@ public interface IShoppingService
     Task<int> CreateShoppingCartAsync(Guid userId);
     
     Task<ShoppingCartViewModel?> GetShoppingCartByUserIdAsync(Guid userId);
+    
+    Task<ShoppingCartViewModel?> GetShoppingCartByIdAsync(int id);
 }
