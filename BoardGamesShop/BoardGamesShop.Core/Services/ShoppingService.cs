@@ -49,17 +49,43 @@ public class ShoppingService : IShoppingService
             return null;
         }
         
-        var items = await _repository.AllReadOnly<ShoppingCartItem>()
-            .Where(sci => sci.ShoppingCartId == cart.Id)
+        var items = cart.ShoppingCartItems
             .Select(sci => new ShoppingCartItemServiceModel()
             {
                 Name = sci.Game.Name,
                 ImgUrl = sci.Game.ImgUrl,
                 Quantity = sci.Quantity,
                 TotalPrice = sci.TotalPrice,
-            })
-            .ToListAsync();
+            }).ToList();
 
+        return new ShoppingCartViewModel()
+        {
+            Id = cart.Id,
+            TotalPrice = cart.TotalPrice,
+            Count = cart.Count,
+            Discount = cart.Discount,
+            ShoppingCartItems = items
+        };
+    }
+
+    public async Task<ShoppingCartViewModel?> GetShoppingCartByIdAsync(int id)
+    {
+        var cart = await _repository.GetByIdAsync<ShoppingCart>(id);
+        
+        if (cart == null)
+        {
+            return null;
+        } 
+        
+        var items = cart.ShoppingCartItems
+            .Select(sci => new ShoppingCartItemServiceModel()
+            {
+                Name = sci.Game.Name,
+                ImgUrl = sci.Game.ImgUrl,
+                Quantity = sci.Quantity,
+                TotalPrice = sci.TotalPrice,
+            }).ToList();
+        
         return new ShoppingCartViewModel()
         {
             Id = cart.Id,
