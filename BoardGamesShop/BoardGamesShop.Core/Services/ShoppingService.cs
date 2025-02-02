@@ -1,4 +1,5 @@
 using BoardGamesShop.Core.Contracts;
+using BoardGamesShop.Core.Models.Cart;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -35,5 +36,37 @@ public class ShoppingService : IShoppingService
         }
 
         return cart.Id;
+    }
+
+    public async Task<ShoppingCartViewModel?> GetShoppingCartByUserIdAsync(Guid userId)
+    {
+        var cart = await _repository.AllReadOnly<ShoppingCart>()
+            .Where(sc => sc.UserId == userId)
+            .FirstOrDefaultAsync();
+        
+        if (cart == null)
+        {
+            return null;
+        }
+        
+        var items = await _repository.AllReadOnly<ShoppingCartItem>()
+            .Where(sci => sci.ShoppingCartId == cart.Id)
+            .Select(sci => new ShoppingCartItemServiceModel()
+            {
+                Name = sci.Game.Name,
+                ImgUrl = sci.Game.ImgUrl,
+                Quantity = sci.Quantity,
+                TotalPrice = sci.TotalPrice,
+            })
+            .ToListAsync();
+
+        return new ShoppingCartViewModel()
+        {
+            Id = cart.Id,
+            TotalPrice = cart.TotalPrice,
+            Count = cart.Count,
+            Discount = cart.Discount,
+            ShoppingCartItems = items
+        };
     }
 }

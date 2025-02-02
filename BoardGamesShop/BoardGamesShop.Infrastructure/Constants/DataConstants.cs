@@ -25,4 +25,7 @@ public static class DataConstants
 
     public const string GameMaxOriginalPrice = "2000";
     public const string GameMinOriginalPrice = "0";
+
+    public const string ShoppingCartItemMinQuantity = "1";
+    public const string ShoppingCartItemMaxQuantity = "500";
 }
