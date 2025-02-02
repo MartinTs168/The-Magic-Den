@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BoardGamesShop.Infrastructure.Data.Entities;
 
-public class OrderItem
+public class ShoppingCartItem
 {
-    public int OrderId { get; set; }
+    public int ShoppingCartId { get; set; }
     
-    [ForeignKey(nameof(OrderId))]
-    public virtual Order? Order { get; set; }
+    [ForeignKey(nameof(ShoppingCartId))]
+    public virtual ShoppingCart? ShoppingCart { get; set; }
     
     [Required]
     public int GameId { get; set; }
