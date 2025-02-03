@@ -4,6 +4,7 @@ using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static BoardGamesShop.Infrastructure.Constants.DataConstants;
 
 namespace BoardGamesShop.Core.Services;
 
@@ -162,6 +163,13 @@ public class ShoppingService : IShoppingService
 
     public async Task UpdateCartQuantityAsync(int cartId, int gameId, int quantity)
     {
+
+        if (quantity < int.Parse(ShoppingCartItemMinQuantity) || quantity > int.Parse(ShoppingCartItemMaxQuantity))
+        {
+            throw new InvalidOperationException($"Invalid quantity. Quantity must be between " +
+                                                $"{ShoppingCartItemMinQuantity} and {ShoppingCartItemMaxQuantity}");
+        }
+        
         var cart = await _repository.GetByIdAsync<ShoppingCart>(cartId);
         
         if (cart == null)

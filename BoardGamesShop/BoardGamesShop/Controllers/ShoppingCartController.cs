@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Cart;
+using BoardGamesShop.Views.ShoppingCart;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,10 +62,18 @@ public class ShoppingCartController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateCartQuantity(int cartId, ShoppingCartItemServiceModel model)
+    public async Task<IActionResult> UpdateCartQuantity([FromBody]UpdateCartServiceModel model)
     {
-        await _shoppingService.UpdateCartQuantityAsync(cartId, model.GameId, model.Quantity);
-        return RedirectToAction(nameof(Index));
+        try
+        {
+            await _shoppingService.UpdateCartQuantityAsync(model.CartId, model.GameId, model.Quantity);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Json(new { success = false, message = ex.Message });
+        }
+
+        return Json(new { success = true, message = "Cart quantity updated" });
     }
 
 }
