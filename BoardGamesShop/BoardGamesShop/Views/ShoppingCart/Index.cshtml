@@ -5,3 +5,25 @@
 }
 
 <div class="text-center">Your Shopping Cart</div>
+
+@foreach (var item in Model.ShoppingCartItems)
+{
+    <div class-="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="@item.ImgUrl" alt="game image" width="100%" class="rounded"/>
+                    </div>
+                    <div class="col-md-9">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
+                        <p class="card-text">Quantity: @item.Quantity</p>
+                        <a href="#" class="btn btn-primary">Remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    

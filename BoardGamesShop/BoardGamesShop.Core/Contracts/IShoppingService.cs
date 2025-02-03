@@ -9,4 +9,6 @@ public interface IShoppingService
     Task<ShoppingCartViewModel?> GetShoppingCartByUserIdAsync(Guid userId);
     
     Task<ShoppingCartViewModel?> GetShoppingCartByIdAsync(int id);
+
+    Task AddGameToCartAsync(int cartId, int gameId);
 }

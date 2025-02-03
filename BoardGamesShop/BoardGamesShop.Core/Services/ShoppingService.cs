@@ -40,7 +40,7 @@ public class ShoppingService : IShoppingService
 
     public async Task<ShoppingCartViewModel?> GetShoppingCartByUserIdAsync(Guid userId)
     {
-        var cart = await _repository.AllReadOnly<ShoppingCart>()
+        var cart = await _repository.All<ShoppingCart>()
             .Where(sc => sc.UserId == userId)
             .FirstOrDefaultAsync();
         
@@ -94,5 +94,32 @@ public class ShoppingService : IShoppingService
             Discount = cart.Discount,
             ShoppingCartItems = items
         };
+    }
+
+    public async Task AddGameToCartAsync(int cartId, int gameId)
+    {
+        var cart = await _repository.GetByIdAsync<ShoppingCart>(cartId);
+        
+        if (cart == null)
+        {
+            throw new InvalidOperationException("Cart not found");
+        }
+        
+        var game = await _repository.GetByIdAsync<Game>(gameId);
+        
+        if (game == null)
+        {
+            throw new InvalidOperationException("Game not found");
+        }
+
+        var cartItem = new ShoppingCartItem()
+        {
+            GameId = gameId,
+            ShoppingCartId = cartId,
+            Quantity = 1
+        };
+
+        await _repository.AddAsync(cartItem);
+        await _repository.SaveChangesAsync();
     }
 }
