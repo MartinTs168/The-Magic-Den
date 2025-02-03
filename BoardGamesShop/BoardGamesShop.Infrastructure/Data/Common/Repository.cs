@@ -37,6 +37,11 @@ public class Repository : IRepository
         return await DbSet<T>().FindAsync(id);
     }
 
+    public async Task<T?> GetByIdAsync<T>(object id1, object id2) where T : class
+    {
+        return await DbSet<T>().FindAsync(id1, id2);
+    }
+
     public async Task<int> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync();
@@ -46,6 +51,16 @@ public class Repository : IRepository
     {
         T? entity = await GetByIdAsync<T>(id);
 
+        if (entity != null)
+        {
+            DbSet<T>().Remove(entity);
+        }
+    }
+
+    public async Task DeleteAsync<T>(object id1, object id2) where T : class
+    {
+        var entity = await DbSet<T>().FindAsync(id1, id2);
+        
         if (entity != null)
         {
             DbSet<T>().Remove(entity);
