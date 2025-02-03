@@ -13,4 +13,6 @@ public interface IShoppingService
     Task AddGameToCartAsync(int cartId, int gameId);
 
     Task RemoveItemFromCartAsync(int cartId, int gameId);
+    
+    Task UpdateCartQuantityAsync(int cartId, int gameId, int quantity);
 }

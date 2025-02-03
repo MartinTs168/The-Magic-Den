@@ -159,4 +159,33 @@ public class ShoppingService : IShoppingService
         await _repository.DeleteAsync<ShoppingCartItem>(cartId, gameId);
         await _repository.SaveChangesAsync();
     }
+
+    public async Task UpdateCartQuantityAsync(int cartId, int gameId, int quantity)
+    {
+        var cart = await _repository.GetByIdAsync<ShoppingCart>(cartId);
+        
+        if (cart == null)
+        {
+            throw new InvalidOperationException("Cart not found");
+        }
+
+        var game = await _repository.GetByIdAsync<Game>(gameId);
+        
+        if (game == null)
+        {
+            throw new InvalidOperationException("Game not found");
+        }
+
+        var cartItem = await _repository.GetByIdAsync<ShoppingCartItem>(cartId, gameId);
+        
+        if (cartItem == null)
+        {
+            throw new InvalidOperationException("Item not found in the cart");
+        }
+        
+        cartItem.Quantity = quantity;
+        cart.UpdateCart();
+        
+        await _repository.SaveChangesAsync();
+    }
 }

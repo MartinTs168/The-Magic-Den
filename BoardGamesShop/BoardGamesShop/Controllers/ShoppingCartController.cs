@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using BoardGamesShop.Core.Contracts;
+using BoardGamesShop.Core.Models.Cart;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,6 +57,13 @@ public class ShoppingCartController : BaseController
     public async Task<IActionResult> RemoveGameFromCart(int cartId, int gameId)
     {
         await _shoppingService.RemoveItemFromCartAsync(cartId, gameId);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateCartQuantity(int cartId, ShoppingCartItemServiceModel model)
+    {
+        await _shoppingService.UpdateCartQuantityAsync(cartId, model.GameId, model.Quantity);
         return RedirectToAction(nameof(Index));
     }
 
