@@ -49,5 +49,11 @@ public class ShoppingCartController : BaseController
         
         return RedirectToAction(nameof(Index));
     }
-    
+
+    public async Task<IActionResult> RemoveGameFromCart(int cartId, int gameId)
+    {
+        await _shoppingService.RemoveItemFromCartAsync(cartId, gameId);
+        return RedirectToAction(nameof(Index));
+    }
+
 }

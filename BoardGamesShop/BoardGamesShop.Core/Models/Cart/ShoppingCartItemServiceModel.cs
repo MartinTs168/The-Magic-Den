@@ -5,7 +5,9 @@ namespace BoardGamesShop.Core.Models.Cart;
 
 public class ShoppingCartItemServiceModel
 {
-
+    [Required] 
+    public int GameId { get; set; }
+    
     [Required]
     public string Name { get; set; } = null!;
     

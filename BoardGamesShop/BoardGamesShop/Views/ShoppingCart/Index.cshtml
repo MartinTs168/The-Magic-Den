@@ -19,7 +19,8 @@
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
                         <p class="card-text">Quantity: @item.Quantity</p>
-                        <a href="#" class="btn btn-primary">Remove</a>
+                        <a asp-controller="ShoppingCart" asp-action="RemoveGameFromCart" asp-route-gameId="@item.GameId"
+                           asp-route-cartId="@Model.Id" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
