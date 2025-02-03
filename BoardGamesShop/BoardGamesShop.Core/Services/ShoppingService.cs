@@ -2,6 +2,7 @@ using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Cart;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BoardGamesShop.Core.Services;
@@ -9,10 +10,13 @@ namespace BoardGamesShop.Core.Services;
 public class ShoppingService : IShoppingService
 {
     private readonly IRepository _repository;
+    private readonly UserManager<ApplicationUser> _userManager;
     
-    public ShoppingService(IRepository repository)
+    public ShoppingService(IRepository repository,
+        UserManager<ApplicationUser> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
     
     public async Task<int> CreateShoppingCartAsync(Guid userId)
@@ -26,8 +30,6 @@ public class ShoppingService : IShoppingService
             cart = new ShoppingCart()
             {
                 UserId = userId,
-                Count = 0,
-                TotalPrice = 0,
                 Discount = 0,
             };
             
@@ -118,8 +120,10 @@ public class ShoppingService : IShoppingService
             ShoppingCartId = cartId,
             Quantity = 1
         };
+        
 
         await _repository.AddAsync(cartItem);
+        cart.UpdateCart();
         await _repository.SaveChangesAsync();
     }
 }
