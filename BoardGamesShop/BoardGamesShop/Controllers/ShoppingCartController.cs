@@ -15,6 +15,7 @@ public class ShoppingCartController : BaseController
         _shoppingService = shoppingService;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
@@ -28,6 +29,7 @@ public class ShoppingCartController : BaseController
         return View(cart);
     }
 
+    [HttpPost]
     public async Task<IActionResult> AddGameToCart(int gameId)
     {
         var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
@@ -50,6 +52,7 @@ public class ShoppingCartController : BaseController
         return RedirectToAction(nameof(Index));
     }
 
+    [HttpPost]
     public async Task<IActionResult> RemoveGameFromCart(int cartId, int gameId)
     {
         await _shoppingService.RemoveItemFromCartAsync(cartId, gameId);

@@ -19,8 +19,15 @@
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
                         <p class="card-text">Quantity: @item.Quantity</p>
-                        <a asp-controller="ShoppingCart" asp-action="RemoveGameFromCart" asp-route-gameId="@item.GameId"
-                           asp-route-cartId="@Model.Id" class="btn btn-danger">Remove</a>
+                        <form method="post">
+                            <input type="hidden" name="gameId" value="@item.GameId">
+                            <input type="hidden" name="cartId" value="@Model.Id">
+                            
+                            <button asp-area="" asp-controller="ShoppingCart" asp-action="RemoveGameFromCart" 
+                                    type="submit" class="btn btn-danger">
+                                Remove
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
