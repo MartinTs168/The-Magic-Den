@@ -16,13 +16,13 @@
                     <div class="col-md-3">
                         <img src="@item.ImgUrl" alt="game image" width="100%" class="rounded"/>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 item-info">
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
                         <form method="post">
                             <p class="card-text">Quantity: 
-                                <input asp-for="Count" class="quantity-input"/>
-                                <span asp-validation-for="Count" name="Count" class="small text-danger"></span>
+                                <input type="number" class="quantity-input" value="@item.Quantity"/>
+                                <span name="Count" class="small text-danger"></span>
                             </p>
                         </form>
                         <form method="post">

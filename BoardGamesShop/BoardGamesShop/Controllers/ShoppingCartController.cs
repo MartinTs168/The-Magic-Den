@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Controllers;
 
-[Authorize]
 public class ShoppingCartController : BaseController
 {
     private readonly IShoppingService _shoppingService;
@@ -64,14 +63,13 @@ public class ShoppingCartController : BaseController
     [HttpPost]
     public async Task<IActionResult> UpdateCartQuantity([FromBody]UpdateCartServiceModel model)
     {
-        try
+
+        if (ModelState.IsValid == false)
         {
-            await _shoppingService.UpdateCartQuantityAsync(model.CartId, model.GameId, model.Quantity);
+            return BadRequest(ModelState);
         }
-        catch (InvalidOperationException ex)
-        {
-            return Json(new { success = false, message = ex.Message });
-        }
+        
+        await _shoppingService.UpdateCartQuantityAsync(model.CartId, model.GameId, model.Quantity);
 
         return Json(new { success = true, message = "Cart quantity updated" });
     }

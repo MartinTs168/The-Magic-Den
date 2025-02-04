@@ -16,7 +16,7 @@ public class ShoppingCartItemServiceModel
     
     
     [Required]
-    [Range(typeof(decimal), ShoppingCartItemMinQuantity, ShoppingCartItemMaxQuantity)]
+    [Range(typeof(int), ShoppingCartItemMinQuantity, ShoppingCartItemMaxQuantity)]
     public int Quantity { get; set; }
 
     [Required]
