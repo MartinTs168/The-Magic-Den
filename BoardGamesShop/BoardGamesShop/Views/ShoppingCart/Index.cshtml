@@ -4,42 +4,55 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<div class="text-center">Your Shopping Cart</div>
 
-@foreach (var item in Model.ShoppingCartItems)
-{
     <input type="hidden" name="cartId" value="@Model.Id"/>
-    <div class-="row">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="@item.ImgUrl" alt="game image" width="100%" class="rounded"/>
+    <div class-="d-flex gap-1">
+        <div class="row">
+            <div class="col-md-6 col-lg-8 cols-sm-12 m-0">
+                @foreach (var item in Model.ShoppingCartItems)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="@item.ImgUrl" alt="game image" width="100%" class="rounded"/>
+                                </div>
+                                <div class="col-md-9 item-info">
+                                    <h5 class="card-title">@item.Name</h5>
+                                    <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
+                                    <form method="post">
+                                        <p class="card-text">Quantity:
+                                            <input type="number" class="quantity-input" value="@item.Quantity"/>
+                                            <span name="Count" class="small text-danger"></span>
+                                        </p>
+                                    </form>
+                                    <form method="post">
+                                        <input type="hidden" name="gameId" value="@item.GameId">
+
+                                        <button asp-area="" asp-controller="ShoppingCart" asp-action="RemoveGameFromCart"
+                                                type="submit" class="btn btn-danger">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-9 item-info">
-                        <h5 class="card-title">@item.Name</h5>
-                        <p class="card-text">Price: @item.TotalPrice.ToString("c")</p>
-                        <form method="post">
-                            <p class="card-text">Quantity: 
-                                <input type="number" class="quantity-input" value="@item.Quantity"/>
-                                <span name="Count" class="small text-danger"></span>
-                            </p>
-                        </form>
-                        <form method="post">
-                            <input type="hidden" name="gameId" value="@item.GameId">
-                            <input type="hidden" name="cartId" value="@Model.Id">
-                            
-                            <button asp-area="" asp-controller="ShoppingCart" asp-action="RemoveGameFromCart" 
-                                    type="submit" class="btn btn-danger">
-                                Remove
-                            </button>
-                        </form>
+                }
+            </div>
+            <div class="col-md-6 col-lg-4 cols-sm-12 m-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Price</h5>
+                        <p class="card-text">@Model.TotalPrice.ToString("c")</p>
+                        <p class="card-text">Discount: @Model.Discount%</p>
+                        <a class="btn btn-primary w-100">Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
+
 <script>
     // Set global variables that the external JS file can use:
     window.cartUpdateUrl = '@Url.Action("UpdateCartQuantity", "ShoppingCart")';

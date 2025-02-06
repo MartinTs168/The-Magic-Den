@@ -7,7 +7,6 @@ function updateQuantities() {
             const errorFieldForCount = e.target.parentElement.querySelector("span[name='Count']");
             errorFieldForCount.textContent = "";  // Clear previous error message
             
-            let cartId = e.target.closest(".item-info").querySelector("input[name='cartId']").value;
             let gameId = e.target.closest(".item-info").querySelector("input[name='gameId']").value;
             let newQuantity = e.target.value;
             let url = window.cartUpdateUrl;
@@ -21,7 +20,7 @@ function updateQuantities() {
                         "Content-Type": "application/json",
                         "RequestVerificationToken": getAntiForgeryToken()
                     },
-                    body: JSON.stringify({CartId : cartId, GameId : gameId, Quantity: newQuantity})
+                    body: JSON.stringify({GameId : gameId, Quantity: newQuantity})
                 })
                 .then(response => response.json())
                 .then(data => {

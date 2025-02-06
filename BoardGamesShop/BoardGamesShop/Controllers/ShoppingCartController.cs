@@ -54,24 +54,73 @@ public class ShoppingCartController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> RemoveGameFromCart(int cartId, int gameId)
+    public async Task<IActionResult> RemoveGameFromCart(int gameId)
     {
-        await _shoppingService.RemoveItemFromCartAsync(cartId, gameId);
+
+        var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
+
+        if (cart == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
+        try
+        {
+            await _shoppingService.RemoveItemFromCartAsync(cart.Id, gameId);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return NotFound();
+        }
+
         return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
     public async Task<IActionResult> UpdateCartQuantity([FromBody]UpdateCartServiceModel model)
     {
+        var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
 
+        if (cart == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
         if (ModelState.IsValid == false)
         {
             return BadRequest(ModelState);
         }
-        
-        await _shoppingService.UpdateCartQuantityAsync(model.CartId, model.GameId, model.Quantity);
+
+        try
+        {
+            await _shoppingService.UpdateCartQuantityAsync(cart.Id, model.GameId, model.Quantity);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest();
+        }
 
         return Json(new { success = true, message = "Cart quantity updated" });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetItemTotalPrice(int gameId)
+    {
+        var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
+
+        if (cart == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
+        var cartItem = await _shoppingService.GetShoppingCartItemsAsync(cart.Id, gameId);
+        
+        if (cartItem == null)
+        {
+            return NotFound();
+        }
+        
+        return Json(new { success = true, totalPrice = cartItem.TotalPrice });
     }
 
 }
