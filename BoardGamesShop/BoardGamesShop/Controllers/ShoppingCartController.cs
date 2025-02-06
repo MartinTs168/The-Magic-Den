@@ -47,7 +47,7 @@ public class ShoppingCartController : BaseController
         }
         catch (InvalidOperationException ex)
         {
-            return NotFound();
+            return BadRequest();
         }
         
         return RedirectToAction(nameof(Index));

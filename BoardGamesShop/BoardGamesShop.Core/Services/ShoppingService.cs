@@ -117,15 +117,27 @@ public class ShoppingService : IShoppingService
             throw new InvalidOperationException("Game not found");
         }
 
-        var cartItem = new ShoppingCartItem()
-        {
-            GameId = gameId,
-            ShoppingCartId = cartId,
-            Quantity = 1
-        };
-        
 
-        await _repository.AddAsync(cartItem);
+        ShoppingCartItem? cartItem = await _repository.GetByIdAsync<ShoppingCartItem>(cartId, gameId);
+
+        if (cartItem == null)
+        {
+
+            cartItem = new ShoppingCartItem()
+            {
+                GameId = gameId,
+                ShoppingCartId = cartId,
+                Quantity = 1
+            };
+
+
+            await _repository.AddAsync(cartItem);
+        }
+        else
+        {
+            cartItem.Quantity++; 
+        }
+
         cart.UpdateCart();
         await _repository.SaveChangesAsync();
     }
