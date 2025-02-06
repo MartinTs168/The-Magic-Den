@@ -104,7 +104,7 @@ public class ShoppingCartController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetItemTotalPrice(int gameId)
+    public async Task<IActionResult> GetItemTotalPrice([FromQuery]int gameId)
     {
         var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
 
@@ -120,7 +120,7 @@ public class ShoppingCartController : BaseController
             return NotFound();
         }
         
-        return Json(new { success = true, totalPrice = cartItem.TotalPrice });
+        return Json(new { totalPrice = cartItem.TotalPrice.ToString("C") });
     }
 
 }

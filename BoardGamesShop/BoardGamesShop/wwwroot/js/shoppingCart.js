@@ -7,9 +7,10 @@ function updateQuantities() {
             const errorFieldForCount = e.target.parentElement.querySelector("span[name='Count']");
             errorFieldForCount.textContent = "";  // Clear previous error message
             
+            let itemTotalPriceField = e.target.closest(".item-info").querySelector('.item-total-price > span');
             let gameId = e.target.closest(".item-info").querySelector("input[name='gameId']").value;
             let newQuantity = e.target.value;
-            let url = window.cartUpdateUrl;
+            const url = window.cartUpdateUrl;
             
             console.log(errorFieldForCount);
             
@@ -26,6 +27,7 @@ function updateQuantities() {
                 .then(data => {
                     if(data.success) {
                         console.log("Cart update successful")
+                        updateItemPrice(itemTotalPriceField, gameId)
                     } else {
                         errorFieldForCount.textContent = data.Quantity[0]
                     }
@@ -38,6 +40,23 @@ function updateQuantities() {
     
     
 }
+
+function updateItemPrice(field, id) {
+    const url = window.updateItemPriceUrl + `?gameId=${id}`;
+    
+    fetch(url, {
+        method : 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+         field.textContent = data.totalPrice;
+     })
+    
+}
+
 
 function getAntiForgeryToken() {
     let tokenMeta = document.querySelector("input[name='__RequestVerificationToken']");
