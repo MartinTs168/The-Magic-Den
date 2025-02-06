@@ -95,7 +95,7 @@ public class ShoppingCartController : BaseController
         {
             await _shoppingService.UpdateCartQuantityAsync(cart.Id, model.GameId, model.Quantity);
         }
-        catch (InvalidOperationException ex)
+        catch (InvalidOperationException)
         {
             return BadRequest();
         }
