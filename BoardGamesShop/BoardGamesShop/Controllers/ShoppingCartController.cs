@@ -120,7 +120,11 @@ public class ShoppingCartController : BaseController
             return NotFound();
         }
         
-        return Json(new { totalPrice = cartItem.TotalPrice.ToString("C") });
+        return Json(new
+        {
+            itemTotalPrice = cartItem.TotalPrice.ToString("C"), 
+            cartTotalPrice = cart.TotalPrice.ToString("C")
+        });
     }
 
 }

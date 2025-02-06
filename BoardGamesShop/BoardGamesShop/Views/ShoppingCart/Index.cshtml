@@ -8,7 +8,7 @@
             <div class="col-md-6 col-lg-8 cols-sm-12 m-0">
                 @foreach (var item in Model.ShoppingCartItems)
                 {
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
@@ -43,7 +43,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total Price</h5>
-                        <p class="card-text">@Model.TotalPrice.ToString("c")</p>
+                        <p class="card-text">
+                            <span id="cartTotalPrice">@Model.TotalPrice.ToString("c")</span>
+                        </p>
                         <p class="card-text">Discount: @Model.Discount%</p>
                         <a class="btn btn-primary w-100">Checkout</a>
                     </div>

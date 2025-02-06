@@ -1,5 +1,6 @@
-function updateQuantities() {
+const cartTotalPriceField = document.querySelector('span#cartTotalPrice')
     
+function updateQuantities() {
     let updateTimer;
     document.querySelectorAll(".quantity-input").forEach(input => {
         input.addEventListener("input", function (e) {
@@ -27,7 +28,7 @@ function updateQuantities() {
                 .then(data => {
                     if(data.success) {
                         console.log("Cart update successful")
-                        updateItemPrice(itemTotalPriceField, gameId)
+                        updateItemPrice(itemTotalPriceField, cartTotalPriceField, gameId)
                     } else {
                         errorFieldForCount.textContent = data.Quantity[0]
                     }
@@ -41,7 +42,7 @@ function updateQuantities() {
     
 }
 
-function updateItemPrice(field, id) {
+function updateItemPrice(itemPriceField, cartTotalPriceField, id) {
     const url = window.updateItemPriceUrl + `?gameId=${id}`;
     
     fetch(url, {
@@ -52,7 +53,8 @@ function updateItemPrice(field, id) {
     })
     .then(response => response.json())
     .then(data => {
-         field.textContent = data.totalPrice;
+         itemPriceField.textContent = data.itemTotalPrice;
+         cartTotalPriceField.textContent = data.cartTotalPrice;
      })
     
 }
