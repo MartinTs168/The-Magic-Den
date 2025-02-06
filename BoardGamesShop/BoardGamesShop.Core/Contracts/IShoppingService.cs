@@ -15,4 +15,6 @@ public interface IShoppingService
     Task RemoveItemFromCartAsync(int cartId, int gameId);
     
     Task UpdateCartQuantityAsync(int cartId, int gameId, int quantity);
+
+    Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId);
 }

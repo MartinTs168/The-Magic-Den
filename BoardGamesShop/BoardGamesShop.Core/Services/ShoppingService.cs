@@ -189,4 +189,23 @@ public class ShoppingService : IShoppingService
         
         await _repository.SaveChangesAsync();
     }
+
+    public async Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId)
+    {
+        var cartItem = await  _repository.GetByIdAsync<ShoppingCartItem>(cartId, gameId);
+
+        if (cartItem == null)
+        {
+            return null;
+        }
+
+        return new ShoppingCartItemServiceModel()
+        {
+            GameId = gameId,
+            Name = cartItem.Game.Name,
+            ImgUrl = cartItem.Game.ImgUrl,
+            Quantity = cartItem.Quantity,
+            TotalPrice = cartItem.TotalPrice
+        };
+    }
 }
