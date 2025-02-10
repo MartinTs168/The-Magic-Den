@@ -29,8 +29,8 @@
                         <form method="post" >
                             <input type="hidden" name="gameId" value="@Model.Id"/>
                             <button asp-area="" asp-controller="ShoppingCart" asp-action="AddGameToCart"
-                                    class="btn btn-primary" type="submit">
-                                Add To Cart
+                                    class="btn btn-primary" type="submit" disabled="@(!Model.IsInStock)">
+                                @(Model.IsInStock ? "Add to Cart" : "Out Of Stock")
                             </button>
                         </form>
                     </div>
@@ -44,11 +44,6 @@
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">
                                 Age Rating: @Model.AgeRating
-                            </h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                Is In Stock: @(Model.IsInStock ? "yes" : "no")
                             </h6>
                         </div>
                         <div class="row ps-2">
