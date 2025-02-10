@@ -69,11 +69,8 @@ public class GameService : IGameService
                 Name = g.Name,
                 Price = g.Price,
                 ImgUrl = g.ImgUrl,
-                AgeRating = g.AgeRating,
-                NumberOfPlayers = g.NumberOfPlayers,
-                Description = g.Description,
                 Discount = g.Discount,
-                Quantity = g.Quantity,
+                IsInStock = g.Quantity > 0,
                 OriginalPrice = g.OriginalPrice,
                 SubCategoryName = g.SubCategory != null ? g.SubCategory.Name : "No Sub Category",
                 BrandName = g.Brand.Name
@@ -190,7 +187,7 @@ public class GameService : IGameService
         }
     }
 
-    public async Task<GameServiceModel?> GetGameServiceModelByIdAsync(int id)
+    public async Task<GameFullDetailsViewModel?> GetGameFullDetailsViewModelByIdAsync(int id)
     {
         var gameObj = await _repository.GetByIdAsync<Game>(id);
 
@@ -199,18 +196,18 @@ public class GameService : IGameService
             return null;
         }
 
-        return new GameServiceModel()
+        return new GameFullDetailsViewModel()
         {
             Id = gameObj.Id,
             Name = gameObj.Name,
             Price = gameObj.Price,
             ImgUrl = gameObj.ImgUrl,
-            AgeRating = gameObj.AgeRating,
-            NumberOfPlayers = gameObj.NumberOfPlayers,
-            Description = gameObj.Description,
             Discount = gameObj.Discount,
             Quantity = gameObj.Quantity,
             OriginalPrice = gameObj.OriginalPrice,
+            NumberOfPlayers = gameObj.NumberOfPlayers,
+            AgeRating = gameObj.AgeRating,
+            Description = gameObj.Description,
             SubCategoryName = gameObj.SubCategory != null ? gameObj.SubCategory.Name : "No Sub Category",
             BrandName = gameObj.Brand.Name
         };

@@ -131,7 +131,7 @@ public class GameController : AdminBaseController
             return NotFound();
         }
 
-        var game = await _gameService.GetGameServiceModelByIdAsync(id);
+        var game = await _gameService.GetGameFullDetailsViewModelByIdAsync(id);
         
         if (game == null)
         {

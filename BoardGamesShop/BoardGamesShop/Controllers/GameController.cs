@@ -44,13 +44,29 @@ public class GameController : BaseController
             return NotFound();
         }
 
-        var game = await _gameService.GetGameServiceModelByIdAsync(id);
+        var game = await _gameService.GetGameFullDetailsViewModelByIdAsync(id);
         
         if (game == null)
         {
             return NotFound();
         }
+
+        var model = new GameDetailsViewModel()
+        {
+            Id = game.Id,
+            Name = game.Name,
+            Description = game.Description,
+            ImgUrl = game.ImgUrl,
+            AgeRating = game.AgeRating,
+            NumberOfPlayers = game.NumberOfPlayers,
+            Price = game.Price,
+            OriginalPrice = game.OriginalPrice,
+            Discount = game.Discount,
+            SubCategoryName = game.SubCategoryName,
+            BrandName = game.BrandName,
+            IsInStock = game.Quantity > 0
+        };
         
-        return View(game);
+        return View(model);
     }
 }

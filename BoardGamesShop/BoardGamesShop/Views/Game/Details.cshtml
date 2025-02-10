@@ -1,4 +1,4 @@
-@model GameServiceModel
+@model GameDetailsViewModel
 
 
 <form method="post">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">
-                                Quantity: @Model.Quantity
+                                Is In Stock: @(Model.IsInStock ? "yes" : "no")
                             </h6>
                         </div>
                         <div class="row ps-2">
