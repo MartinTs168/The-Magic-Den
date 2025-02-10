@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static BoardGamesShop.Infrastructure.Constants.DataConstants;
 
 namespace BoardGamesShop.Infrastructure.Data.Entities;
 
@@ -25,6 +26,10 @@ public class Order
     }
 
     public int Discount { get; set; } = 0;
+
+    [Required]
+    [MaxLength(AddressMaxLength)]
+    public string Address { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

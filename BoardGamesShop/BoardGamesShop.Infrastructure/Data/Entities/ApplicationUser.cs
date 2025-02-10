@@ -16,6 +16,7 @@ public class ApplicationUser : IdentityUser<Guid>
     public string? LastName { get; set; }
     
     [PersonalData]
+    [MaxLength(AddressMaxLength)]
     public string? Address { get; set; }
 
     [Comment("Used to track if the user is deleted")]

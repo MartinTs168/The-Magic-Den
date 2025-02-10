@@ -8,6 +8,8 @@ public static class DataConstants
     public const int LastNameMaxLength = 60;
     public const int LastNameMinLength = 2;
 
+    public const int AddressMaxLength = 200;
+
     public const int BrandNameMaxLength = 100;
     public const int BrandNameMinLength = 2;
 
