@@ -177,7 +177,7 @@ public class ShoppingService : IShoppingService
         await _repository.SaveChangesAsync();
     }
 
-    public async Task UpdateCartQuantityAsync(int cartId, int gameId, int quantity)
+    public async Task<int> UpdateCartQuantityAsync(int cartId, int gameId, int quantity)
     {
         var cart = await _repository.GetByIdAsync<ShoppingCart>(cartId);
         
@@ -199,11 +199,14 @@ public class ShoppingService : IShoppingService
         {
             throw new InvalidOperationException("Item not found in the cart");
         }
+
+        cartItem.Quantity = quantity > game.Quantity ? game.Quantity : quantity;
         
-        cartItem.Quantity = quantity;
         cart.UpdateCart();
         
         await _repository.SaveChangesAsync();
+
+        return cartItem.Quantity;
     }
 
     public async Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId)

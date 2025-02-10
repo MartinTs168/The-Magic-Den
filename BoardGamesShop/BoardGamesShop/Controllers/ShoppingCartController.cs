@@ -102,14 +102,13 @@ public class ShoppingCartController : BaseController
 
         try
         {
-            await _shoppingService.UpdateCartQuantityAsync(cart.Id, model.GameId, model.Quantity);
+            int newQuantity = await _shoppingService.UpdateCartQuantityAsync(cart.Id, model.GameId, model.Quantity);
+            return Json(new { success = true, message = "Cart quantity updated", quantity = newQuantity });
         }
         catch (InvalidOperationException)
         {
             return BadRequest();
         }
-
-        return Json(new { success = true, message = "Cart quantity updated" });
     }
 
     [HttpGet]

@@ -29,6 +29,7 @@ function updateQuantities() {
                     if(data.success) {
                         console.log("Cart update successful")
                         updateItemPrice(itemTotalPriceField, cartTotalPriceField, gameId)
+                        e.target.value = data.quantity;
                     } else {
                         errorFieldForCount.textContent = data.Quantity[0]
                     }
