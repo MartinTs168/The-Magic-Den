@@ -1,8 +1,8 @@
 using System.Security.Claims;
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Cart;
-using BoardGamesShop.Views.ShoppingCart;
-using Microsoft.AspNetCore.Authorization;
+using BoardGamesShop.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Controllers;
@@ -10,10 +10,15 @@ namespace BoardGamesShop.Controllers;
 public class ShoppingCartController : BaseController
 {
     private readonly IShoppingService _shoppingService;
+    private readonly UserManager<ApplicationUser> _userManager;
     
-    public ShoppingCartController(IShoppingService shoppingService)
+    public ShoppingCartController(
+        IShoppingService shoppingService,
+        UserManager<ApplicationUser> userManager)
+    
     {
         _shoppingService = shoppingService;
+        _userManager = userManager;
     }
 
     [HttpGet]
@@ -125,6 +130,19 @@ public class ShoppingCartController : BaseController
             itemTotalPrice = cartItem.TotalPrice.ToString("C"), 
             cartTotalPrice = cart.TotalPrice.ToString("C")
         });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Checkout()
+    {
+        var user = await _userManager.FindByIdAsync(User.Id().ToString());
+
+        var model = new CheckoutViewModel()
+        {
+            Address = user.Address!
+        };
+        
+        return View(model);
     }
 
 }

@@ -47,7 +47,7 @@
                             <span id="cartTotalPrice">@Model.TotalPrice.ToString("c")</span>
                         </p>
                         <p class="card-text">Discount: @Model.Discount%</p>
-                        <a class="btn btn-primary w-100">Checkout</a>
+                        <a class="btn btn-primary w-100" asp-action="Checkout">Checkout</a>
                     </div>
                 </div>
             </div>

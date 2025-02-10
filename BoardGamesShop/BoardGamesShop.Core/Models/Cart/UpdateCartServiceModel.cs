@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using static BoardGamesShop.Infrastructure.Constants.DataConstants;
 
-namespace BoardGamesShop.Views.ShoppingCart;
+namespace BoardGamesShop.Core.Models.Cart;
 
 public class UpdateCartServiceModel
 {

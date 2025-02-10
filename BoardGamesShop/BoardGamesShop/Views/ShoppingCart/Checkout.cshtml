@@ -1,0 +1,28 @@
+@model CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="card">
+    
+    <div class="card-header">
+        @ViewData["Title"]
+    </div>
+    <div class="card-body">
+        <form method="post">
+            
+            <div class="mb-3">
+                <label asp-for="Address">Address:</label>
+                <textarea type="text" asp-for="Address" required class="w-100 border-0"></textarea>
+                <span asp-validation-for="Address" class="small text-danger"></span>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                Finish Ordering
+            </button>
+            
+        </form>
+    </div>
+    
+</div>
