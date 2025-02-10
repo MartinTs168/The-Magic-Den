@@ -39,16 +39,20 @@ public class ShoppingCartController : BaseController
     public async Task<IActionResult> AddGameToCart(int gameId)
     {
         var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
+        int cartId;
 
         if (cart == null)
         {
-            int cartId = await _shoppingService.CreateShoppingCartAsync(User.Id());
-            cart = await _shoppingService.GetShoppingCartByIdAsync(cartId);
+            cartId = await _shoppingService.CreateShoppingCartAsync(User.Id());
+        }
+        else
+        {
+            cartId = cart.Id;
         }
 
         try
         {
-            await _shoppingService.AddGameToCartAsync(cart.Id, gameId);
+            await _shoppingService.AddGameToCartAsync(cartId, gameId);
         }
         catch (InvalidOperationException ex)
         {

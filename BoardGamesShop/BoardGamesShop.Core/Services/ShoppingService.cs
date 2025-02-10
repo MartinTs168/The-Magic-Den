@@ -117,7 +117,11 @@ public class ShoppingService : IShoppingService
             throw new InvalidOperationException("Game not found");
         }
 
-
+        if (game.Quantity <= 0)
+        {
+            throw new InvalidOperationException("Game out of stock");
+        }
+        
         ShoppingCartItem? cartItem = await _repository.GetByIdAsync<ShoppingCartItem>(cartId, gameId);
 
         if (cartItem == null)
