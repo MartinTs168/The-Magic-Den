@@ -11,13 +11,10 @@ namespace BoardGamesShop.Core.Services;
 public class ShoppingService : IShoppingService
 {
     private readonly IRepository _repository;
-    private readonly UserManager<ApplicationUser> _userManager;
     
-    public ShoppingService(IRepository repository,
-        UserManager<ApplicationUser> userManager)
+    public ShoppingService(IRepository repository)
     {
         _repository = repository;
-        _userManager = userManager;
     }
     
     public async Task<int> CreateShoppingCartAsync(Guid userId)
@@ -226,5 +223,79 @@ public class ShoppingService : IShoppingService
             Quantity = cartItem.Quantity,
             TotalPrice = cartItem.TotalPrice
         };
+    }
+
+    public async Task<OrderItem> TransformShoppingCartItemToOrderItemAsync(ShoppingCartItem item, int orderId)
+    {
+        var orderItem = new OrderItem()
+        {
+            GameId = item.GameId,
+            Quantity = item.Quantity,
+            OrderId = orderId,
+        };
+
+        await _repository.AddAsync(orderItem);
+        
+        return orderItem;
+    }
+
+    public async Task TransformShoppingCartToOrderAsync(Guid userId, string address)
+    {
+        var cart = await _repository.AllReadOnly<ShoppingCart>()
+            .Where(sc => sc.UserId == userId)
+            .FirstOrDefaultAsync();
+        
+        if (cart == null)
+        {
+            throw new InvalidOperationException("Cart not found");
+        }
+
+        var order = new Order()
+        {
+            UserId = userId,
+            Address = address,
+            TotalPrice = cart.TotalPrice,
+            CreatedAt = DateTime.Now,
+            Count = cart.Count
+        };
+        
+        await _repository.AddAsync(order);
+        await _repository.SaveChangesAsync();
+
+        var shoppingCartItems = await _repository.All<ShoppingCartItem>()
+            .Where(sci => sci.ShoppingCartId == cart.Id)
+            .ToListAsync();
+
+        foreach (var item in shoppingCartItems)
+        {
+            await TransformShoppingCartItemToOrderItemAsync(item, order.Id);
+        }
+
+        await _repository.SaveChangesAsync();
+    }
+
+    public async Task CleanShoppingCart(Guid userId)
+    {
+        var cart = await _repository.AllReadOnly<ShoppingCart>()
+            .Where(sc => sc.UserId == userId)
+            .FirstOrDefaultAsync();
+        
+        if (cart == null)
+        {
+            throw new InvalidOperationException("Cart not found");
+        }
+        
+        var shoppingCartItems = await _repository.All<ShoppingCartItem>()
+            .Where(sci => sci.ShoppingCartId == cart.Id)
+            .ToListAsync();
+
+        foreach (var item in shoppingCartItems)
+        {
+            await _repository.DeleteAsync<ShoppingCartItem>(item.ShoppingCartId, item.GameId);
+        }
+
+        await _repository.DeleteAsync<ShoppingCart>(cart.Id);
+        
+        await _repository.SaveChangesAsync();
     }
 }

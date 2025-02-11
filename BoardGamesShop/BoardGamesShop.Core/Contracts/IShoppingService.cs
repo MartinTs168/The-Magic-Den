@@ -1,4 +1,5 @@
 using BoardGamesShop.Core.Models.Cart;
+using BoardGamesShop.Infrastructure.Data.Entities;
 
 namespace BoardGamesShop.Core.Contracts;
 
@@ -24,4 +25,27 @@ public interface IShoppingService
     Task<int> UpdateCartQuantityAsync(int cartId, int gameId, int quantity);
 
     Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId);
+
+    /// <summary>
+    /// Transforms a ShoppingCartItem to OrderItem
+    /// and saves it to tbe database
+    /// </summary>
+    /// <param name="item"> ShoppingCartItem</param>
+    /// <param name="orderId"> int id of Order</param>
+    /// <returns>The object added to the db</returns>
+    Task<OrderItem> TransformShoppingCartItemToOrderItemAsync(ShoppingCartItem item, int orderId);
+
+    /// <summary>
+    /// Gets a ShoppingCart object and turns it into Order
+    /// </summary>
+    /// <param name="userId">Guid id of User</param>
+    /// <param name="address">string address to add to order</param>
+    Task TransformShoppingCartToOrderAsync(Guid userId, string address);
+
+    /// <summary>
+    /// Deletes the shopping cart and its items
+    /// </summary>
+    /// <param name="userId">Guid id of User</param>
+    /// <returns></returns>
+    Task CleanShoppingCart(Guid userId);
 }

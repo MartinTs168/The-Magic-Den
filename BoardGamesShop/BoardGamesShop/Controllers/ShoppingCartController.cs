@@ -148,4 +148,19 @@ public class ShoppingCartController : BaseController
         return View(model);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Checkout(CheckoutViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        await _shoppingService.TransformShoppingCartToOrderAsync(User.Id(), model.Address);
+        await _shoppingService.CleanShoppingCart(User.Id());
+
+        return RedirectToAction("Index", "Home", new { area = "" });
+
+    }
+
 }

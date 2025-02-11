@@ -19,11 +19,7 @@ public class Order
     public int Count { get; set; }
 
     [Column(TypeName = "decimal(18, 2)")]
-    public decimal TotalPrice
-    {
-        get;
-        private set;
-    }
+    public decimal TotalPrice { get; set; }
 
     public int Discount { get; set; } = 0;
 
