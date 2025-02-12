@@ -51,6 +51,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IStatisticService, StatisticService>();
         services.AddScoped<IShoppingService, ShoppingService>();
+        services.AddScoped<IOrderService, OrderService>();
         return services;
     }
 }
