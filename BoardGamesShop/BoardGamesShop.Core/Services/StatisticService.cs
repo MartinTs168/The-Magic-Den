@@ -43,4 +43,16 @@ public class StatisticService : IStatisticService
         return await _repository.AllReadOnly<Game>()
             .CountAsync();
     }
+
+    public async Task<int> CountOrdersAsync()
+    {
+        return await _repository.AllReadOnly<Order>()
+            .CountAsync();
+    }
+
+    public async Task<decimal> TotalEarningsAsync()
+    {
+        return await _repository.AllReadOnly<Order>()
+            .SumAsync(o => o.TotalPrice);
+    }
 }

@@ -18,14 +18,13 @@
                 <th>
                     @Html.DisplayNameFor(model => model.CountGames)
                 </th>
-                @* <th> *@
-                @* *@
-                @*     @Html.DisplayNameFor(model => model.CountOrders) *@
-                @* </th> *@
-                @* <th> *@
-                @* *@
-                @*     @Html.DisplayNameFor(model => model.SumOrders) *@
-                @* </th> *@
+                <th>
+                
+                    @Html.DisplayNameFor(model => model.CountOrders)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSumOrders)
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -36,13 +35,12 @@
                 <td>
                     @Model.CountGames
                 </td>
-                @* <td> *@
-                @*     @Html.DisplayFor(model => model.CountOrders) *@
-                @* </td> *@
-                @* <td> *@
-                @* *@
-                @*     @Html.DisplayFor(model => model.SumOrders) *@
-                @* </td> *@
+                <td>
+                    @Model.CountOrders
+                </td>
+                <td>
+                    @Model.TotalSumOrders
+                </td>
             </tr>
             </tbody>
         </table>

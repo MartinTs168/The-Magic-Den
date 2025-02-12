@@ -20,6 +20,9 @@ public class StatisticController : AdminBaseController
         StatisticViewModel model = new StatisticViewModel();
         model.CountClients = await _statisticService.CountClientsAsync();   
         model.CountGames = await _statisticService.CountGamesAsync();
+        model.CountOrders = await _statisticService.CountOrdersAsync();
+        var totalOrdersPrice = await _statisticService.TotalEarningsAsync();
+        model.TotalSumOrders = totalOrdersPrice.ToString("C");
         
         return View(model);
     }
