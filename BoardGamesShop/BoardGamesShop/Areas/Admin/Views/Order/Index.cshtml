@@ -1,0 +1,55 @@
+@model IEnumerable<OrderViewModel>
+
+@{
+    ViewData["Title"] = "All Orders";
+}
+
+<h1>All Orders</h1>
+
+<table class="table">
+    
+    <thead>
+    
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+    </tr>
+    
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @order.OrderDate
+                </td>
+                <td>
+                    @order.UserName
+                </td>
+                <td>
+                    @order.Quantity
+                </td>
+                <td>
+                    @order.Discount%
+                </td>
+                <td>
+                    @order.TotalPrice.ToString("C")
+                </td>
+            </tr>
+        }
+    </tbody>
+    
+</table>
