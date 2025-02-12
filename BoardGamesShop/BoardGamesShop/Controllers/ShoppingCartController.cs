@@ -164,7 +164,7 @@ public class ShoppingCartController : BaseController
         catch (InvalidOperationException ex)
         {
             ModelState.AddModelError("", ex.Message);
-            return View(model);
+            return RedirectToAction(nameof(Index));
         }
 
         return RedirectToAction("Index", "Home", new { area = "" });

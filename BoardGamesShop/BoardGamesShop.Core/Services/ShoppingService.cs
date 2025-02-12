@@ -235,6 +235,7 @@ public class ShoppingService : IShoppingService
         };
 
         await _repository.AddAsync(orderItem);
+        item.Game.Quantity -= item.Quantity;
         
         return orderItem;
     }
@@ -266,6 +267,15 @@ public class ShoppingService : IShoppingService
             .Where(sci => sci.ShoppingCartId == cart.Id)
             .ToListAsync();
 
+        foreach (var item in shoppingCartItems)
+        {
+            if (item.Quantity > item.Game.Quantity)
+            {
+                throw new InvalidOperationException("Quantity of item cannot exceed the available quantity");
+            }
+        }
+        
+        
         foreach (var item in shoppingCartItems)
         {
             await TransformShoppingCartItemToOrderItemAsync(item, order.Id);
