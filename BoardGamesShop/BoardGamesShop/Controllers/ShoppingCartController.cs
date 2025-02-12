@@ -156,8 +156,16 @@ public class ShoppingCartController : BaseController
             return View(model);
         }
 
-        await _shoppingService.TransformShoppingCartToOrderAsync(User.Id(), model.Address);
-        await _shoppingService.CleanShoppingCart(User.Id());
+        try
+        {
+            await _shoppingService.TransformShoppingCartToOrderAsync(User.Id(), model.Address);
+            await _shoppingService.CleanShoppingCart(User.Id());
+        }
+        catch (InvalidOperationException ex)
+        {
+            ModelState.AddModelError("", ex.Message);
+            return View(model);
+        }
 
         return RedirectToAction("Index", "Home", new { area = "" });
 

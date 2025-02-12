@@ -2,6 +2,7 @@ const cartTotalPriceField = document.querySelector('span#cartTotalPrice')
     
 function updateQuantities() {
     let updateTimer;
+    const timeout = 250;
     document.querySelectorAll(".quantity-input").forEach(input => {
         input.addEventListener("input", function (e) {
             clearTimeout(updateTimer);
@@ -35,7 +36,7 @@ function updateQuantities() {
                     }
                 })
                 .catch(error => console.error(error))
-            }, 1000)
+            }, timeout)
             
         })
     })
