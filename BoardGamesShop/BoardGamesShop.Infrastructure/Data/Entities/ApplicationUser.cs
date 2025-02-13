@@ -22,4 +22,7 @@ public class ApplicationUser : IdentityUser<Guid>
     [Comment("Used to track if the user is deleted")]
     public bool IsDeleted { get; set; } = false;
 
+    [Comment("Used to buy discounts for orders")]
+    public int MagicPoints { get; set; } = 0;   
+
 }
