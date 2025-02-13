@@ -250,7 +250,25 @@ public class ShoppingService : IShoppingService
         {
             throw new InvalidOperationException("Cart not found");
         }
+        
+        var shoppingCartItems = await _repository.All<ShoppingCartItem>()
+            .Where(sci => sci.ShoppingCartId == cart.Id)
+            .ToListAsync();
 
+        if (shoppingCartItems.Count == 0)
+        {
+            throw new InvalidOperationException("Cart is empty");
+        }
+        
+        foreach (var item in shoppingCartItems)
+        {
+            if (item.Quantity > item.Game.Quantity || item.Quantity <= 0)
+            {
+                throw new InvalidOperationException("Quantity of item cannot " +
+                                                    "exceed the available quantity or be 0 or less.");
+            }
+        }
+        
         var order = new Order()
         {
             UserId = userId,
@@ -262,19 +280,6 @@ public class ShoppingService : IShoppingService
         
         await _repository.AddAsync(order);
         await _repository.SaveChangesAsync();
-
-        var shoppingCartItems = await _repository.All<ShoppingCartItem>()
-            .Where(sci => sci.ShoppingCartId == cart.Id)
-            .ToListAsync();
-
-        foreach (var item in shoppingCartItems)
-        {
-            if (item.Quantity > item.Game.Quantity)
-            {
-                throw new InvalidOperationException("Quantity of item cannot exceed the available quantity");
-            }
-        }
-        
         
         foreach (var item in shoppingCartItems)
         {
