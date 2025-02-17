@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Security.Claims;
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Cart;
@@ -130,10 +131,40 @@ public class ShoppingCartController : BaseController
         
         return Json(new
         {
-            itemTotalPrice = cartItem.TotalPrice.ToString("C"), 
+            itemTotalPrice = cartItem.TotalPrice.ToString("C"),
             cartTotalPrice = cart.TotalPrice.ToString("C")
         });
     }
+
+    [HttpPost]
+    public async Task<IActionResult> ApplyDiscount([FromBody] ApplyDiscountServiceModel model)
+    {
+        var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
+
+        if (cart == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        try
+        {
+            await _shoppingService.UpdateShoppingCartDiscountAsync(User.Id(), model.Discount);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+
+        return Json(new
+        {
+            cartTotalPrice = cart.TotalPrice
+        });
+    }
+    
 
     [HttpGet]
     public async Task<IActionResult> Checkout()

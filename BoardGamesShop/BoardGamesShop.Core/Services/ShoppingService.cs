@@ -373,5 +373,7 @@ public class ShoppingService : IShoppingService
             default: throw new ArgumentException("Invalid value");
                 
         }
+        
+        await _repository.SaveChangesAsync();
     }
 }
