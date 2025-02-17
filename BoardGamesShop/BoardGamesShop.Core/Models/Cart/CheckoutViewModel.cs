@@ -10,4 +10,6 @@ public class CheckoutViewModel
     [StringLength(AddressMaxLength, MinimumLength = AddressMinLength,
         ErrorMessage = LengthErrorMessage)]
     public string Address { get; set; } = null!;
+    
+    public decimal TotalPrice { get; set; }
 }

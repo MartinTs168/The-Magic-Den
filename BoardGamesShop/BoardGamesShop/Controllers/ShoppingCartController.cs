@@ -139,10 +139,22 @@ public class ShoppingCartController : BaseController
     public async Task<IActionResult> Checkout()
     {
         var user = await _userManager.FindByIdAsync(User.Id().ToString());
+        var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
 
+        if (cart == null)
+        {
+            return BadRequest();
+        }
+
+        if (cart.ShoppingCartItems.Count == 0)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
         var model = new CheckoutViewModel()
         {
-            Address = user.Address!
+            Address = user.Address!,
+            TotalPrice = cart.TotalPrice
         };
         
         return View(model);

@@ -13,9 +13,14 @@
         <form method="post">
             
             <div class="mb-3">
-                <label asp-for="Address">Address:</label>
+                <label asp-for="Address"></label>
                 <textarea type="text" asp-for="Address" required class="w-100 border-0"></textarea>
                 <span asp-validation-for="Address" class="small text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="TotalPrice"></label>
+                <p>@Model.TotalPrice.ToString("C")</p>
             </div>
             
             <button type="submit" class="btn btn-primary">
