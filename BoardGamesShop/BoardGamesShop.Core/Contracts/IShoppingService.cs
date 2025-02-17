@@ -1,3 +1,4 @@
+using BoardGamesShop.Core.Enumerations;
 using BoardGamesShop.Core.Models.Cart;
 using BoardGamesShop.Infrastructure.Data.Entities;
 
@@ -48,4 +49,12 @@ public interface IShoppingService
     /// <param name="userId">Guid id of User</param>
     /// <returns></returns>
     Task CleanShoppingCart(Guid userId);
+
+    /// <summary>
+    /// Updates the discount of the shopping cart
+    /// </summary>
+    /// <param name="userId">Guid id of User</param>
+    /// <param name="discount">ShoppingCartDiscount enum default ZeroPercent</param>
+    /// <returns></returns>
+    Task UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount = ShoppingCartDiscount.ZeroPercent);
 }

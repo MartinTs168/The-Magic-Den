@@ -1,4 +1,5 @@
 using BoardGamesShop.Core.Contracts;
+using BoardGamesShop.Core.Enumerations;
 using BoardGamesShop.Core.Models.Cart;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
@@ -11,6 +12,9 @@ namespace BoardGamesShop.Core.Services;
 public class ShoppingService : IShoppingService
 {
     private readonly IRepository _repository;
+    private const int FivePercentDiscountCost = 5000;
+    private const int FifteenPercentDiscountCost = 10000;
+    private const int FiftyPercentDiscountCost = 50000;
     
     public ShoppingService(IRepository repository)
     {
@@ -297,7 +301,7 @@ public class ShoppingService : IShoppingService
         
         if (cart == null)
         {
-            throw new InvalidOperationException("Cart not found");
+            throw new InvalidOperationException("Cart not found"); 
         }
         
         var shoppingCartItems = await _repository.All<ShoppingCartItem>()
@@ -312,5 +316,62 @@ public class ShoppingService : IShoppingService
         await _repository.DeleteAsync<ShoppingCart>(cart.Id);
         
         await _repository.SaveChangesAsync();
+    }
+
+    public async Task UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount)
+    {
+        var cart = await _repository.AllReadOnly<ShoppingCart>()
+           .Where(sc => sc.UserId == userId)
+           .FirstOrDefaultAsync();
+
+        if (cart == null)
+        {
+            throw new InvalidOperationException("Cart not found");
+        }
+
+        var user = await _repository.GetByIdAsync<ApplicationUser>(userId);
+
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+        
+        int userMagicPoints = user.MagicPoints;
+        
+        switch (discount)
+        {
+            case ShoppingCartDiscount.ZeroPercent:
+                cart.Discount = 0;
+                break;
+            case ShoppingCartDiscount.FivePercent:
+                if (userMagicPoints < FivePercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Not enough magic points"); 
+                }
+
+                cart.Discount = 5;
+                user.MagicPoints -= FivePercentDiscountCost;
+                break;
+            case ShoppingCartDiscount.FifteenPercent:
+                if (userMagicPoints < FifteenPercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Not enough magic points");
+                }
+
+                cart.Discount = 15;
+                user.MagicPoints -= FifteenPercentDiscountCost;
+                break;
+            case ShoppingCartDiscount.FiftyPercent:
+                if (userMagicPoints < FiftyPercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Not enough magic points");
+                }
+                
+                cart.Discount = 50;
+                user.MagicPoints -= FiftyPercentDiscountCost;
+                break;
+            default: throw new ArgumentException("Invalid value");
+                
+        }
     }
 }
