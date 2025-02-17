@@ -42,11 +42,16 @@
             <div class="col-md-6 col-lg-4 cols-sm-12 m-0">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Total Price</h5>
+                        <h5 class="card-title mb-3">Total Price</h5>
                         <p class="card-text">
                             <span id="cartTotalPrice">@Model.TotalPrice.ToString("c")</span>
                         </p>
-                        <p class="card-text">Discount: @Model.Discount%</p>
+                        <select class="form-control mb-3" id="discount_form">
+                            <option selected value="0">0% Discount</option>
+                            <option value="1">5% Discount - 5000 Magic Points</option>
+                            <option value="2">15% Discount - 10000 Magic Points</option>
+                            <option value="2">50% Discount - 50000 Magic Points</option>
+                        </select>
                         <a class="btn btn-primary w-100" asp-action="Checkout">Checkout</a>
                     </div>
                 </div>
