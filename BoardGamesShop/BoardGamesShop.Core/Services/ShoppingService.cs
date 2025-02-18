@@ -334,6 +334,8 @@ public class ShoppingService : IShoppingService
             Count = cart.Count,
             Discount = cart.Discount
         };
+
+        user.MagicPoints += decimal.ToInt32(cart.TotalPrice * 100);
         
         await _repository.AddAsync(order);
         await _repository.SaveChangesAsync();
