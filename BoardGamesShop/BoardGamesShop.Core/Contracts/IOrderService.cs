@@ -10,4 +10,11 @@ public interface IOrderService
     /// </summary>
     /// <returns>An IEnumerable of OrderViewModel</returns>
     Task<IEnumerable<OrderViewModel>> GetOrdersAsync();
+
+    /// <summary>
+    /// Gets all orders by user id
+    /// </summary>
+    /// <param name="userId">Property of type Guid</param>
+    /// <returns>IEnumerable of OrderViewModel</returns>
+    Task<IEnumerable<OrderViewModel>> GetOrdersByUserIdAsync(Guid userId);
 }

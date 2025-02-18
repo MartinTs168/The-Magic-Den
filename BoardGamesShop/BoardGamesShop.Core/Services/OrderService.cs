@@ -18,7 +18,7 @@ public class OrderService : IOrderService
     
     public async Task<IEnumerable<OrderViewModel>> GetOrdersAsync()
     {
-        var orders = await _repository.AllReadOnly<Order>()
+        return await _repository.AllReadOnly<Order>()
             .Select(o => new OrderViewModel()
             {
                 OrderDate = o.CreatedAt,
@@ -28,7 +28,20 @@ public class OrderService : IOrderService
                 TotalPrice = o.TotalPrice
             })
             .ToListAsync();
+    }
 
-        return orders;
+    public async Task<IEnumerable<OrderViewModel>> GetOrdersByUserIdAsync(Guid userId)
+    {
+        return await _repository.AllReadOnly<Order>()
+            .Where(o => o.UserId == userId)
+            .Select(o => new OrderViewModel()
+            {
+                OrderDate = o.CreatedAt,
+                UserName = o.User.UserName,
+                Quantity = o.Count,
+                Discount = o.Discount,
+                TotalPrice = o.TotalPrice
+            })
+            .ToListAsync();
     }
 }
