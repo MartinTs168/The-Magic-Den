@@ -67,4 +67,20 @@ function getAntiForgeryToken() {
     return tokenMeta ? tokenMeta.value : ""; 
 }
 
+document.querySelector("select#discount_form").addEventListener("input", function(e) {
+    const url = window.applyDiscountUrl;
+    
+    fetch(url, {
+        method : 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "RequestVerificationToken": getAntiForgeryToken()
+        },
+        body: JSON.stringify({Discount : Number(e.target.value)})
+    }).then(response => response.json())
+        .then(data => cartTotalPriceField.textContent = data.cartTotalPrice)
+        .catch(error => console.error(error))
+});
+
+
 document.addEventListener('DOMContentLoaded', updateQuantities);

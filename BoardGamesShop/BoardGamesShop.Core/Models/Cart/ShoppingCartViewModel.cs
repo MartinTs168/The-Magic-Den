@@ -1,3 +1,5 @@
+using BoardGamesShop.Core.Enumerations;
+
 namespace BoardGamesShop.Core.Models.Cart;
 
 public class ShoppingCartViewModel
@@ -11,5 +13,5 @@ public class ShoppingCartViewModel
     
     public decimal TotalPrice { get; set; }
     
-    public int Discount { get; set; }
+    public ShoppingCartDiscount Discount { get; set; }
 }

@@ -46,11 +46,11 @@
                         <p class="card-text">
                             <span id="cartTotalPrice">@Model.TotalPrice.ToString("c")</span>
                         </p>
-                        <select class="form-control mb-3" id="discount_form">
-                            <option selected value="0">0% Discount</option>
+                        <select asp-for="Discount" class="form-control mb-3" id="discount_form">
+                            <option value="0">0% Discount</option>
                             <option value="1">5% Discount - 5000 Magic Points</option>
                             <option value="2">15% Discount - 10000 Magic Points</option>
-                            <option value="2">50% Discount - 50000 Magic Points</option>
+                            <option value="3">50% Discount - 50000 Magic Points</option>
                         </select>
                         <a class="btn btn-primary w-100" asp-action="Checkout">Checkout</a>
                     </div>
@@ -63,6 +63,7 @@
     // Set global variables that the external JS file can use:
     window.cartUpdateUrl = '@Url.Action("UpdateCartQuantity", "ShoppingCart")';
     window.updateItemPriceUrl = '@Url.Action("GetItemTotalPrice", "ShoppingCart")'
+    window.applyDiscountUrl = '@Url.Action("ApplyDiscount", "ShoppingCart")'
 </script>
 <script src="~/js/shoppingCart.js" sp-append-version="true"></script>
     

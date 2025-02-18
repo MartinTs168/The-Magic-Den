@@ -56,5 +56,5 @@ public interface IShoppingService
     /// <param name="userId">Guid id of User</param>
     /// <param name="discount">ShoppingCartDiscount enum default ZeroPercent</param>
     /// <returns></returns>
-    Task UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount = ShoppingCartDiscount.ZeroPercent);
+    Task<decimal> UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount = ShoppingCartDiscount.ZeroPercent);
 }

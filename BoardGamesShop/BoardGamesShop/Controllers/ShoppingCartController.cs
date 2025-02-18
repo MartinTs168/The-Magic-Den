@@ -139,6 +139,13 @@ public class ShoppingCartController : BaseController
     [HttpPost]
     public async Task<IActionResult> ApplyDiscount([FromBody] ApplyDiscountServiceModel model)
     {
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
+        
         var cart = await _shoppingService.GetShoppingCartByUserIdAsync(User.Id());
 
         if (cart == null)
@@ -146,9 +153,18 @@ public class ShoppingCartController : BaseController
             return RedirectToAction(nameof(Index));
         }
 
+        if (cart.ShoppingCartItems.Count == 0)
+        {
+            return BadRequest(new { message = "Cart is empty" });
+        }
+        
         try
         {
-            await _shoppingService.UpdateShoppingCartDiscountAsync(User.Id(), model.Discount);
+            var cartTotalPrice = await _shoppingService.UpdateShoppingCartDiscountAsync(User.Id(), model.Discount);
+            return Json(new
+            {
+                cartTotalPrice = cartTotalPrice.ToString("C")
+            }); 
         }
         catch (InvalidOperationException ex)
         {
@@ -158,11 +174,6 @@ public class ShoppingCartController : BaseController
         {
             return BadRequest(new { message = ex.Message });
         }
-
-        return Json(new
-        {
-            cartTotalPrice = cart.TotalPrice
-        });
     }
     
 

@@ -63,12 +63,21 @@ public class ShoppingService : IShoppingService
                 GameId = sci.GameId
             }).ToList();
 
+
+        ShoppingCartDiscount discount = cart.Discount switch
+        {
+            5 => ShoppingCartDiscount.FivePercent,
+            15 => ShoppingCartDiscount.FifteenPercent,
+            50 => ShoppingCartDiscount.FiftyPercent,
+            _ => ShoppingCartDiscount.ZeroPercent
+        };
+        
         return new ShoppingCartViewModel()
         {
             Id = cart.Id,
             TotalPrice = cart.TotalPrice,
             Count = cart.Count,
-            Discount = cart.Discount,
+            Discount = discount,
             ShoppingCartItems = items
         };
     }
@@ -92,12 +101,20 @@ public class ShoppingService : IShoppingService
                 GameId = sci.GameId
             }).ToList();
         
+        ShoppingCartDiscount discount = cart.Discount switch
+        {
+            5 => ShoppingCartDiscount.FivePercent,
+            15 => ShoppingCartDiscount.FifteenPercent,
+            50 => ShoppingCartDiscount.FiftyPercent,
+            _ => ShoppingCartDiscount.ZeroPercent
+        };
+        
         return new ShoppingCartViewModel()
         {
             Id = cart.Id,
             TotalPrice = cart.TotalPrice,
             Count = cart.Count,
-            Discount = cart.Discount,
+            Discount = discount,
             ShoppingCartItems = items
         };
     }
@@ -255,6 +272,41 @@ public class ShoppingService : IShoppingService
             throw new InvalidOperationException("Cart not found");
         }
         
+        var user = await _repository.GetByIdAsync<ApplicationUser>(userId);
+
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+        
+        int userMagicPoints = user.MagicPoints;
+        
+        
+        switch (cart.Discount)
+        {
+            case 5:
+                if (userMagicPoints < FivePercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Insufficient magic points");
+                }
+
+                break;
+            case 15:
+                if (userMagicPoints < FifteenPercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Insufficient magic points");
+                }
+
+                break;
+            case 50:
+                if (userMagicPoints < FiftyPercentDiscountCost)
+                {
+                    throw new InvalidOperationException("Insufficient magic points");
+                }
+
+                break;
+        }
+        
         var shoppingCartItems = await _repository.All<ShoppingCartItem>()
             .Where(sci => sci.ShoppingCartId == cart.Id)
             .ToListAsync();
@@ -279,7 +331,8 @@ public class ShoppingService : IShoppingService
             Address = address,
             TotalPrice = cart.TotalPrice,
             CreatedAt = DateTime.Now,
-            Count = cart.Count
+            Count = cart.Count,
+            Discount = cart.Discount
         };
         
         await _repository.AddAsync(order);
@@ -318,9 +371,9 @@ public class ShoppingService : IShoppingService
         await _repository.SaveChangesAsync();
     }
 
-    public async Task UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount)
+    public async Task<decimal> UpdateShoppingCartDiscountAsync(Guid userId, ShoppingCartDiscount discount)
     {
-        var cart = await _repository.AllReadOnly<ShoppingCart>()
+        var cart = await _repository.All<ShoppingCart>()
            .Where(sc => sc.UserId == userId)
            .FirstOrDefaultAsync();
 
@@ -328,15 +381,6 @@ public class ShoppingService : IShoppingService
         {
             throw new InvalidOperationException("Cart not found");
         }
-
-        var user = await _repository.GetByIdAsync<ApplicationUser>(userId);
-
-        if (user == null)
-        {
-            throw new InvalidOperationException("User not found");
-        }
-        
-        int userMagicPoints = user.MagicPoints;
         
         switch (discount)
         {
@@ -344,36 +388,21 @@ public class ShoppingService : IShoppingService
                 cart.Discount = 0;
                 break;
             case ShoppingCartDiscount.FivePercent:
-                if (userMagicPoints < FivePercentDiscountCost)
-                {
-                    throw new InvalidOperationException("Not enough magic points"); 
-                }
-
                 cart.Discount = 5;
-                user.MagicPoints -= FivePercentDiscountCost;
                 break;
             case ShoppingCartDiscount.FifteenPercent:
-                if (userMagicPoints < FifteenPercentDiscountCost)
-                {
-                    throw new InvalidOperationException("Not enough magic points");
-                }
-
                 cart.Discount = 15;
-                user.MagicPoints -= FifteenPercentDiscountCost;
                 break;
             case ShoppingCartDiscount.FiftyPercent:
-                if (userMagicPoints < FiftyPercentDiscountCost)
-                {
-                    throw new InvalidOperationException("Not enough magic points");
-                }
-                
                 cart.Discount = 50;
-                user.MagicPoints -= FiftyPercentDiscountCost;
                 break;
             default: throw new ArgumentException("Invalid value");
                 
         }
         
+        cart.UpdateCart();
         await _repository.SaveChangesAsync();
+        
+        return cart.TotalPrice;
     }
 }
