@@ -1,8 +1,8 @@
-using System.ComponentModel;
 using System.Security.Claims;
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Cart;
 using BoardGamesShop.Infrastructure.Data.Entities;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -190,6 +190,7 @@ public class ShoppingCartController : BaseController
 
         if (cart.ShoppingCartItems.Count == 0)
         {
+            TempData[UserMessageError] = "Cannot make an empty order";
             return RedirectToAction(nameof(Index));
         }
         
@@ -207,6 +208,7 @@ public class ShoppingCartController : BaseController
     {
         if (!ModelState.IsValid)
         {
+            TempData[UserMessageError] = "Something went wrong";
             return View(model);
         }
 
@@ -218,9 +220,17 @@ public class ShoppingCartController : BaseController
         catch (InvalidOperationException ex)
         {
             ModelState.AddModelError("", ex.Message);
+            TempData[UserMessageError] = "Something went wrong";
             return RedirectToAction(nameof(Index));
         }
-
+        catch (ArgumentException ex)
+        {
+            ModelState.AddModelError("", ex.Message);
+            TempData[UserMessageError] = ex.Message;
+            return RedirectToAction(nameof(Index));
+        }
+        
+        TempData[UserMessageSuccess] = "Your order has been placed";  
         return RedirectToAction("Index", "Home", new { area = "" });
 
     }

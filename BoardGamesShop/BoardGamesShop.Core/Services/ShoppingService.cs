@@ -287,21 +287,21 @@ public class ShoppingService : IShoppingService
             case 5:
                 if (userMagicPoints < FivePercentDiscountCost)
                 {
-                    throw new InvalidOperationException("Insufficient magic points");
+                    throw new ArgumentException("Insufficient magic points");
                 }
 
                 break;
             case 15:
                 if (userMagicPoints < FifteenPercentDiscountCost)
                 {
-                    throw new InvalidOperationException("Insufficient magic points");
+                    throw new ArgumentException("Insufficient magic points");
                 }
 
                 break;
             case 50:
                 if (userMagicPoints < FiftyPercentDiscountCost)
                 {
-                    throw new InvalidOperationException("Insufficient magic points");
+                    throw new ArgumentException("Insufficient magic points");
                 }
 
                 break;
