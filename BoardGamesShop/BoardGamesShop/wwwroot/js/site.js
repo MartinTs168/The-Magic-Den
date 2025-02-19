@@ -2,3 +2,11 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+const showSuccess = function (message) {
+    toastr["success"](message);
+}
+
+const showError = function (message) {
+    toastr["error"](message);
+}

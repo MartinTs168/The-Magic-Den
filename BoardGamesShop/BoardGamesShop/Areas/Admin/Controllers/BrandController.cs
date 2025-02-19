@@ -1,5 +1,6 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Brand;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Areas.Admin.Controllers;
@@ -36,7 +37,7 @@ public class BrandController : AdminBaseController
         }
 
         await _brandService.CreateAsync(model);
-        
+        TempData[UserMessageSuccess] = "Brand created successfully";
         return RedirectToAction(nameof(All));
     }
 
