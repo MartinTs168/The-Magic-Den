@@ -16,5 +16,5 @@ public class SubCategory
 
     public virtual Category Category { get; set; } = null!;
     
-    public virtual ICollection<Game> Games { get; set; } = new List<Game>();
+    public virtual ICollection<Game> Games { get; set; } = new HashSet<Game>();
 }

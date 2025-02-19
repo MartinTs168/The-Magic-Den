@@ -52,9 +52,9 @@ namespace BoardGamesShop.Infrastructure.Data.Entities
         [ForeignKey(nameof(BrandId))]
         public virtual Brand Brand { get; set;} = null!;
 
-        public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
 
-        public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; } = new List<ShoppingCartItem>();
+        public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; } = new HashSet<ShoppingCartItem>();
 
 
     }

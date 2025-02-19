@@ -27,5 +27,5 @@ public class Order
     [MaxLength(AddressMaxLength)]
     public string Address { get; set; } = null!;
 
-    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
 }
