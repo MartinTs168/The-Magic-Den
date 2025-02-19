@@ -1,6 +1,6 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Game;
-using Microsoft.AspNetCore.Authorization;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Areas.Admin.Controllers;
@@ -61,6 +61,7 @@ public class GameController : AdminBaseController
         }
 
         await _gameService.CreateAsync(model);
+        TempData[UserMessageSuccess] = "Game created successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -93,6 +94,7 @@ public class GameController : AdminBaseController
         }
 
         await _gameService.EditAsync(model, id);
+        TempData[UserMessageSuccess] = "Game updated successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -120,6 +122,7 @@ public class GameController : AdminBaseController
     public async Task<IActionResult> Delete(GameFormModel model)
     {
         await _gameService.DeleteAsync(model.Id);
+        TempData[UserMessageSuccess] = "Game deleted successfully";
         return RedirectToAction(nameof(All));
     }
 

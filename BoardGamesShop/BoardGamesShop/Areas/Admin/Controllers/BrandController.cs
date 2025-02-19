@@ -68,7 +68,7 @@ public class BrandController : AdminBaseController
         }
 
         await _brandService.EditAsync(model, id);
-        
+        TempData[UserMessageSuccess] = "Brand edited successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -94,7 +94,7 @@ public class BrandController : AdminBaseController
     public async Task<IActionResult> Delete(BrandModel model)
     {
         await _brandService.DeleteAsync(model.Id);
-        
+        TempData[UserMessageSuccess] = "Brand deleted successfully";
         return RedirectToAction(nameof(All));
     }
 }

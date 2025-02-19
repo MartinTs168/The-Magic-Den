@@ -1,5 +1,6 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Client;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Areas.Admin.Controllers;
@@ -36,6 +37,7 @@ public class ClientController : AdminBaseController
     public async Task<IActionResult> Delete(ClientViewModel model)
     {
         await _clientService.DeleteClientAsync(model.Id);
+        TempData[UserMessageSuccess] = "User deleted successfully";
         return RedirectToAction(nameof(All));
     }
 }

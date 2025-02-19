@@ -1,6 +1,7 @@
 using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Category;
 using BoardGamesShop.Core.Models.SubCategory;
+using static BoardGamesShop.Core.Constants.MessageConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGamesShop.Areas.Admin.Controllers;
@@ -40,7 +41,7 @@ public class CategoryController : AdminBaseController
         }
 
         await _categoryService.CreateAsync(model);
-        
+        TempData[UserMessageSuccess] = "Category created successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -71,7 +72,7 @@ public class CategoryController : AdminBaseController
         }
         
         await _categoryService.EditAsync(model, id);
-        
+        TempData[UserMessageSuccess] = "Category edited successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -97,7 +98,7 @@ public class CategoryController : AdminBaseController
     public async Task<IActionResult> DeleteCategory(CategoryFormViewModel model)
     {
         await _categoryService.DeleteAsync(model.Id);
-        
+        TempData[UserMessageSuccess] = "Category deleted successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -119,7 +120,6 @@ public class CategoryController : AdminBaseController
             ModelState.AddModelError(nameof(model.CategoryId), "");
         }
         
-        
         if (ModelState.IsValid == false)
         {
             model.Categories = await _subcategoryService.AllCategoriesAsync();
@@ -127,7 +127,7 @@ public class CategoryController : AdminBaseController
         }
 
         await _subcategoryService.CreateAsync(model);
-        
+        TempData[UserMessageSuccess] = "Subcategory created successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -167,7 +167,7 @@ public class CategoryController : AdminBaseController
         }
         
         await _subcategoryService.EditAsync(model, id);
-        
+        TempData[UserMessageSuccess] = "Subcategory edited successfully";
         return RedirectToAction(nameof(All));
     }
 
@@ -195,7 +195,7 @@ public class CategoryController : AdminBaseController
     public async Task<IActionResult> DeleteSubCategory(SubCategoryViewModel model)
     {
         await _subcategoryService.DeleteAsync(model.Id);
-        
+        TempData[UserMessageSuccess] = "Subcategory deleted successfully";
         return RedirectToAction(nameof(All));
     }
 }
