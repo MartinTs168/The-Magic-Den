@@ -21,3 +21,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.dropdown-toggle::after {
+  display: none !important;
+}

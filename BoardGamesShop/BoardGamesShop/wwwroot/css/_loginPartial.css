@@ -1,0 +1,8 @@
+.dropdown-menu {
+    padding: 0.5em;
+}
+
+.dropdown-menu > li > form > button {
+    padding: 0;
+}
+
