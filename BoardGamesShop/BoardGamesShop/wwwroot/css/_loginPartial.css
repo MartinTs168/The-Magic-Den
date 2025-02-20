@@ -25,29 +25,19 @@ i {
 
 .sign-in {
     min-width: 80px;
+    justify-content: flex-end;
+    flex-direction: row;
 }
-
-.sign-in > li:nth-child(1) {
-    text-align: right;
-    flex-grow: 1;
-}
-
 
 /* Ensure dropdown stays aligned to the right */
 .dropdown-menu-end {
     right: 0;
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; /* Optional: Adjust dropdown positioning if needed */
-}
-
-
 .dropdown:hover .dropdown-menu {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
+    margin-top: 0; 
 }
 
 /* Optional fade-in animation */
@@ -58,4 +48,10 @@ i {
 
 ul#accountDropdown {
     position: absolute !important;
+}
+
+.sign-in > .dropdown {
+    max-width: 40px;
+    text-align: right;
+    flex-grow: 1;
 }
