@@ -23,7 +23,7 @@ i {
     width: 50px;
 }
 
-.navbar-nav > li:nth-child(1) {
+.sign-in > li:nth-child(1) {
     width: 50px;
     text-align: right; 
 }
