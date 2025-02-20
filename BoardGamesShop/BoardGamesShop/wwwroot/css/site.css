@@ -7,6 +7,10 @@ a{
   text-decoration: none;
 }
 
+a:hover {
+  color: inherit;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -24,4 +28,9 @@ body {
 
 .dropdown-toggle::after {
   display: none !important;
+}
+
+.dropdown-toggle:focus {
+  border: 0;
+  outline: none;
 }

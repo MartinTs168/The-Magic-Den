@@ -1,8 +1,17 @@
 .dropdown-menu {
     padding: 0.5em;
+    width: 50% !important;
+    min-width: 7rem;
+}
+
+.dropdown-menu > li {
+    width: 50%;
 }
 
 .dropdown-menu > li > form > button {
     padding: 0;
 }
 
+i {
+    font-size: 1.2rem;
+}
