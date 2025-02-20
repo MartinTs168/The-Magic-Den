@@ -2,6 +2,9 @@
     padding: 0.5em;
     width: 50% !important;
     min-width: 7rem;
+    display: none;  /* Hide dropdown by default */
+    position: absolute;
+    z-index: 1000;
 }
 
 .dropdown-menu > li {
@@ -14,4 +17,37 @@
 
 i {
     font-size: 1.2rem;
+}
+
+.dropdown > a {
+    width: 50px;
+}
+
+.navbar-nav > li:nth-child(1) {
+    width: 50px;
+    text-align: right; 
+}
+
+
+/* Ensure dropdown stays aligned to the right */
+.dropdown-menu-end {
+    right: 0;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Optional: Adjust dropdown positioning if needed */
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Optional fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
