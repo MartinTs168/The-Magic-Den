@@ -23,9 +23,13 @@ i {
     width: 50px;
 }
 
+.sign-in {
+    min-width: 80px;
+}
+
 .sign-in > li:nth-child(1) {
-    width: 50px;
-    text-align: right; 
+    text-align: right;
+    flex-grow: 1;
 }
 
 
@@ -50,4 +54,8 @@ i {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+ul#accountDropdown {
+    position: absolute !important;
 }

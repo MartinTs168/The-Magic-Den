@@ -10,36 +10,30 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BoardGamesShop.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/_loginPartial.css" />
-    @RenderSection("Styles", required: false)
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BoardGamesShop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 gap-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        
+                @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
+                @*         aria-expanded="false" aria-label="Toggle navigation"> *@
+                @*     <span class="navbar-toggler-icon"></span> *@
+                @* </button> *@
+                <div class="navbar d-sm-flex">
+                    
                         @if (User.IsInRole(AdminRole))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
-                                    Admin Panel
-                                </a>
-                            </li>
+                            <ul class="navbar-nav flex-grow-1 gap-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
+                                        Admin Panel
+                                    </a>
+                                </li>
+                            </ul>
                         }
                         
-                    </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
