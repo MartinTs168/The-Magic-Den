@@ -4,5 +4,5 @@ public interface ICachePointsService
 {
     Task<int> GetCurrentValueAsync(Guid userId);
 
-    Task InvalidateCacheAsync();
+    void InvalidateCache();
 }
