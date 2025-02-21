@@ -7,23 +7,23 @@ namespace BoardGamesShop.Areas.Admin.Controllers;
 
 public class ClientController : AdminBaseController
 {
-    private readonly IClientService _clientService;
+    private readonly IUserService _userService;
     
-    public ClientController(IClientService clientService)
+    public ClientController(IUserService userService)
     {
-        _clientService = clientService;
+        _userService = userService;
     }
     
     public async Task<IActionResult> All()
     {
-        var clients = await _clientService.AllClientsAsync();
+        var clients = await _userService.AllClientsAsync();
         return View(clients);
     }
 
     [HttpGet]
     public async Task<IActionResult> Delete(Guid id)
     {
-        var user = await _clientService.GetClientByIdAsync(id);
+        var user = await _userService.GetClientByIdAsync(id);
         
         if (user == null)
         {
@@ -36,7 +36,7 @@ public class ClientController : AdminBaseController
     [HttpPost]
     public async Task<IActionResult> Delete(ClientViewModel model)
     {
-        await _clientService.DeleteClientAsync(model.Id);
+        await _userService.DeleteClientAsync(model.Id);
         TempData[UserMessageSuccess] = "User deleted successfully";
         return RedirectToAction(nameof(All));
     }

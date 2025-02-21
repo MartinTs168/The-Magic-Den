@@ -48,7 +48,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<ISubCategoryService, SubCategoryService>();
         services.AddScoped<IGameService, GameService>();
-        services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IUserService, UserService>();
         services.AddScoped<IStatisticService, StatisticService>();
         services.AddScoped<IShoppingService, ShoppingService>();
         services.AddScoped<IOrderService, OrderService>();

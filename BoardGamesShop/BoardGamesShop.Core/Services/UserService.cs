@@ -8,12 +8,12 @@ using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
 
 namespace BoardGamesShop.Core.Services;
 
-public class ClientService : IClientService
+public class UserService : IUserService
 {
     private readonly IRepository _repository;
     private readonly UserManager<ApplicationUser> _userManager;
     
-    public ClientService(IRepository repository,
+    public UserService(IRepository repository,
         UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
