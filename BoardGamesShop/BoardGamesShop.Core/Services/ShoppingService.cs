@@ -12,13 +12,16 @@ namespace BoardGamesShop.Core.Services;
 public class ShoppingService : IShoppingService
 {
     private readonly IRepository _repository;
+    private readonly ICachePointsService _cachePointsService;
     private const int FivePercentDiscountCost = 5000;
     private const int FifteenPercentDiscountCost = 10000;
     private const int FiftyPercentDiscountCost = 50000;
     
-    public ShoppingService(IRepository repository)
+    public ShoppingService(IRepository repository,
+        ICachePointsService cachePointsService)
     {
         _repository = repository;
+        _cachePointsService = cachePointsService;
     }
     
     public async Task<int> CreateShoppingCartAsync(Guid userId)
@@ -346,6 +349,7 @@ public class ShoppingService : IShoppingService
         }
 
         await _repository.SaveChangesAsync();
+        _cachePointsService.InvalidateCache();
     }
 
     public async Task CleanShoppingCart(Guid userId)
