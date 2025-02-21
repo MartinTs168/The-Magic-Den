@@ -38,3 +38,23 @@ body {
   border: 0;
   outline: none;
 }
+
+.magic-points-field {
+  position: relative;
+}
+
+.magic-points-info-field {
+  display: none;
+  background-color: grey;
+  color: white;
+  position: absolute;
+  top: 25px;
+  left: -85px;
+  font-size: 0.7em;
+  min-width: 20em;
+}
+
+.magic-points-field:hover .magic-points-info-field {
+  display: block;
+}
+
