@@ -37,9 +37,9 @@
                         
                         @if (User.Identity!.IsAuthenticated)
                         {
-                            <ul class="navbar-nav">
+                            <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
                                 <li class="nav-item">
-                                    <p>@await CachePointsService.GetCurrentValueAsync(User.Id())</p>
+                                    <p class="text-center m-0">@await CachePointsService.GetCurrentValueAsync(User.Id())</p>
                                 </li>
                                 <li class="nav-item">
                                     <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">
