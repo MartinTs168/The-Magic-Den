@@ -8,4 +8,6 @@ public interface IUserService
     Task DeleteClientAsync(Guid clientId);
     
     Task<ClientViewModel?> GetClientByIdAsync(Guid clientId);
+
+    Task<int?> GetUserMagicPointsAsync(Guid userId);
 }

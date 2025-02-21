@@ -77,4 +77,16 @@ public class UserService : IUserService
         };
 
     }
+
+    public async Task<int?> GetUserMagicPointsAsync(Guid userId)
+    {
+        var user = await _repository.GetByIdAsync<ApplicationUser>(userId);
+
+        if (user == null)
+        {
+            return null;
+        }
+        
+        return user.MagicPoints;
+    }
 }
