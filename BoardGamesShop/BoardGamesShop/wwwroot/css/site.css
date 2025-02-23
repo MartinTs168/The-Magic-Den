@@ -85,3 +85,30 @@ body {
   background: transparent;
 }
 
+.search-bar-responsive-container {
+  display: none;
+}
+
+
+@media screen and (max-width:680px){
+  header > nav {
+    flex-direction: column;
+  }
+  
+  
+  .container-fluid > .main-search-form {
+    display: none;
+  }
+  
+  .search-bar-responsive-container {
+    display: flex;
+    flex: 1 0 100%;
+    min-width: 80%;
+  }
+  
+  .search-bar-responsive-container > .main-search-form {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+

@@ -29,41 +29,49 @@
                 
                 <div class="navbar d-sm-flex">
                     
-                        @if (User.IsInRole(AdminRole))
-                        {
-                            <ul class="navbar-nav flex-grow-1" style="margin-right: 10px;">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
-                                        Admin Panel
-                                    </a>
-                                </li>
-                            </ul>
-                        }
+                    @if (User.IsInRole(AdminRole))
+                    {
+                        <ul class="navbar-nav flex-grow-1" style="margin-right: 10px;">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
+                                    Admin Panel
+                                </a>
+                            </li>
+                        </ul>
+                    }
                         
-                        @if (User.Identity!.IsAuthenticated)
-                        {
-                            <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
-                                <li class="nav-item magic-points-field">
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
+                            <li class="nav-item magic-points-field">
+                                <p class="text-center m-0">
+                                    @( $"{(await CachePointsService.GetCurrentValueAsync(User.Id()) / 1000):F0}" )K 
+                                </p>
+                                <div class="magic-points-info-field">
                                     <p class="text-center m-0">
-                                        @( $"{(await CachePointsService.GetCurrentValueAsync(User.Id()) / 1000):F0}" )K 
+                                        You have @await CachePointsService.GetCurrentValueAsync(User.Id()) Magic Points.
+                                        You can use these points to buy discounts. You can acquire them through purchases.
                                     </p>
-                                    <div class="magic-points-info-field">
-                                        <p class="text-center m-0">
-                                            You have @await CachePointsService.GetCurrentValueAsync(User.Id()) Magic Points.
-                                            You can use these points to buy discounts. You can acquire them through purchases.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">
-                                        <i class="bi bi-basket"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        }
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                    <i class="bi bi-basket"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    }
                         
                     <partial name="_LoginPartial" />
                 </div>
+            </div>
+            <div class="search-bar-responsive-container">
+                <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
+                    <input name="SearchTerm" type="text"/>
+                    <button type="submit" class="search-header-button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
             </div>
         </nav>
     </header>
