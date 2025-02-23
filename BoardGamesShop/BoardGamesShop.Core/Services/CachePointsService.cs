@@ -25,15 +25,17 @@ public class CachePointsService : ICachePointsService
             throw new InvalidOperationException("User not found");
         }
 
-        return await _cache.GetOrCreateAsync("MagicPoints", async entry =>
+        string key = $"User_{userId}_MagicPoints";
+        return await _cache.GetOrCreateAsync(key, async entry =>
         {
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
             return (int)userMagicPoints;
         });
     }
 
-    public void InvalidateCache()
+    public void InvalidateCache(Guid userId)
     {
-        _cache.Remove("MagicPoints");
+        string key = $"User_{userId}_MagicPoints";
+        _cache.Remove(key);
     }
 }

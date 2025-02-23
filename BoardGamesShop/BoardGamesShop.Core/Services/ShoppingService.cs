@@ -349,7 +349,7 @@ public class ShoppingService : IShoppingService
         }
 
         await _repository.SaveChangesAsync();
-        _cachePointsService.InvalidateCache();
+        _cachePointsService.InvalidateCache(userId);
     }
 
     public async Task CleanShoppingCart(Guid userId)
