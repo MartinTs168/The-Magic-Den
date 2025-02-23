@@ -90,7 +90,7 @@ body {
 }
 
 
-@media screen and (max-width:680px){
+@media screen and (max-width:720px){
   header > nav {
     flex-direction: column;
   }
@@ -110,5 +110,10 @@ body {
     width: 100%;
     margin-right: 0;
   }
+}
+
+.magic-points-icon {
+  background: transparent;
+  width: 25px;
 }
 

@@ -45,6 +45,7 @@
                         <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
                             <li class="nav-item magic-points-field">
                                 <p class="text-center m-0">
+                                    <img src="~/images/magic_points_icon Large.png" alt="magic points icon" class="magic-points-icon"/>
                                     @( $"{(await CachePointsService.GetCurrentValueAsync(User.Id()) / 1000):F0}" )K 
                                 </p>
                                 <div class="magic-points-info-field">
