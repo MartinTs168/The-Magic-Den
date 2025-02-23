@@ -20,7 +20,12 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BoardGamesShop</a>
                 
-                
+                <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
+                    <input name="SearchTerm" type="text"/>
+                    <button type="submit" class="search-header-button">
+                        <i class="bi bi-search"></i>
+                    </button>   
+                </form>
                 
                 <div class="navbar d-sm-flex">
                     
