@@ -15,68 +15,117 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BoardGamesShop</a>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+
+            <button
+                style="background-color: inherit; border: none"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#sideMenu"
+                aria-controls="sideMenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
                 
-                <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
-                    <input name="SearchTerm" type="text"/>
-                    <button type="submit" class="search-header-button">
-                        <i class="bi bi-search"></i>
-                    </button>   
-                </form>
                 
-                <div class="navbar d-sm-flex">
-                    
-                    @if (User.IsInRole(AdminRole))
-                    {
-                        <ul class="navbar-nav flex-grow-1" style="margin-right: 10px;">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
-                                    Admin Panel
-                                </a>
-                            </li>
-                        </ul>
-                    }
-                        
-                    @if (User.Identity!.IsAuthenticated)
-                    {
-                        <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
-                            <li class="nav-item magic-points-field">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BoardGamesShop</a>
+
+            <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
+                <input name="SearchTerm" type="text"/>
+                <button type="submit" class="search-header-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+
+            <div class="navbar d-sm-flex">
+
+                @if (User.IsInRole(AdminRole))
+                {
+                    <ul class="navbar-nav flex-grow-1" style="margin-right: 10px;">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">
+                                Admin Panel
+                            </a>
+                        </li>
+                    </ul>
+                }
+
+                @if (User.Identity!.IsAuthenticated)
+                {
+                    <ul class="navbar-nav d-flex align-items-center" style="gap: 1.6em; flex-direction: row">
+                        <li class="nav-item magic-points-field">
+                            <p class="text-center m-0">
+                                <img src="~/images/magic_points_icon Large.png" alt="magic points icon" class="magic-points-icon"/>
+                                @($"{(await CachePointsService.GetCurrentValueAsync(User.Id()) / 1000):F0}")K
+                            </p>
+                            <div class="magic-points-info-field">
                                 <p class="text-center m-0">
-                                    <img src="~/images/magic_points_icon Large.png" alt="magic points icon" class="magic-points-icon"/>
-                                    @( $"{(await CachePointsService.GetCurrentValueAsync(User.Id()) / 1000):F0}" )K 
+                                    You have @await CachePointsService.GetCurrentValueAsync(User.Id()) Magic Points.
+                                    You can use these points to buy discounts. You can acquire them through purchases.
                                 </p>
-                                <div class="magic-points-info-field">
-                                    <p class="text-center m-0">
-                                        You have @await CachePointsService.GetCurrentValueAsync(User.Id()) Magic Points.
-                                        You can use these points to buy discounts. You can acquire them through purchases.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">
-                                    <i class="bi bi-basket"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    }
-                        
-                    <partial name="_LoginPartial" />
-                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                <i class="bi bi-basket"></i>
+                            </a>
+                        </li>
+                    </ul>
+                }
+
+                <partial name="_LoginPartial"/>
             </div>
-            <div class="search-bar-responsive-container">
-                <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
-                    <input name="SearchTerm" type="text"/>
-                    <button type="submit" class="search-header-button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
+        </div>
+        <div class="search-bar-responsive-container">
+            <form method="get" asp-controller="Game" asp-action="All" class="main-search-form">
+                <input name="SearchTerm" type="text"/>
+                <button type="submit" class="search-header-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<div
+    class="offcanvas offcanvas-start offcanvas-custom"
+    tabindex="-1"
+    id="sideMenu"
+    aria-labelledby="sideMenuLabel"
+>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sideMenuLabel">Menu</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+        ></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                <li class="nav-item">
+                    <input hidden name="SubCategory" type="text" value="General" />
+                    <button type="submit">Board Games</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </form>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
