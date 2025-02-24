@@ -13,11 +13,11 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end" id="accountDropdown">
             <li>
-                <a  class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
             </li>
             <li>
                 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="btn text-dark">Logout</button>
+                    <button type="submit" class="logout-button">Logout</button>
                 </form>
             </li>
         </ul>

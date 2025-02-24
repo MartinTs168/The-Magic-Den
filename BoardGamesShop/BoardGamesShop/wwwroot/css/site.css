@@ -84,6 +84,10 @@ body {
   padding: 0;
   border: none;
   background: transparent;
+  
+  &:hover {
+    color: purple;
+  }
 }
 
 .search-bar-responsive-container {
@@ -117,4 +121,19 @@ body {
   background: transparent;
   width: 25px;
 }
+
+.side-menu-link {
+  background-color: inherit;
+  border: 0;
+  padding: 0.2em;
+  
+  &:hover {
+    color: purple;
+  }
+}
+
+.shopping-cart-link:hover {
+  color: purple;
+}
+
 

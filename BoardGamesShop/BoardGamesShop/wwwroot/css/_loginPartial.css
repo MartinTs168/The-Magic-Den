@@ -40,6 +40,19 @@ i {
     margin-top: 0; 
 }
 
+.dropdown-menu > li:hover {
+    color: purple !important;
+}
+
+.logout-button {
+    border: 0;
+    background-color: inherit;
+    
+    &:hover {
+        color: purple;
+    }
+}
+
 /* Optional fade-in animation */
 @keyframes fadeIn {
     from { opacity: 0; }
