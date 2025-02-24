@@ -6,6 +6,7 @@ namespace BoardGamesShop.Core.Contracts;
 public interface IGameService
 {
     Task<GameServiceQueryModel> AllAsync(
+        string? category = null,
         string? subCategory = null,
         string? brand = null,
         string? searchTerm = null,

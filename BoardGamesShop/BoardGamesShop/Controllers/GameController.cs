@@ -20,6 +20,7 @@ public class GameController : BaseController
     public async Task<IActionResult> All([FromQuery] AllGamesQueryModel query)
     {
         var model = await _gameService.AllAsync(
+            query.Category,
             query.SubCategory,
             query.Brand,
             query.SearchTerm,

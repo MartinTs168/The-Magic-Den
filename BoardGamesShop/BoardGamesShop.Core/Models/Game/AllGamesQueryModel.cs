@@ -7,8 +7,10 @@ public class AllGamesQueryModel
 {
     public int GamesPerPage { get; } = 5; // TODO: this is 5 for test purposes change to more in the future
 
-    [Display(Name = "Category")]
+    [Display(Name = "Sub Category")]
     public string SubCategory { get; set; } = null!;
+
+    public string Category { get; set; } = null!;
 
     public string Brand { get; set; } = null!;
 
