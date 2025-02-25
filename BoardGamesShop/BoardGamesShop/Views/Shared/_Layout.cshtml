@@ -1,5 +1,6 @@
 ﻿@using System.Security.Claims
 @inject ICachePointsService CachePointsService
+@inject ISubCategoryService SubCategoryService
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,32 +106,143 @@
         ></button>
     </div>
     <div class="offcanvas-body">
-        <ul class="nav flex-column">
-            <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                <li class="nav-item">
+        @* <ul class="nav flex-column"> *@
+        @*     <form method="get" asp-area="" asp-controller="Game" asp-action="All"> *@
+        @*         <li class="nav-item"> *@
+        @*             <input hidden name="Category" type="text" value="Board Games" /> *@
+        @*             <button type="submit" class="side-menu-link">Board Games</button> *@
+        @*         </li> *@
+        @*     </form> *@
+        @*     <form method="get" asp-area="" asp-controller="Game" asp-action="All"> *@
+        @*         <li class="nav-item"> *@
+        @*             <input hidden name="Category" type="text" value="Card Games" /> *@
+        @*             <button type="submit" class="side-menu-link">TCG</button> *@
+        @*         </li> *@
+        @*     </form> *@
+        @*     <form method="get" asp-area="" asp-controller="Game" asp-action="All"> *@
+        @*         <li class="nav-item"> *@
+        @*             <input hidden name="Category" type="text" value="Role playing games" /> *@
+        @*             <button type="submit" class="side-menu-link">Role playing games</button> *@
+        @*         </li> *@
+        @*     </form> *@
+        @*      *@
+        @*      *@
+        @*     <li class="nav-item"> *@
+        @*         <a class="side-menu-link" href="#">Contact Us</a> *@
+        @*     </li> *@
+        @*      *@
+        @* </ul> *@
+
+        <div class="accordion-item">
+            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingBoardGames">
+                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
                     <input hidden name="Category" type="text" value="Board Games" />
                     <button type="submit" class="side-menu-link">Board Games</button>
-                </li>
-            </form>
-            <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                <li class="nav-item">
+                </form>
+                <button
+                    class="btn btn-link p-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseBoardGames"
+                    aria-expanded="false"
+                    aria-controls="collapseBoardGames"
+                >
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+            <div
+                id="collapseBoardGames"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingBoardGames"
+                data-bs-parent="#accordionMenu"
+            >
+                <div class="accordion-body">
+                    @foreach (string subcategory in 
+                              await SubCategoryService.GetSubCategoriesNamesByCategoryNameAsync("Board Games"))
+                    {
+                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                            <input hidden name="Subcategory" type="text" value="@subcategory" />
+                            <button type="submit" class="side-menu-link">@subcategory</button>
+                        </form>
+                    }
+                   
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingCardGames">
+                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
                     <input hidden name="Category" type="text" value="Card Games" />
                     <button type="submit" class="side-menu-link">TCG</button>
-                </li>
-            </form>
-            <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                <li class="nav-item">
+                </form>
+                <button
+                    class="btn btn-link p-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseCardGames"
+                    aria-expanded="false"
+                    aria-controls="collapseCardGames"
+                >
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+            <div
+                id="collapseCardGames"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingCardGames"
+                data-bs-parent="#accordionMenu"
+            >
+                <div class="accordion-body">
+                    @foreach (string subcategory in
+                              await SubCategoryService.GetSubCategoriesNamesByCategoryNameAsync("Card Games"))
+                    {
+                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                            <input hidden name="Subcategory" type="text" value="@subcategory" />
+                            <button type="submit" class="side-menu-link">@subcategory</button>
+                        </form>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingRolePlayingGames">
+                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
                     <input hidden name="Category" type="text" value="Role playing games" />
-                    <button type="submit" class="side-menu-link">Role playing games</button>
-                </li>
-            </form>
-            
-            
-            <li class="nav-item">
-                <a class="side-menu-link" href="#">Contact Us</a>
-            </li>
-            
-        </ul>
+                    <button type="submit" class="side-menu-link">RPG</button>
+                </form>
+                <button
+                    class="btn btn-link p-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseRolePlayingGames"
+                    aria-expanded="false"
+                    aria-controls="collapseRolePlayingGames"
+                >
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+            <div
+                id="collapseRolePlayingGames"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingRolePlayingGames"
+                data-bs-parent="#accordionMenu"
+            >
+                <div class="accordion-body">
+                    @foreach (string subcategory in
+                                  await SubCategoryService.GetSubCategoriesNamesByCategoryNameAsync("Role playing games"))
+                    {
+                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                            <input hidden name="Subcategory" type="text" value="@subcategory" />
+                            <button type="submit" class="side-menu-link">@subcategory</button>
+                        </form>
+                    }
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

@@ -94,4 +94,12 @@ public class SubCategoryService : ISubCategoryService
                 Name = c.Name
             }).ToListAsync();
     }
+
+    public async Task<IEnumerable<string>> GetSubCategoriesNamesByCategoryNameAsync(string categoryName)
+    {
+        return await _repository.AllReadOnly<SubCategory>()
+            .Where(sc => sc.Category.Name == categoryName)
+            .Select(sc => sc.Name)
+            .ToListAsync();
+    }
 }

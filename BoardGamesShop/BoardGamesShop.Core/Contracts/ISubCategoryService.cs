@@ -19,4 +19,11 @@ public interface ISubCategoryService
     Task<bool> CategoryExistsAsync(int categoryId);
 
     Task<IEnumerable<SubCategoryCategoriesServiceModel>> AllCategoriesAsync();
+
+    /// <summary>
+    /// Gets all subcategories' names of a given category 
+    /// </summary>
+    /// <param name="categoryName">Name of Category</param>
+    /// <returns>IEnumerable of string - Containing the names of the subcategories </returns>
+    Task<IEnumerable<string>> GetSubCategoriesNamesByCategoryNameAsync(string categoryName);
 }
