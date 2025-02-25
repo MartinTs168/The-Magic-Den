@@ -4,7 +4,7 @@ html {
 
 header > nav {
   padding: 0.5em 0.3em !important;
-  background-color: #9c75f5 !important;
+  background-color: #4e1bc4 !important;
   color: white
 }
 
@@ -54,6 +54,9 @@ body {
   left: -85px;
   font-size: 0.7em;
   min-width: 20em;
+  padding: 0.2em;
+  border-radius: 0.25rem;
+  opacity: 95%;
 }
 
 .magic-points-field:hover .magic-points-info-field {
@@ -89,7 +92,7 @@ body {
   color: black;
   
   &:hover {
-    color: lightskyblue;
+    color: #9cd1ef;
   }
 }
 
@@ -133,28 +136,28 @@ body {
   font-weight: 400;
   
   &:hover {
-    color: lightskyblue !important;
+    color: #9cd1ef !important;
   }
 }
 
 .shopping-cart-link:hover {
-  color: lightskyblue;
+  color: #9cd1ef;
 }
 
 .side-menu-item {
   border: 0;
   margin-bottom: 0.3em;
-  background-color: #9c75f5;
+  background-color: #4e1bc4;
   font-weight: 500;
   padding: 0.5em;
 }
 
 .side-menu {
-  background-color: lightskyblue;
+  background-color: #9cd1ef;
 }
 
 .side-menu > .offcanvas-header {
-  background-color: #9c75f5;
+  background-color: #4e1bc4;
   color: white;
 }
 
