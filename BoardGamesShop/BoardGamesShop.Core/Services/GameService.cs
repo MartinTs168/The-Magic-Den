@@ -92,6 +92,13 @@ public class GameService : IGameService
         };
     }
 
+    public async  Task<IEnumerable<string>> AllCategoriesNamesAsync()
+    {
+        return await _repository.AllReadOnly<Category>()
+            .Select(c => c.Name)
+            .ToListAsync();
+    }
+
     public async Task<IEnumerable<string>> AllSubCategoriesNamesAsync()
     {
         return await _repository.AllReadOnly<SubCategory>()

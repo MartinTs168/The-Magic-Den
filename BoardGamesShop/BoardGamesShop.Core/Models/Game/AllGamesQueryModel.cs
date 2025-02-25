@@ -24,6 +24,8 @@ public class AllGamesQueryModel
     public IEnumerable<string> SubCategories { get; set; } = null!;
     public IEnumerable<string> Brands { get; set; } = null!;
     
+    public IEnumerable<string> Categories { get; set; } = null!;
+    
     public int TotalGamesCount { get; set; }
 
     public IEnumerable<GameServiceModel> Games { get; set; } = new List<GameServiceModel>();

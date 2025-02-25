@@ -136,4 +136,9 @@ body {
   color: purple;
 }
 
+.side-menu-item {
+  border: 0;
+  margin-bottom: 0.3em;
+}
+
 

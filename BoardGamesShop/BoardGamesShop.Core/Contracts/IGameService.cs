@@ -14,6 +14,8 @@ public interface IGameService
         int currentPage = 1, int gamesPerPage = 1
         );
 
+    Task<IEnumerable<string>> AllCategoriesNamesAsync();
+    
     Task<IEnumerable<string>> AllSubCategoriesNamesAsync();
     
     Task<IEnumerable<string>> AllBrandsNamesAsync();

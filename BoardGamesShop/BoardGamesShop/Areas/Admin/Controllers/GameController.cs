@@ -37,6 +37,7 @@ public class GameController : AdminBaseController
         query.Games = model.Games;
         query.SubCategories = await _gameService.AllSubCategoriesNamesAsync();
         query.Brands = await _gameService.AllBrandsNamesAsync();
+        query.Categories = await _gameService.AllCategoriesNamesAsync();
         return View(query);
     }
 
