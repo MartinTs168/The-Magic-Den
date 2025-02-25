@@ -126,7 +126,7 @@ body {
   background-color: inherit;
   border: 0;
   padding: 0.2em;
-  color: black !important;
+  color: black;
   font-weight: 400;
   
   &:hover {
