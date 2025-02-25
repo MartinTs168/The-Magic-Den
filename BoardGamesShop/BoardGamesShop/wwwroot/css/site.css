@@ -4,6 +4,7 @@ html {
 
 header > nav {
   padding: 0.5em 0.3em !important;
+  background-color: #9c75f5 !important;
 }
 
 a{
@@ -84,9 +85,10 @@ body {
   padding: 0;
   border: none;
   background: transparent;
+  color: black;
   
   &:hover {
-    color: purple;
+    color: lightskyblue;
   }
 }
 
@@ -135,12 +137,23 @@ body {
 }
 
 .shopping-cart-link:hover {
-  color: purple;
+  color: lightskyblue;
 }
 
 .side-menu-item {
   border: 0;
   margin-bottom: 0.3em;
+  background-color: lightskyblue;
+  font-weight: 500;
+  padding: 0.5em;
+}
+
+.side-menu {
+  background-color: #9c75f5;
+}
+
+.side-menu > .offcanvas-header {
+  background-color: lightskyblue;
 }
 
 

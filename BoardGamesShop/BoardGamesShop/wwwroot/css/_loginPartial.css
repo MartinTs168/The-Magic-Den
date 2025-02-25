@@ -47,7 +47,7 @@ i {
 .logout-button {
     border: 0;
     background-color: inherit;
-    color: black !important;
+    color: black;
     font-weight: 400;
 
 
