@@ -39,21 +39,21 @@
         
         <tbody>
         
-            @foreach (var brand in Model)
-            {
-                <tr>
-                    <td class="w-50">@brand.Name</td>
-                    <td>
-                        <div class="text-center d-flex justify-content-around" role="group">
-                            <a asp-controller="Brand" asp-action="Edit"  asp-route-id="@brand.Id "value="Edit" 
-                                   class="btn btn-secondary text-center rounded-1 border-0 w-25">Edit</a>
-                            <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" value="Delete" 
-                                   class="btn btn-danger text-center rounded-1 border-0 w-25">Delete</a>
-                        </div>
-                    </td>
-                </tr>
+        @foreach (var brand in Model)
+        {
+            <tr>
+                <td class="w-50">@brand.Name</td>
+                <td>
+                    <div class="text-center d-flex justify-content-around flex-xs-column" role="group">
+                        <a asp-controller="Brand" asp-action="Edit"  asp-route-id="@brand.Id" value="Edit"
+                           class="btn btn-secondary text-center rounded-1 border-0 w-25">Edit</a>
+                        <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" value="Delete" 
+                           class="btn btn-danger text-center rounded-1 border-0 w-25">Delete</a>
+                    </div>
+                </td>
+            </tr>
                 
-            }
+        }
         </tbody>
         
         
@@ -63,6 +63,12 @@
     
     
 </div>
+
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/Brand/all.css"/>
+}
 
 
 

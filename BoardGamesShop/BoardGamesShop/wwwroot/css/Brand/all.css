@@ -1,0 +1,7 @@
+.flex-xs-column {
+    gap: 0.5em;
+    
+    a {
+        width: 100% !important;
+    }
+}
