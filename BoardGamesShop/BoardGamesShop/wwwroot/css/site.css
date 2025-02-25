@@ -129,11 +129,11 @@ body {
   background-color: inherit;
   border: 0;
   padding: 0.2em;
-  color: white;
+  color: white !important;
   font-weight: 400;
   
   &:hover {
-    color: lightskyblue;
+    color: lightskyblue !important;
   }
 }
 
@@ -165,3 +165,15 @@ body {
   }
 }
 
+.side-menu .useful-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 65vh;
+  border-radius: 0.25rem;
+  padding: 0.5em;
+}
+
+.side-menu-item:nth-last-of-type(2) {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
