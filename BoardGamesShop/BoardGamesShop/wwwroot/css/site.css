@@ -133,12 +133,12 @@ body {
   font-weight: 400;
   
   &:hover {
-    color: purple;
+    color: lightskyblue;
   }
 }
 
 .shopping-cart-link:hover {
-  color: #9c75f5;
+  color: lightskyblue;
 }
 
 .side-menu-item {

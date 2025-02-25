@@ -15,19 +15,19 @@
         </div>
     </div>
 
-    <div class="row mb-2">
-        <div class="col-4 text-center offset-1">
+    <div class="row mb-2 mt-2 justify-content-around">
+        <div class="col-4 text-center">
             <a asp-action="CreateCategory" class="btn btn-sm btn-primary p-1 w-100">Add New Category</a>
         </div>
-        <div class="col-4 text-center offset-1">
+        <div class="col-4 text-center">
             <a asp-action="CreateSubCategory" class="btn btn-sm btn-primary p-1 w-100">Add New Sub Category</a>
         </div>
     </div>
     
-    <div class="d-flex gap-1 justify-content-around align-content-center">
+    <div class="d-flex gap-1 justify-content-around align-content-center flex-xs-column">
         @foreach (var category in Model)
         {
-            <div class="card-body p-4 text-center">
+            <div class="card-body p-4 text-center bordered-card">
                 <div class="col-4 text-center w-100">
                     <h6 class="text-center w-100">@category.Name</h6>
                     <div class="row mb-2">
@@ -52,5 +52,10 @@
     
     
 </div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/Category/all.css"/>
+}
 
 @*TODO: Fix this view it looks ugly*@
