@@ -3,21 +3,29 @@
 using Microsoft.AspNetCore.Mvc;
 
 using System.Diagnostics;
+using BoardGamesShop.Core.Contracts;
 
 namespace BoardGamesShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGameService _gameService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IGameService gameService)
         {
             _logger = logger;
+            _gameService = gameService;
         }
 
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
-            return View();
+
+            var model = await _gameService.GetFiveNewestGamesAsync();
+            
+            return View(model);
         }
 
         public IActionResult Privacy()
