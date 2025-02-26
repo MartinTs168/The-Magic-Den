@@ -11,10 +11,14 @@ public class SubCategoryService : ISubCategoryService
 {
     
     private readonly IRepository _repository;
+    private readonly ICacheSubCategoriesService _cache;
     
-    public SubCategoryService(IRepository repository)
+    public SubCategoryService(
+        IRepository repository,
+        ICacheSubCategoriesService cache)
     {
         _repository = repository;
+        _cache = cache;
     }
 
     public async  Task<IEnumerable<GameSubCategoryServiceModel>> AllAsync()
@@ -38,6 +42,7 @@ public class SubCategoryService : ISubCategoryService
         await _repository.AddAsync(subCategory);
         await _repository.SaveChangesAsync();
 
+        _cache.InvalidateCache();
         return subCategory.Id;
     }
 
@@ -70,6 +75,8 @@ public class SubCategoryService : ISubCategoryService
                 subCategory.CategoryId = model.CategoryId;
                 await _repository.SaveChangesAsync();
             }
+            
+            _cache.InvalidateCache();
         }
     }
 
@@ -77,6 +84,7 @@ public class SubCategoryService : ISubCategoryService
     {
         await _repository.DeleteAsync<SubCategory>(id);
         await _repository.SaveChangesAsync();
+        _cache.InvalidateCache();
     }
 
     public async Task<bool> CategoryExistsAsync(int categoryId)
