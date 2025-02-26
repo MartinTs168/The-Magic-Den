@@ -140,6 +140,10 @@ body {
   }
 }
 
+.accordion-body button {
+  font-size: 15px;
+}
+
 .shopping-cart-link:hover {
   color: #9cd1ef;
 }
@@ -180,19 +184,6 @@ body {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-
-.hero-body {
-  padding: 0.5em;
-  margin-top: 3rem;
-}
-
-.hero-body-games-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 2em;
-}
-
 
 
 .game-cover-image {
