@@ -29,4 +29,6 @@ public interface IGameService
     Task DeleteAsync(int id);
     
     Task<GameFullDetailsViewModel?> GetGameFullDetailsViewModelByIdAsync(int id);
+
+    Task<IEnumerable<GameServiceModel>> GetFiveNewestGamesAsync();
 }

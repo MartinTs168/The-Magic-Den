@@ -227,6 +227,24 @@ public class GameService : IGameService
         };
 
     }
-    
-    
+
+    public async Task<IEnumerable<GameServiceModel>> GetFiveNewestGamesAsync()
+    {
+        var games = _repository.All<Game>()
+            .OrderByDescending(game => game.Id)
+            .Take(5);
+
+        return await games.Select(game => new GameServiceModel()
+        {
+            Id = game.Id,
+            Name = game.Name,
+            BrandName = game.Brand.Name,
+            SubCategoryName = game.SubCategory!.Name,
+            Price = game.Price,
+            OriginalPrice = game.OriginalPrice,
+            Discount = game.Discount,
+            ImgUrl = game.ImgUrl,
+            IsInStock = game.Quantity > 0
+        }).ToListAsync();
+    }
 }
