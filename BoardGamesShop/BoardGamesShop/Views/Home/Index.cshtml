@@ -12,6 +12,15 @@
     <div class="background-shadow"></div>
 </section>
 
+<section class="hero-body d-flex align-items-center justify-content-center">
+    <div class="hero-body-games-container">
+        @foreach (var game in Model)
+        {
+            <partial name="_GamePartial" model="@game"/>
+        }
+    </div>
+</section>
+
 @section Styles
 {
     <link rel="stylesheet" href="~/css/Home/home-page.css" />
