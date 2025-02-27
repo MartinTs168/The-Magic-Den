@@ -19,9 +19,6 @@
 </div>
 
 <section class="hero-body d-flex align-items-center justify-content-center">
-    
-    
-    
     <div class="hero-body-games-container">
         @foreach (var game in Model)
         {
@@ -29,6 +26,12 @@
         }
     </div>
 </section>
+
+<div class="all-games-link-container">
+    <div class="all-games-link-content">
+        <a asp-area="" asp-controller="Game" asp-action="All">View All</a>
+    </div>
+</div>
 
 @section Styles
 {

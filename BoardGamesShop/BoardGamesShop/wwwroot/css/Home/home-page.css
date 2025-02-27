@@ -79,3 +79,28 @@ h1.hero-title {
     text-align: center;
     margin: 0;
 }
+
+.all-games-link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2em;
+    margin-top: 2rem;
+}
+
+.all-games-link-content {
+    padding: 0.5em;
+    background-color: #4e1bc4;
+    color: white;
+    width: 10%;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.all-games-link-content > a {   
+    text-align: center;
+    margin: 0;
+    font-size: 1.2rem;
+}
