@@ -207,6 +207,7 @@ body {
 
 .game-name {
   font-size: 0.7rem;
+  text-transform: uppercase;
 }
 
 .game-card-container {
