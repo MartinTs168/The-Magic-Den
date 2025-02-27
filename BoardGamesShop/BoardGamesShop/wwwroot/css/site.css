@@ -257,4 +257,50 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 180px;
+}
+
+.game-card-content {
+  width: 100%;
+}
+
+.game-prices-container {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 0.3em;
+}
+
+.game-original-price {
+  width: 80px;
+  height: 20px;
+  margin-bottom: 0.3rem;
+  margin-top: 0.7rem;
+}
+
+.game-prices-container p {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.game-original-price > p {
+  text-decoration: line-through;
+  color: lightgrey;
+  font-size: 0.7rem;
+}
+
+.discount-container {
+  width: 45px;
+  height: 30px;
+  margin-top: 15%;
+  background-color: #9cd1ef;
+  color: #4e1bc4;
+  border-radius: 5px;
+  padding: 0.4em
+}
+
+.discount-container > p {
+  text-align: right;
 }

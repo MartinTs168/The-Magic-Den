@@ -6,11 +6,24 @@
         <div class="image-container">
             <img class="game-cover-image" src="@Model.ImgUrl" alt="Game Image">
         </div>
-        <div class="text-center">
+        <div class="text-center game-card-content">
             <div class="game-name-container">
                 <p class="game-name">@Model.Name</p>
             </div>
-            <p class="game-price">@($"{Model.Price:f2}") BGN</p>
+            <div class="game-prices-container">
+                <div class="prices">
+                    <div class="game-original-price">
+                        <p>@(Model.Discount > 0 ? $"{Model.OriginalPrice:f2} BGN" : "")</p>
+                    </div>
+                    <p class="game-price">@($"{Model.Price:f2}") BGN</p>
+                </div>
+                @if (Model.Discount > 0)
+                {
+                    <div class="discount-container">
+                        <p class="discount">-@Model.Discount%</p>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
