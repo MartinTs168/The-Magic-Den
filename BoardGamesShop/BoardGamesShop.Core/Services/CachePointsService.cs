@@ -17,17 +17,17 @@ public class CachePointsService : ICachePointsService
 
     public async Task<int> GetCurrentValueAsync(Guid userId)
     {
-
-        var userMagicPoints = await _userService.GetUserMagicPointsAsync(userId);
-        
-        if (userMagicPoints == null)
-        {
-            throw new InvalidOperationException("User not found");
-        }
-
         string key = $"User_{userId}_MagicPoints";
+        
         return await _cache.GetOrCreateAsync(key, async entry =>
         {
+            var userMagicPoints = await _userService.GetUserMagicPointsAsync(userId);
+        
+            if (userMagicPoints == null)
+            {
+                throw new InvalidOperationException("User not found");
+            }
+
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
             return (int)userMagicPoints;
         });

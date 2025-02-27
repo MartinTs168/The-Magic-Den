@@ -86,6 +86,7 @@ h1.hero-title {
     justify-content: space-evenly;
     gap: 2em;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .all-games-link-content {
