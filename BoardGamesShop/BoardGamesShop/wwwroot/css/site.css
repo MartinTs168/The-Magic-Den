@@ -298,9 +298,13 @@ body {
   background-color: #9cd1ef;
   color: #4e1bc4;
   border-radius: 5px;
-  padding: 0.4em
+  padding: 0.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .discount-container > p {
   text-align: right;
 }
+

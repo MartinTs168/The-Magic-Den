@@ -58,3 +58,24 @@ h1.hero-title {
     justify-content: space-evenly;
     gap: 2em;
 }
+
+.hero-body-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 10rem auto 3rem auto;
+}
+
+.hero-body-heading-content {
+    padding: 1em;
+    background-color: #4e1bc4;
+    color: white;
+    width: 100%;
+    border-radius: 40px;
+}
+
+.hero-body-heading-content > h3 {   
+    text-align: center;
+    margin: 0;
+}
