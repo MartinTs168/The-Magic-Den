@@ -173,9 +173,11 @@ body {
 }
 
 .side-menu .useful-links {
+  width: 92%;
+  position: absolute;
+  bottom: 20px;
   display: flex;
   justify-content: space-between;
-  margin-top: 65vh;
   border-radius: 0.25rem;
   padding: 0.5em;
 }
