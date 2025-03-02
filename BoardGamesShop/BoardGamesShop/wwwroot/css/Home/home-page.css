@@ -105,3 +105,9 @@ h1.hero-title {
     margin: 0;
     font-size: 1.2rem;
 }
+
+@media screen and (max-width: 950px) {
+    .all-games-link-content {
+        width: 40%;
+    }
+}
