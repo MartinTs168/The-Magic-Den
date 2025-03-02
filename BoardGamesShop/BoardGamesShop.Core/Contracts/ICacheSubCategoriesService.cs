@@ -4,7 +4,7 @@ namespace BoardGamesShop.Core.Contracts;
 
 public interface ICacheSubCategoriesService
 {
-    Task<Dictionary<string, List<string>>> GetSubCategoriesNames();
+    Task<Dictionary<string, List<string>>> GetSubCategoriesNamesAsync();
     
     void InvalidateCache();
 }

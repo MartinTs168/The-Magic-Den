@@ -95,7 +95,7 @@
     </div>
     <div class="offcanvas-body">
         @{ Dictionary<string, List<string>> subCategoriesNames = 
-                await CacheSubCategoriesService.GetSubCategoriesNames(); }
+                await CacheSubCategoriesService.GetSubCategoriesNamesAsync(); }
         <div class="accordion-item side-menu-item">
             <div class="accordion-header d-flex align-items-center justify-content-between" id="headingBoardGames">
                 <form method="get" asp-area="" asp-controller="Game" asp-action="All">

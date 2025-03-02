@@ -22,7 +22,7 @@ public class CacheSubCategoriesService : ICacheSubCategoriesService
     }
 
 
-    public async Task<Dictionary<string, List<string>>> GetSubCategoriesNames()
+    public async Task<Dictionary<string, List<string>>> GetSubCategoriesNamesAsync()
     {
         
         return await _cache.GetOrCreateAsync(Key, async entry =>
@@ -39,7 +39,7 @@ public class CacheSubCategoriesService : ICacheSubCategoriesService
                 subCategoriesNames[subCategory.Category.Name].Add(subCategory.Name);
             }
             
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
             return subCategoriesNames;
         });
     }
