@@ -5,7 +5,7 @@ namespace BoardGamesShop.Core.Models.Game;
 
 public class AllGamesQueryModel
 {
-    public int GamesPerPage { get; } = 5; // TODO: this is 5 for test purposes change to more in the future
+    public int GamesPerPage { get; } = 20; // TODO: this is 5 for test purposes change to more in the future
 
     [Display(Name = "Sub Category")]
     public string SubCategory { get; set; } = null!;
