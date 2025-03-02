@@ -11,10 +11,14 @@ public class CategoryService : ICategoryService
 {
     
     private readonly IRepository _repository;
+    private readonly ICacheCategoriesService _cacheCategories;
     
-    public CategoryService(IRepository repository)
+    public CategoryService(
+        IRepository repository,
+        ICacheCategoriesService cacheCategories)
     {
         _repository = repository;
+        _cacheCategories = cacheCategories;
     }
     public async Task<IEnumerable<AllCategoriesViewModel>> AllAsync()
     {
@@ -32,14 +36,6 @@ public class CategoryService : ICategoryService
             }).ToListAsync();
     }
 
-    public async Task<IEnumerable<string>> AllCategoriesNamesAsync()
-    {
-        return await _repository.AllReadOnly<Category>()
-            .Select(c => c.Name)
-            .ToListAsync();
-    }
-
-
     public async Task<int> CreateAsync(CategoryFormViewModel model)
     {
         var category = new Category()
@@ -50,6 +46,7 @@ public class CategoryService : ICategoryService
         await _repository.AddAsync(category);
         await _repository.SaveChangesAsync();
         
+        _cacheCategories.InvalidateCache();
         return category.Id;
     }
 
@@ -62,6 +59,8 @@ public class CategoryService : ICategoryService
             if (categoryObj!= null)
             {
                 categoryObj.Name = model.Name;
+                
+                _cacheCategories.InvalidateCache();
                 await _repository.SaveChangesAsync();
             }
         }
@@ -88,5 +87,7 @@ public class CategoryService : ICategoryService
     {
         await _repository.DeleteAsync<Category>(id);
         await _repository.SaveChangesAsync();
+        
+        _cacheCategories.InvalidateCache();
     }
 }

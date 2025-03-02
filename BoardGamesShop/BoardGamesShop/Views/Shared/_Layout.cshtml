@@ -1,6 +1,7 @@
 ﻿@using System.Security.Claims
 @inject ICachePointsService CachePointsService
 @inject ICacheSubCategoriesService CacheSubCategoriesService
+@inject ICacheCategoriesService CacheCategoriesService
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,107 +96,45 @@
     </div>
     <div class="offcanvas-body">
         @{ Dictionary<string, List<string>> subCategoriesNames = 
-                await CacheSubCategoriesService.GetSubCategoriesNamesAsync(); }
-        <div class="accordion-item side-menu-item">
-            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingBoardGames">
-                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                    <input hidden name="Category" type="text" value="Board Games"/>
-                    <button type="submit" class="side-menu-link">Board Games</button>
-                </form>
-                <button
-                    class="btn btn-link p-0"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseBoardGames"
-                    aria-expanded="false"
-                    aria-controls="collapseBoardGames">
-                    <i class="bi bi-chevron-down text-light"></i>
-                </button>
-            </div>
-            <div
-                id="collapseBoardGames"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingBoardGames"
-                data-bs-parent="#accordionMenu">
-                <div class="accordion-body">
-                    @foreach (string subcategory in subCategoriesNames["Board Games"])
-                    {
-                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                            <input hidden name="Subcategory" type="text" value="@subcategory"/>
-                            <button type="submit" class="side-menu-link">@subcategory</button>
-                        </form>
-                    }
+                await CacheSubCategoriesService.GetSubCategoriesNamesAsync();
+        }
+        @foreach(var category in await CacheCategoriesService.GetCategoriesNamesAsync())
+        {
+            <div class="accordion-item side-menu-item">
+                <div class="accordion-header d-flex align-items-center justify-content-between" 
+                     id=@($"heading{category.Replace(" ", "")}")>
+                    <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                        <input hidden name="Category" type="text" value="@category"/>
+                        <button type="submit" class="side-menu-link">@category</button>
+                    </form>
+                    <button
+                        class="btn btn-link p-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=@($"#collapse{category.Replace(" ", "")}")
+                        aria-expanded="false"
+                        aria-controls=@($"collapse{category.Replace(" ", "")}")>
+                        <i class="bi bi-chevron-down text-light"></i>
+                    </button>
+                </div>
+                <div
+                    id=@($"collapse{category.Replace(" ", "")}")
+                    class="accordion-collapse collapse"
+                    aria-labelledby=@($"heading{category.Replace(" ", "")}")
+                    data-bs-parent="#accordionMenu">
+                    <div class="accordion-body">
+                        @foreach (string subcategory in subCategoriesNames[category])
+                        {
+                            <form method="get" asp-area="" asp-controller="Game" asp-action="All">
+                                <input hidden name="Subcategory" type="text" value="@subcategory"/>
+                                <button type="submit" class="side-menu-link">@subcategory</button>
+                            </form>
+                        }
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="accordion-item side-menu-item">
-            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingCardGames">
-                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                    <input hidden name="Category" type="text" value="Card Games"/>
-                    <button type="submit" class="side-menu-link">TCG</button>
-                </form>
-                <button
-                    class="btn btn-link p-0"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseCardGames"
-                    aria-expanded="false"
-                    aria-controls="collapseCardGames">
-                    <i class="bi bi-chevron-down text-light"></i>
-                </button>
-            </div>
-            <div
-                id="collapseCardGames"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingCardGames"
-                data-bs-parent="#accordionMenu">
-                <div class="accordion-body">
-                    @foreach (string subcategory in subCategoriesNames["Card Games"])
-                    {
-                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                            <input hidden name="Subcategory" type="text" value="@subcategory"/>
-                            <button type="submit" class="side-menu-link">@subcategory</button>
-                        </form>
-                    }
-
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion-item side-menu-item">
-            <div class="accordion-header d-flex align-items-center justify-content-between" id="headingRolePlayingGames">
-                <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                    <input hidden name="Category" type="text" value="Role playing games"/>
-                    <button type="submit" class="side-menu-link">RPG</button>
-                </form>
-                <button
-                    class="btn btn-link p-0"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseRolePlayingGames"
-                    aria-expanded="false"
-                    aria-controls="collapseRolePlayingGames">
-                    <i class="bi bi-chevron-down text-light"></i>
-                </button>
-            </div>
-            <div
-                id="collapseRolePlayingGames"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingRolePlayingGames"
-                data-bs-parent="#accordionMenu">
-                <div class="accordion-body">
-                    @foreach (string subcategory in subCategoriesNames["Role playing games"])
-                    {
-                        <form method="get" asp-area="" asp-controller="Game" asp-action="All">
-                            <input hidden name="Subcategory" type="text" value="@subcategory"/>
-                            <button type="submit" class="side-menu-link">@subcategory</button>
-                        </form>
-                    }
-
-                </div>
-            </div>
-        </div>
+        }
 
         <div class="useful-links side-menu-item">
             <a href="#" class="side-menu-link">Contact Us</a>
