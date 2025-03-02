@@ -5,6 +5,8 @@ namespace BoardGamesShop.Core.Contracts;
 public interface ICategoryService
 {
     Task<IEnumerable<AllCategoriesViewModel>> AllAsync();
+    
+    Task<IEnumerable<string>> AllCategoriesNamesAsync();
 
     Task<int> CreateAsync(CategoryFormViewModel model);
 
