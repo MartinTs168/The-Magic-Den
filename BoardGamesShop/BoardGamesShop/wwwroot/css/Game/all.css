@@ -36,3 +36,11 @@
 .page-container > form > .row {
     padding: 1em;
 }
+
+.filters-button {
+    background-color: #4e1bc4;
+    color: white;
+    border-radius: 0.25rem;
+    border: 0;
+    padding: 0.5em 1em; 
+}
