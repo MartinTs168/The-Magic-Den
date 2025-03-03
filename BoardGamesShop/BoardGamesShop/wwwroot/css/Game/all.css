@@ -4,3 +4,35 @@
     justify-content: space-evenly;
     gap: 2em;
 }
+
+.sorting-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+    margin-top: 20px;
+}
+
+.search-string {
+    font-size: 1.3rem;
+    border: 0;
+    color: inherit;
+}
+
+.sorting-container .form-control {
+    min-width: 200px;
+}
+
+.sorting-container > select {
+    width: 20%;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.page-container > form > .row {
+    padding: 1em;
+}
