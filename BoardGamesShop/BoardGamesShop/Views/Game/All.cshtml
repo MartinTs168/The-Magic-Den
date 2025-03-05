@@ -118,7 +118,7 @@
                             <div class="accordion-body">
                                 @foreach (var brand in Model.Brands)
                                 {
-                                    <div class="select-brands-option">  
+                                    <div class="select-brands-option">
                                         <input type="checkbox" name="selectedBrands" value="@brand"
                                                @(Model.SelectedBrands.Contains(brand) ? "checked" : "") />
                                         <label>@brand</label>
