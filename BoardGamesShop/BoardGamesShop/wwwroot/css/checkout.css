@@ -1,0 +1,21 @@
+.checkout-card {
+    border: 2px solid #4e1bc4;
+    border-radius: 5px;
+}
+
+.checkout-card .card-header {
+    background-color: #9cd1ef;
+}
+
+.checkout-card button {
+    background-color: #4e1bc4;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+
+.checkout-card button:hover {
+    background-color: #9cd1ef;
+}
