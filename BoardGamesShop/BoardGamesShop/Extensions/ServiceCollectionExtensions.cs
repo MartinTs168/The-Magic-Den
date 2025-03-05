@@ -55,6 +55,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICachePointsService, CachePointsService>();
         services.AddScoped<ICacheSubCategoriesService, CacheSubCategoriesService>();
         services.AddScoped<ICacheCategoriesService, CacheCategoriesService>();
+        services.AddScoped<ICacheBrandsService, CacheBrandsService>();
         return services;
     }
 }

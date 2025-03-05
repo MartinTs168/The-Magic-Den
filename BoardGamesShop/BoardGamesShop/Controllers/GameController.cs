@@ -2,17 +2,20 @@ using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Models.Game;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static BoardGamesShop.Infrastructure.Constants.AdministratorConstants;
 
 namespace BoardGamesShop.Controllers;
 
 public class GameController : BaseController
 {
     private readonly IGameService _gameService;
+    private readonly ICacheBrandsService _cacheBrandsService;
     
-    public GameController(IGameService gameService)
+    public GameController(
+        IGameService gameService,
+        ICacheBrandsService cacheBrandsService)
     {
         _gameService = gameService;
+        _cacheBrandsService = cacheBrandsService;
     }
     
     [HttpGet]
@@ -33,7 +36,7 @@ public class GameController : BaseController
         query.TotalGamesCount = model.TotalGamesCount;
         query.Games = model.Games;
         query.SubCategories = await _gameService.AllSubCategoriesNamesAsync();
-        query.Brands = await _gameService.AllBrandsNamesAsync();
+        query.Brands = await _cacheBrandsService.GetBrandsNamesAsync();
         return View(query);
     }
     

@@ -10,10 +10,14 @@ public class BrandService : IBrandService
 {
 
     private readonly IRepository _repository;
+    private readonly ICacheBrandsService _cacheBrands;
     
-    public BrandService(IRepository repository)
+    public BrandService(
+        IRepository repository,
+        ICacheBrandsService cacheBrands)
     {
         _repository = repository;
+        _cacheBrands = cacheBrands;
     }
     
     public async Task<IEnumerable<BrandModel>> AllAsync()
@@ -37,7 +41,8 @@ public class BrandService : IBrandService
 
         await _repository.AddAsync(brand);
         await _repository.SaveChangesAsync();
-
+        
+        _cacheBrands.InvalidateCache();
         return brand.Id;
     }
 
@@ -51,6 +56,8 @@ public class BrandService : IBrandService
             {
                 brandObj.Name = model.Name;
                 await _repository.SaveChangesAsync();
+                _cacheBrands.InvalidateCache();
+
             }
         }
     }
@@ -75,5 +82,6 @@ public class BrandService : IBrandService
     {
         await _repository.DeleteAsync<Brand>(id);
         await _repository.SaveChangesAsync();
+        _cacheBrands.InvalidateCache();
     }
 }
