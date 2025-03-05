@@ -11,7 +11,9 @@ public interface IGameService
         string? brand = null,
         string? searchTerm = null,
         GameSorting sorting = GameSorting.Newest,
-        int currentPage = 1, int gamesPerPage = 1
+        int currentPage = 1, 
+        int gamesPerPage = 1,
+        List<string>? selectedBrands = null
         );
 
     Task<IEnumerable<string>> AllCategoriesNamesAsync();

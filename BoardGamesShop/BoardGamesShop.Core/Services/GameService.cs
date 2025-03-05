@@ -29,7 +29,8 @@ public class GameService : IGameService
         string? brand = null, 
         string? searchTerm = null, 
         GameSorting sorting = GameSorting.Newest,
-        int currentPage = 1, int gamesPerPage = 1)
+        int currentPage = 1, int gamesPerPage = 1,
+        List<string>? selectedBrands = null)
     {
         var gamesToShow = _repository.AllReadOnly<Game>();
 
@@ -58,6 +59,12 @@ public class GameService : IGameService
                 .Where(g => g.Name.ToLower().Contains(normalizedSearchTerm) ||
                             g.Description.ToLower().Contains(normalizedSearchTerm) ||
                             (g.SubCategory != null && g.SubCategory.Name.ToLower().Contains(normalizedSearchTerm)));
+        }
+
+        if (selectedBrands != null && selectedBrands.Count > 0)
+        {
+            gamesToShow = gamesToShow
+                .Where(g => selectedBrands.Contains(g.Brand.Name));
         }
 
         gamesToShow = sorting switch
