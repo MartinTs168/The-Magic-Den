@@ -26,7 +26,8 @@ public class GameController : BaseController
             query.SearchTerm,
             query.Sort,
             query.CurrentPage,
-            query.GamesPerPage
+            query.GamesPerPage,
+            query.SelectedBrands
         );
 
         query.TotalGamesCount = model.TotalGamesCount;

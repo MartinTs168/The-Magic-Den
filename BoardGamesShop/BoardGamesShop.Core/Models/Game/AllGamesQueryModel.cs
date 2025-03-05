@@ -26,7 +26,7 @@ public class AllGamesQueryModel
     
     public IEnumerable<string> Categories { get; set; } = null!;
 
-    public IEnumerable<string> SelectedBrands { get; set; } = new List<string>();
+    public List<string> SelectedBrands { get; set; } = new List<string>();
     
     public int TotalGamesCount { get; set; }
 
