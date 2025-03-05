@@ -88,3 +88,31 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+
+.controls {
+    display: flex;
+    align-items: center;
+    width: 92%;
+    position: absolute;
+    bottom: 20px;
+    justify-content: space-evenly;
+    gap: 1em
+}
+
+.controls > button:nth-child(1) {
+    background-color: #4e1bc4;
+    color: white;
+    border-radius: 0.25rem;
+    border: 0;
+    padding: 0.5em 1em; 
+    width: 50%;
+}
+
+.controls > button:nth-child(2) {
+    background-color: red;
+    color: white;
+    border-radius: 0.25rem;
+    border: 0;
+    padding: 0.5em 1em;
+    width: 50%;
+}
