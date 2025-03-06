@@ -1,11 +1,11 @@
 .shopping-cart-item-card {
-    min-height: 206px;
+    min-height: 215px !important;
     border: 2px solid #4e1bc4;
     border-radius: 5px;
 }
 
 .cart-info {
-    min-height: 214px;
+    min-height: 215px !important;
     border: 2px solid #4e1bc4;
     border-radius: 5px;
 }

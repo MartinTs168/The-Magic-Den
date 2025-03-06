@@ -2,63 +2,43 @@
 
 
 <form method="post">
-    <div class="card shadow border-0 mt-4 mb-4">
-        <div class="card-header bg-secondary bg-gradient text-light py-4">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="text-white text-uppercase">@Model.Name</h3>
-                    <p class="text-white-50 fw-semibold mb-0">by @Model.BrandName</p>
+    <div class="details-container">
+        <div class="details-image-container">
+            <img src="@Model.ImgUrl" alt="@Model.Name Image"/>
+        </div>
+        <div class="details">
+            <h6>@Model.Name</h6>
+            <p>Brand: @Model.BrandName</p>
+            <p>Number of players: @Model.NumberOfPlayers</p>
+            <p>Age Rating: @Model.AgeRating</p>
+            <p>Category: @Model.SubCategoryName</p>
+        </div>
+        <div class="pricing-details">
+            <div class="prices-card">
+                <div class="game-original-price">
+                    <p>@Model.OriginalPrice.ToString("C")</p>
+                </div>
+                <div class="game-price">
+                    <p>@Model.Price.ToString("C")</p>
+                </div>
+                <div class="discount-container">
+                    You save @Model.Discount%
+                </div>
+                <div class="add-to-cart-container">
+                    <button asp-area="" asp-controller="ShoppingCart" asp-action="AddGameToCart"
+                            type="submit" disabled="@(!Model.IsInStock)">
+                        @(Model.IsInStock ? "Add to Cart" : "Out Of Stock")
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="py-3">
-                <div class="row">
-                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <img src="@Model.ImgUrl" width="100%" class="rounded" alt="game image"/>
-                    </div>
-                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <form method="post" >
-                            <input type="hidden" name="gameId" value="@Model.Id"/>
-                            <button asp-area="" asp-controller="ShoppingCart" asp-action="AddGameToCart"
-                                    class="btn btn-primary" type="submit" disabled="@(!Model.IsInStock)">
-                                @(Model.IsInStock ? "Add to Cart" : "Out Of Stock")
-                            </button>
-                        </form>
-                    </div>
-                    <div class="col-12 col-lg-6 offset-lg-1">
-                        <div class="col-12 col-md-6 pb-4">
-                            <h6 class="text-dark text-opacity-50">Sub Category: @Model.SubCategoryName</h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50">Number of players: @Model.NumberOfPlayers</h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                Age Rating: @Model.AgeRating
-                            </h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                Original Price: @Model.OriginalPrice.ToString("c")
-                            </h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                Discount: @Model.Discount %
-                            </h6>
-                        </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                Price: @Model.Price.ToString("c")
-                            </h6>
-                        </div>
-                        <div class="row pl-2 my-3">
-                            <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="description">
+            <p>@Model.Description</p>
         </div>
     </div>
 </form>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/Game/details.css" />
+}

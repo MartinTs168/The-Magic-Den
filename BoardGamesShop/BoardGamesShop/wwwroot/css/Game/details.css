@@ -1,0 +1,72 @@
+.details-container {
+    display: flex;
+    gap: 2em;
+    margin-top: 20px;
+    padding: 1em;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.details-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.details-image-container > img{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.details-image-container,
+.details{
+    flex: 1 1 calc((100% / 3) - 2em);
+    padding: 1em;
+}
+
+.pricing-details {
+    flex: 1 1 calc((100% / 3) - 2em);
+    border: 2px solid #4e1bc4;
+    border-radius: 5px;
+    padding: 2em;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.prices-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    align-items: center;
+}
+
+.game-original-price > p {
+    font-size: 1rem;
+}
+
+.prices-card > div {
+    width: 70%;
+    text-align: center;
+}
+
+.discount-container {
+    margin-bottom: 2em;
+}
+
+.pricing-details button {
+    color: white;
+    background-color: #4e1bc4;
+    border: 0;
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .pricing-details {
+        flex: 1 1 100%;
+    }
+    
+    .details,
+    .details-image-container {
+        flex: 1 1 calc((100% / 2) - 2em);
+    }
+}
