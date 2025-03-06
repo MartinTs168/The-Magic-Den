@@ -116,3 +116,16 @@
     padding: 0.5em 1em;
     width: 50%;
 }
+
+.page-btn {
+    color: white;
+    background-color: #4e1bc4;
+    border-radius: 5px;
+    border: 0;
+    padding: 0.5em 1em;
+    margin: 0 1em;
+}
+
+.page-btn:hover {
+    color: #9cd1ef;
+}
