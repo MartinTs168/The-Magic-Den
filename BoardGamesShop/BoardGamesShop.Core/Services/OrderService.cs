@@ -19,6 +19,7 @@ public class OrderService : IOrderService
     public async Task<IEnumerable<OrderViewModel>> GetOrdersAsync()
     {
         return await _repository.AllReadOnly<Order>()
+            .OrderByDescending(o => o.CreatedAt)
             .Select(o => new OrderViewModel()
             {
                 OrderDate = o.CreatedAt,
