@@ -34,6 +34,7 @@ public class OrderService : IOrderService
     {
         return await _repository.AllReadOnly<Order>()
             .Where(o => o.UserId == userId)
+            .OrderByDescending(o => o.CreatedAt)
             .Select(o => new OrderViewModel()
             {
                 OrderDate = o.CreatedAt,
