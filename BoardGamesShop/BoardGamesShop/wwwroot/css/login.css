@@ -1,0 +1,13 @@
+.login-button {
+    background-color: #4e1bc4 !important;
+    color: white
+}
+
+.register-link {
+    color: #4e1bc4;
+    text-decoration: underline;
+    
+    &:hover {
+      color: #9cd1ef;  
+    }
+}
