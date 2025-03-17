@@ -1,0 +1,30 @@
+<div class="row justify-content-between align-items-center">
+    <div class="col-md-5 col-sm-12 d-flex flex-column">
+        <h2 class="mb-3">Contact Us</h2>
+        <form method="post">
+            <div class="mb-3 form-floating">
+                <input type="email" id="email" class="form-control" required>
+                <label class="form-label" for="email">Email</label>
+            </div>
+
+            <div class="mb-3 form-floating">
+                <textarea id="message" class="form-control" required></textarea>
+                <label class="form-label" for="message">Message</label>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="submit-button w-100">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-5 col-sm-12">
+        <div class="row mt-5 map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1009.8373181834759!2d23.0327435619284!3d42.60725666860512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbg!4v1742197448735!5m2!1sen!2sbg" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/ContactUs/contact.css" />
+}

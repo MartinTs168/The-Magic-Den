@@ -1,0 +1,17 @@
+.submit-button {
+    background-color: #4e1bc4;
+    color: white;
+    border-radius: 0.25rem;
+    border: 0;
+    padding: 0.5em 1em;
+}
+
+textarea#message {
+    height: 150px !important;
+}
+
+.map-container {
+    border-radius: 0.25rem;
+    border: 2px solid #4e1bc4;
+    padding: 0.5em 0.25em;
+}

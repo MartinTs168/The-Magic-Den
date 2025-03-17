@@ -137,7 +137,7 @@
         }
 
         <div class="useful-links side-menu-item">
-            <a href="#" class="side-menu-link">Contact Us</a>
+            <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="side-menu-link">Contact Us</a>
             @if (User.IsInRole(AdminRole))
             {
                 <a asp-area="Admin" asp-controller="Home" asp-action="Dashboard" class="side-menu-link">
