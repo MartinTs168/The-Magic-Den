@@ -53,9 +53,9 @@
         <div class="row mb-2 mt-4">
 
             <div class="col-md-12 d-flex gap-2 d-md-flex justify-content-end">
-                <button type="submit" class="btn page-btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                        onclick="document.querySelector('#CurrentPage').value = parseInt(document.querySelector('#CurrentPage').value) - 1"
-                        > Previous Page
+                <button type="submit" id="prev-page-btn"
+                        class="btn page-btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)">
+                    Previous Page
                 </button>
 
                 @{
@@ -64,9 +64,8 @@
                 }
 
 
-                <button type="submit" class="btn page-btn @(shouldButtonBeDisabled ? "disabled" : "")"
-                        onclick="document.querySelector('#CurrentPage').value = parseInt(document.querySelector('#CurrentPage').value) + 1"
-                    >
+                <button type="submit" id="next-page-btn" 
+                        class="btn page-btn @(shouldButtonBeDisabled ? "disabled" : "")">
                      Next Page
                 </button>
             </div>
