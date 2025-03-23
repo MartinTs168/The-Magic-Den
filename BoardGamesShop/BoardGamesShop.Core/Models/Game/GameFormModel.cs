@@ -44,7 +44,7 @@ public class GameFormModel
     public string NumberOfPlayers { get; set; } = null!;
     
     [Required(ErrorMessage = RequiredErrorMessage)]
-    [Display(Name = "Category")]
+    [Display(Name = "Sub Category")]
     public int? SubCategoryId{get; set; }
 
     public IEnumerable<GameSubCategoryServiceModel> SubCategories { get; set; } =
