@@ -9,18 +9,14 @@ namespace BoardGamesShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IGameService _gameService;
 
-        public HomeController(
-            ILogger<HomeController> logger,
-            IGameService gameService)
+        public HomeController(IGameService gameService)
         {
-            _logger = logger;
             _gameService = gameService;
         }
 
-        public async  Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
 
             var model = await _gameService.GetFiveNewestGamesAsync();

@@ -2,7 +2,6 @@ using BoardGamesShop.Core.Contracts;
 using BoardGamesShop.Core.Services;
 using BoardGamesShop.Infrastructure.Data.Common;
 using BoardGamesShop.Infrastructure.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Tests;
 

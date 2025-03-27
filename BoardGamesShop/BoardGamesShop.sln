@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop.Core", "BoardGamesShop.Core\BoardGamesShop.Core.csproj", "{A6200B3A-7BF3-4C55-A545-69741DEC1B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop.UnitTests", "BoardGamesShop.UnitTests\BoardGamesShop.UnitTests.csproj", "{C5653339-1639-447A-95DD-B1324A4C3872}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGamesShop.Tests", "BoardGamesShop.Tests\BoardGamesShop.Tests.csproj", "{C5653339-1639-447A-95DD-B1324A4C3872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
