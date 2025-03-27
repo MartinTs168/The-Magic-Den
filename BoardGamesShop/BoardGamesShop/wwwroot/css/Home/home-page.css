@@ -73,6 +73,7 @@ h1.hero-title {
     color: white;
     width: 100%;
     border-radius: 40px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .hero-body-heading-content > h3 {   
@@ -98,6 +99,7 @@ h1.hero-title {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .all-games-link-content > a {   
