@@ -293,12 +293,16 @@ public class ShoppingService : IShoppingService
                     throw new ArgumentException("Insufficient magic points");
                 }
 
+                user.MagicPoints -= FivePercentDiscountCost;
+
                 break;
             case 15:
                 if (userMagicPoints < FifteenPercentDiscountCost)
                 {
                     throw new ArgumentException("Insufficient magic points");
                 }
+                
+                user.MagicPoints -= FifteenPercentDiscountCost;
 
                 break;
             case 50:
@@ -306,6 +310,8 @@ public class ShoppingService : IShoppingService
                 {
                     throw new ArgumentException("Insufficient magic points");
                 }
+                
+                user.MagicPoints -= FiftyPercentDiscountCost;
 
                 break;
         }
@@ -337,7 +343,7 @@ public class ShoppingService : IShoppingService
             Count = cart.Count,
             Discount = cart.Discount
         };
-
+        
         user.MagicPoints += decimal.ToInt32(cart.TotalPrice * 100);
         
         await _repository.AddAsync(order);
