@@ -5,10 +5,12 @@ namespace BoardGamesShop.Infrastructure.Data.Common;
 public class Repository : IRepository
 {
     private readonly DbContext _context;
+    private readonly bool _allowNoTracking;
 
-    public Repository(ApplicationDbContext context)
+    public Repository(ApplicationDbContext context, bool allowNoTracking = true)
     {
         _context = context;
+        _allowNoTracking = allowNoTracking;
     }
 
     private DbSet<T> DbSet<T>() where T : class
@@ -24,7 +26,7 @@ public class Repository : IRepository
 
     public IQueryable<T> AllReadOnly<T>() where T : class
     {
-        return DbSet<T>().AsNoTracking();
+        return _allowNoTracking ? DbSet<T>().AsNoTracking() : DbSet<T>();
     }
 
     public async Task AddAsync<T>(T entity) where T : class
