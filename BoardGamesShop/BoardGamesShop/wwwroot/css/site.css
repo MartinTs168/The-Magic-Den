@@ -101,7 +101,7 @@ body {
 }
 
 
-@media screen and (max-width:860px){
+@media screen and (max-width:1180px){
   header > nav {
     flex-direction: column;
   }
@@ -312,3 +312,14 @@ body {
   text-align: right;
 }
 
+img#logo {
+  width: 300px;
+  height: 120px;
+}
+
+@media screen and (max-width: 768px) {
+  img#logo {
+    width: 120px;
+    height: 80px;
+  }
+}
