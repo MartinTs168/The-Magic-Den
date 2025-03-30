@@ -4,12 +4,8 @@
     <p class="text-truncate">@Model.Name</p>
 </div>
 
-<div class="col-md-1">
-    <p>@Model.Discount %</p>
-</div>
-
 <div class="col-md-2">
-    <p>@($"{Model.Price:F2}") BGN</p>
+    <p>@($"{Model.Price.ToString("C")}")</p>
 </div> 
 
 <div class="col-md-2">
