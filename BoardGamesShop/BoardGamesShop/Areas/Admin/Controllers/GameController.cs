@@ -10,14 +10,23 @@ public class GameController : AdminBaseController
     private readonly IGameService _gameService;
     private readonly IBrandService _brandService;
     private readonly ISubCategoryService _subCategoryService;
+    private readonly ICacheBrandsService _cacheBrandsService;
+    private readonly ICacheSubCategoriesService _cacheSubCategoriesService;
+    private readonly ICacheCategoriesService _cacheCategoriesService;
     
     public GameController(IGameService gameService,
         IBrandService brandService,
-        ISubCategoryService subCategoryService)
+        ISubCategoryService subCategoryService,
+        ICacheBrandsService cacheBrandsService,
+        ICacheSubCategoriesService cacheSubCategoriesService,
+        ICacheCategoriesService cacheCategoriesService)
     {
         _gameService = gameService;
         _brandService = brandService;
         _subCategoryService = subCategoryService;
+        _cacheBrandsService = cacheBrandsService;
+        _cacheSubCategoriesService = cacheSubCategoriesService;
+        _cacheCategoriesService = cacheCategoriesService;
     }
     
     [HttpGet]
@@ -35,9 +44,14 @@ public class GameController : AdminBaseController
 
         query.TotalGamesCount = model.TotalGamesCount;
         query.Games = model.Games;
-        query.SubCategories = await _gameService.AllSubCategoriesNamesAsync();
-        query.Brands = await _gameService.AllBrandsNamesAsync();
-        query.Categories = await _gameService.AllCategoriesNamesAsync();
+        
+        var subCategories = await _cacheSubCategoriesService.GetSubCategoriesNamesAsync();
+        IEnumerable<string> subCategoriesAsEnumerable =
+            subCategories.Values.SelectMany(subCategoryList => subCategoryList.Select(sc => sc));
+
+        query.SubCategories = subCategoriesAsEnumerable;
+        query.Brands = await _cacheBrandsService.GetBrandsNamesAsync();
+        query.Categories = await _cacheCategoriesService.GetCategoriesNamesAsync();
         return View(query);
     }
 
