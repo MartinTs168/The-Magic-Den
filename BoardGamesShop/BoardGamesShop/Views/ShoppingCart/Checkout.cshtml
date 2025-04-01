@@ -20,6 +20,7 @@
             
             <div class="mb-3">
                 <label asp-for="TotalPrice"></label>
+                <input asp-for="TotalPrice" hidden />
                 <p>@Model.TotalPrice.ToString("C")</p>
             </div>
             
