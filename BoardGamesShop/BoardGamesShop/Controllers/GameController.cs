@@ -9,16 +9,13 @@ public class GameController : BaseController
 {
     private readonly IGameService _gameService;
     private readonly ICacheBrandsService _cacheBrandsService;
-    private readonly ICacheSubCategoriesService _cacheSubCategoriesService;
     
     public GameController(
         IGameService gameService,
-        ICacheBrandsService cacheBrandsService,
-        ICacheSubCategoriesService cacheSubCategoriesService)
+        ICacheBrandsService cacheBrandsService)
     {
         _gameService = gameService;
         _cacheBrandsService = cacheBrandsService;
-        _cacheSubCategoriesService = cacheSubCategoriesService;
     }
     
     [HttpGet]
@@ -38,11 +35,6 @@ public class GameController : BaseController
 
         query.TotalGamesCount = model.TotalGamesCount;
         query.Games = model.Games;
-
-        // var subCategories = await _cacheSubCategoriesService.GetSubCategoriesNamesAsync();
-        // IEnumerable<string> subCategoriesAsEnumerable = subCategories.Values.Select(sc => sc.ToString())!;
-        
-        // query.SubCategories = subCategoriesAsEnumerable;
         query.Brands = await _cacheBrandsService.GetBrandsNamesAsync();
         return View(query);
     }
