@@ -15,13 +15,7 @@ public interface IGameService
         int gamesPerPage = 1,
         List<string>? selectedBrands = null
         );
-
-    Task<IEnumerable<string>> AllCategoriesNamesAsync();
     
-    Task<IEnumerable<string>> AllSubCategoriesNamesAsync();
-    
-    Task<IEnumerable<string>> AllBrandsNamesAsync();
-
     Task<int> CreateAsync(GameFormModel model);
 
     Task<GameFormModel?> GetGameFormModelByIdAsync(int id);

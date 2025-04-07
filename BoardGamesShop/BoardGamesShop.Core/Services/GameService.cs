@@ -99,27 +99,6 @@ public class GameService : IGameService
         };
     }
 
-    public async  Task<IEnumerable<string>> AllCategoriesNamesAsync()
-    {
-        return await _repository.AllReadOnly<Category>()
-            .Select(c => c.Name)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<string>> AllSubCategoriesNamesAsync()
-    {
-        return await _repository.AllReadOnly<SubCategory>()
-            .Select(sc => sc.Name)
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<string>> AllBrandsNamesAsync()
-    {
-        return await _repository.AllReadOnly<Brand>()
-            .Select(b => b.Name)
-            .ToListAsync();
-    }
-
     public async Task<int> CreateAsync(GameFormModel model)
     {
         var gameEntity = new Game()
