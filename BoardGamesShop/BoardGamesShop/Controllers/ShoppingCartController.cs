@@ -122,7 +122,7 @@ public class ShoppingCartController : BaseController
             return RedirectToAction(nameof(Index));
         }
         
-        var cartItem = await _shoppingService.GetShoppingCartItemsAsync(cart.Id, gameId);
+        var cartItem = await _shoppingService.GetShoppingCartItemAsync(cart.Id, gameId);
         
         if (cartItem == null)
         {

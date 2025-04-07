@@ -25,7 +25,7 @@ public interface IShoppingService
     /// <returns>The quantity of the updated cart item</returns>
     Task<int> UpdateCartQuantityAsync(int cartId, int gameId, int quantity);
 
-    Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId);
+    Task<ShoppingCartItemServiceModel?> GetShoppingCartItemAsync(int cartId, int gameId);
 
     /// <summary>
     /// Transforms a ShoppingCartItem to OrderItem

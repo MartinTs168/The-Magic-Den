@@ -230,7 +230,7 @@ public class ShoppingService : IShoppingService
         return cartItem.Quantity;
     }
 
-    public async Task<ShoppingCartItemServiceModel?> GetShoppingCartItemsAsync(int cartId, int gameId)
+    public async Task<ShoppingCartItemServiceModel?> GetShoppingCartItemAsync(int cartId, int gameId)
     {
         var cartItem = await  _repository.GetByIdAsync<ShoppingCartItem>(cartId, gameId);
 
