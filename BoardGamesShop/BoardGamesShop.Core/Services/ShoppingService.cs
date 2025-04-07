@@ -160,7 +160,7 @@ public class ShoppingService : IShoppingService
         }
         else
         {
-            cartItem.Quantity++; 
+            cartItem.Quantity = cartItem.Quantity + 1 >= game.Quantity ? game.Quantity : cartItem.Quantity + 1;
         }
 
         cart.UpdateCart();
