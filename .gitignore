@@ -481,3 +481,8 @@ fabric.properties
 
 # Finder ignore
 **/.DS_Store
+
+.idea/
+
+appsettings.json
+appsettings.Development.json
