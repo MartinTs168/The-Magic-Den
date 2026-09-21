@@ -1,5 +1,7 @@
 # The Magic Den
 
+🔗 **[Live Production Site](https://the-magic-den.runasp.net/)**
+
 ## Contents
 
 1. [Project description](#1-project-description)
@@ -14,35 +16,35 @@ The Magic Den is an online store for board games and related products developed 
 
 ### Main functionalities
 
--   Ability to view every product for all users, including non-registered users.
+- Ability to view every product for all users, including non-registered users.
 
--   Ability to filter products by multiple criteria.
+- Ability to filter products by multiple criteria.
 
--   Ability to sort games by price.
+- Ability to sort games by price.
 
--   Registered users have shopping carts and can make orders.
+- Registered users have shopping carts and can make orders.
 
--   When making an order, registered users can buy a discount for their orders by utilizing the special currency "Magic Points" which can be accumulated by making orders.
+- When making an order, registered users can buy a discount for their orders by utilizing the special currency "Magic Points" which can be accumulated by making orders.
 
--   Administrators can manipulate games, categories, subcategories and brands.
+- Administrators can manipulate games, categories, subcategories and brands.
 
--   Administrators can also see a history of orders and delete users.
+- Administrators can also see a history of orders and delete users.
 
--   Administrator has access to a simple statistical menu
+- Administrator has access to a simple statistical menu
 
 ## 2. Technologies
 
--   The backend is written in **C#** and **ASP.Net Core** with the **MVC** pattern.
+- The backend is written in **C#** and **ASP.Net Core** with the **MVC** pattern.
 
--   User management wiht **ASP.Net Identity**.
+- User management wiht **ASP.Net Identity**.
 
--   Database - **SQL Server**.
+- Database - **SQL Server**.
 
--   The app uses **three-layer architecture**.
+- The app uses **three-layer architecture**.
 
--   Followed design patterns - combination of **General Repository** and **Unit of work**. **Factory** for the use of migrations during development.
+- Followed design patterns - combination of **General Repository** and **Unit of work**. **Factory** for the use of migrations during development.
 
--   The frontend is built with: **HTML**, **CSS**, **JavaScript**, **Bootstrap** and **Razor**.
+- The frontend is built with: **HTML**, **CSS**, **JavaScript**, **Bootstrap** and **Razor**.
 
 ## 3. App Overview
 
